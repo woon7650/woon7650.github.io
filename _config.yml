@@ -19,8 +19,8 @@ locale                   : "en-US"
 title                    : "Develop Journal"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
-description              : "An amazing website."
+name                     : "코딩이 재밌는 개발자"
+description              : "고급 개발자를 향한 초급 개발자의 여정의 기록"
 url                      : "https://woon7650.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -97,12 +97,12 @@ author:
   name             : "Geun Young Kim"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Developer"
-  location         : "Seoul"
+  location         : "대한민국/서울(Korea/Seoul)"
   email            : "woon7650@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+      url: mailto:woon7650@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -130,6 +130,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
+      url: "https://github.com/woon7650"
       # url:
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
