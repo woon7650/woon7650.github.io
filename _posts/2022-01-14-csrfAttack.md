@@ -21,9 +21,10 @@ last_modified_at: 2012-09-01
 - 조건
   - 사용자가 웹사이트에 로그인을 한 상태에서 CSRF `<script>`가 포함된 페이지를 열 때 발생합니다.
 - CSRF 실제 발생 예시
+
     > 2008년도 옥션 해킹 사고의 원인(CSRF 공격)
     > - 공격자가 옥션 운영자에게 CSRF 코드가 포함된 이메일을 보냈습니다.
-    >     - `<img src="http://auction.com/changeUserAcoount?id=admin&password=admin" width="0" height="0">`
+    > - *`<img src="http://auction.com/changeUserAcoount?id=admin&password=admin" width="0" height="0">`*
     > - 관리자는 이미지 크기가 0이므로 전혀 알아차리지 못하고 URL이 열린다.
     > - 공격자는 관리자 권한을 가지게 됩니다.
 
@@ -31,6 +32,7 @@ last_modified_at: 2012-09-01
   - **Referer 검증**
     - Back
       > request header에 있는 referer 속성을 검증합니다.(요청을 한 페이지의 정보 -> 정보가 없다면 접속 차단)
+
       ```java
       String referer = request.getHeader("REFERER");
       if( referer != null && referer.length() > 0){
@@ -39,8 +41,10 @@ last_modified_at: 2012-09-01
       //접속 차단
       }
       ```
+
     - Front
       > 다른 도메인명으로 접근하는 외부 접속을 차단합니다.(document.referer : 링크를 통해 현재 페이지로 이동 시킨, 전 페이지의 URI 정보를 반환)
+
       ```jsp
       var hostName = document.referer;
       if(hostName == '페이지 이동 전 페이지의 도메인'){
@@ -49,24 +53,31 @@ last_modified_at: 2012-09-01
       //접속 차단
       }
       ```
+
     - 핵심 : 현재 페이지 이전의 페이지 정보가 없거나, 이전 페이지와 도메인이 다르면 접속을 차단합니다.
     
   - **CSRF Token 사용**
     - Back
       > 먼저 페이지로 넘어가기 전에 controller 단에서 session에서 String type의 random id를 session에 저장한 후 front로 CSRF_TOKEN값을 넘겨줍니다. 
+
       ```java
       session.setAttribte("CSRF_TOKEN",UUID.randomUUID().toString());
       ```
+
     - Front
       > 페이지에서 action으로 인한 서버와의 통신 발생시 controller에서 넘겨준 csrf_token 값을 hidden input 형태로 담아 controller로 보내줍니다.
+
       ```jsp
       <input type = "hidden" name="_csrf" value="${CSRF_TOKEN}"/>
-       ```
+      ```
+
     - Back(Front로 넘어간 후)
       > controller에서 front에서 넘어온 _csrf 값과 session에 저장되어있던 CSRF_TOKEN 값을 비교합니다.
+
       ```java
       session.getAttribte("CSRF_TOKEN");
       ```
+
     - 핵심 : 사용자의 *session, page*에 들고 있던 *CSRF_TOKEN* 값을 통해 서버와의 통신 발생시 *CSRF_TOKEN*값 비교를 통해 방지합니다
 
   - **CAPTCHA 사용**
@@ -75,6 +86,7 @@ last_modified_at: 2012-09-01
   - **Spring Security**
     - pom.xml
       > Spring Security 3.2.0이후 부터 CSRF 방어 기능을 제공합니다.
+
       ```xml
       <properties>
 		    <java-version>1.8</java-version>
@@ -83,15 +95,19 @@ last_modified_at: 2012-09-01
 	    	<org.slf4j-version>1.6.6</org.slf4j-version>
 	    </properties>
       ```
+
   - **Post Method**
     - GET 방식 보다는 Post 방식을 지향합니다. 
+    
 ---
 
 ## XSS & CSRF ATTACK
 - XSS는 사용자가 특정 사이트를 신뢰한다는 점을 공격하는 기법입니다.(Client에서 발생)
-    - 목적 : *cookie & session 탈취 및 웹사이트 변조*
+  - 목적 : *cookie & session 탈취 및 웹사이트 변조*
+  
 - CSRF는 특정 사이트가 사용자의 브라우저를 신뢰한다는 점을 공격하는 기법입니다.(Server에서 발생)
-    - 목적 : *사용자의 권한 도용*
+  - 목적 : *사용자의 권한 도용*
+
 ---
 
 ## 마무리를 하면서 느낀점
