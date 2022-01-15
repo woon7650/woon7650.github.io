@@ -12,7 +12,7 @@ last_modified_at: 2012-09-01
 ## Cross Site Scripting(XSS)
 - 개념
     - client web browser를 공격하는 기법입니다
-    - javaScript의 태그 등을 악의적인 script에 작성하여 다른 사용자들의 개인정보 및 세션쿠키를 탈취하고 웹페이지 변조 공격을합니다
+    - javaScript의 태그 등을 악의적인 script에 작성하여 다른 사용자들의 개인정보 및 세션쿠키를 탈취하고 웹페이지 변조 공격을 합니다
 - 종류
     - Reflected XSS
     - Stored XSS
@@ -40,7 +40,7 @@ last_modified_at: 2012-09-01
         }
         ```
 
-    2. lucy-xss-servlet-filter 설정(설정한 url, parameter, prefix로 시작하는 parameter 필터링 제외 가능)
+    2. lucy-xss-servlet-filter 설정(설정한 url, parameter, prefix로 시작하는 parameter 필터링 제외 가능합니다.)
     
         web.xml
         ```xml
@@ -58,4 +58,4 @@ last_modified_at: 2012-09-01
     
 ---
 ## 마무리를 하면서 느낀점
-- 저번에 session, cookie에 대해 다루면서 이번 기회에 cookie, session 관련 취약점을 다뤄보자는 생각이 들었고 정보 탈취라는 부분에 처음 접해보면서 상당히 흥미로웠고 다음 페이지에서는 CSRF 공격을 session을 이용해서 취약점을 해결해 볼 생각입니다. 
+- 저번에 session, cookie에 대해 다루면서 이번 기회에 cookie, session 관련 취약점을 다뤄보자는 생각이 들었고 정보 탈취라는 부분에 처음 접해보면서 상당히 흥미로웠습니다. 다음 페이지에서는 CSRF 공격을 session을 이용해서 취약점을 해결해 볼 생각입니다. 
