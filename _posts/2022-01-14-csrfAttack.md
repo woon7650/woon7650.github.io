@@ -1,5 +1,5 @@
 ---
-title:  " CSRF ATTACK 기법에 대하여"
+title:  "CSRF attack 기법에 대하여"
 excerpt: "취약점 분석 및 보완 방법에 대하여"
 
 categories:
