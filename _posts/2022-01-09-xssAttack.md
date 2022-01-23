@@ -1,6 +1,6 @@
 ---
-title:  "크로스사이트 스크립트(취약점)에 대하여"
-excerpt: "취약점 분석 및 보완 방법에 대하여"
+title:  "XSS(크로스사이트 스크립트) Attack에 대하여"
+excerpt: "About XSS Attack..."
 
 categories:
   - Blog
