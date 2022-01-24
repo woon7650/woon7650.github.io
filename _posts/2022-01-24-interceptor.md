@@ -42,7 +42,7 @@ public class MyInterceptor extends HandlerInterceptorAdapter{
 }
 ```
 
-> <mvc:exclude-mapping path=""/>를 이용한 Interceptor 경로 제외합니다.
+> <mvc:exclude-mapping path=""/> 를 이용한 Interceptor 경로 제외합니다.
 
 ```xml
 <mvc:interceptors>
