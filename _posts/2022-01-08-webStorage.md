@@ -1,6 +1,6 @@
 ---
 title:  "web storage에 대하여"
-excerpt: "sessonStorage & localStorage의 개념, 활용, 차이점에 대하여, 간단한 cookie에 대한 설명 및 비교"
+excerpt: "About Localstorage, Sessionstorage, Cookie..."
 
 categories:
   - Blog
@@ -9,13 +9,13 @@ tags:
 last_modified_at: 2022-01-08
 ---
 
-## web storage
+## Web storage
 - WEB에서 지원하는 소량의 데이터를 저장하기 위한 Key/Value Storge
 - Mobile : 2.5Mb, Desktop : 5~10MB
 - localStorage, sessionStorage로 이루어져있습니다.
 
 ---
-## sessionStorage
+## SessionStorage
 - 개념
     - 일시적인 저장/조회 기능을 가지는 web storage
     - Client가 브라우저 창을 닫는 순간 sessionStorage가 담는 정보가 사라집니다.
@@ -32,7 +32,7 @@ last_modified_at: 2022-01-08
         - `JSON.parse(localStorage.getItem(key));`
 
 ---
-## localStorage
+## LocalStorage
 - 개념
     - 영구적인 저장/조회 기능을 가지는 web storage
     - localStorage의 정보를 지워주지 않는 한 저장되어 있습니다.
@@ -72,7 +72,7 @@ last_modified_at: 2022-01-08
 |접근성|모든 browser|동일 tab|모든 browser|
 
 ---
-## cookie
+## Cookie
 - 정보들을 정해진 유효기간까지 사욯알 수 있도록 해주는 저장소의 한 형태입니다.
 - 서버, 클라이언트 어느 쪽에서 구동시키냐에 따라서 저장되는 위치가 달라집니다.
 

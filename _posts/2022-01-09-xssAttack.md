@@ -1,5 +1,5 @@
 ---
-title:  "XSS(크로스사이트 스크립트) Attack에 대하여"
+title:  "XSS(Cross Site Scripting) Attack에 대하여"
 excerpt: "About XSS Attack..."
 
 categories:
