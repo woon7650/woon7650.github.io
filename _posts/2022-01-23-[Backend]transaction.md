@@ -1,5 +1,5 @@
 ---
-title:  "[Spring]Transaction(트렌섹션)에 대하여"
+title:  "[Backend]Transaction(트렌섹션)에 대하여"
 excerpt: "About Transaction..."
 
 

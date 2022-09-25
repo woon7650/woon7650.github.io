@@ -1,5 +1,5 @@
 ---
-title:  "[DB]Transaction(트렌섹션)에 대하여"
+title:  "[Database]Transaction(트렌섹션)에 대하여"
 excerpt: "About Transaction..."
 
 categories:
