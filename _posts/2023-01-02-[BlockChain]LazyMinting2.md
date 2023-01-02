@@ -97,10 +97,10 @@ async _signingDomain() {
 > verify(voucher, signature)
 > - ECDSA.recover(_hash(voucer), signature)를 통해서 signer의 wallet address를 도출해냄
 
->  redeem(redeemer, voucher, signer)
+>  redeem(redeemer, voucher)
 > - verify 함수와 voucher parameter를 이용하여 signer의 address를 도출함
 > - 도출된 signer의 address와 voucher의 nft 정보를 이용해서 mint함 
-> - mint 후 transfer(signer, redeemer, voucher.tokenId)를 이용하여 nft 소유권을 구매자에게 양도
+> - mint 후 transfer(redeemer, voucher.tokenId)를 이용하여 nft 소유권을 구매자에게 양도
 
 > **민팅 & 구매 시 : minting transaction + transfer transaction 두 번 발생(가스비 2번 발생)**<br/>
 > **레이지민팅 & 구매 : minting, transfer transaction 한 번 발생(가스비 1번 발생)**<br/>
@@ -120,7 +120,7 @@ const tx = {
   to: nftContractAddress,
   nonce: nonce,
   value: ethers.utils.parseEther(price.toString()).toHexString(),
-  data: mynftContractAddress.methods.redeem(redeemer, voucher, signer).encodeABI(),
+  data: mynftContractAddress.methods.redeem(redeemer, voucher).encodeABI(),
 };
 ```
 
@@ -159,7 +159,7 @@ contract nftToken is ERC721URIStorage, EIP712, AccessControl {
     bytes signature;
   }
 
-  function redeem(address redeemer, NFTVoucher calldata voucher, address signer) public payable returns (uint256) {
+  function redeem(address redeemer, NFTVoucher calldata voucher) public payable returns (uint256) {
     address signer = _verify(voucher);
     require(hasRole(MINTER_ROLE, signer), "Signature invalid or unauthorized");
 
