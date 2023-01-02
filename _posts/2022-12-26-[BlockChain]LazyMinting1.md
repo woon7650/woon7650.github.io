@@ -48,8 +48,9 @@ struct NFTVoucher {
 
 ```solidity
 
-  function redeem(address redeemer, NFTVoucher calldata voucher, address signer) 
+  function redeem(address redeemer, NFTVoucher calldata voucher) 
   public payable return (uint256) {
+    address signer = _verify(voucher);
     require(hasRole(MINTER_ROLE, signer), "Signature invalid or unauthorized");
 
     require(msg.value >= voucher.minPrice, "Insufficient funds to redeem");
@@ -76,7 +77,7 @@ struct NFTVoucher {
   function _verify(NFTVoucher calldata voucher, bytes memory signature) 
   internal view returns (address) {
     bytes32 digest = _hash(voucher);
-    return digest.toEthSignedMessageHash().recover(signature);
+    return ECDSA.recover(digest, signature);
   }
 ```
 
@@ -84,22 +85,39 @@ struct NFTVoucher {
 
 ### JavaScript
 ```javascript
- async createVoucher(tokenId, uri, minPrice = 0) {
-    const voucher = { tokenId, uri, minPrice }
-    const domain = await this._signingDomain()
-    const types = {
-      NFTVoucher: [
-        {name: "tokenId", type: "uint256"},
-        {name: "minPrice", type: "uint256"},
-        {name: "uri", type: "string"},  
-      ]
-    }
-    const signature = await this.signer._signTypedData(domain, types, voucher)
-    return {
-      ...voucher,
-      signature,
-    }
+async createVoucher(tokenId, uri, minPrice) {
+  const provider = new ethers.providers.Web3Provider(window.ethereum)
+  const signer = provider.getSigner()
+  console.log(signer)
+  const voucher = { tokenId, uri, minPrice }
+  const domain = await this._signingDomain()
+  const types = {
+    NFTVoucher: [
+      {name: "tokenId", type: "uint256"},
+      {name: "minPrice", type: "uint256"},
+      {name: "uri", type: "string"},  
+    ]
   }
+  const signature = await signer._signTypedData(domain, types, voucher)
+  return {
+    ...voucher,
+    signature,
+  }
+},
+async _signingDomain() {
+  if (this.domain != null) {
+  	return this.domain
+  }
+  const chainId = await web3.eth.getChainId()
+  console.log(typeof(chainId))
+  this.domain = {
+  	name: SIGNING_DOMAIN_NAME,
+  	version: SIGNING_DOMAIN_VERSION,
+  	chainId: BigNumber.from(chainId),
+  	verifyingContract: this.eip712ContractAddress
+  }
+  return this.domain
+}
 ```
 
 - _signTypedData(domain, types, voucher) : ether.js에서 제공하는 함수
