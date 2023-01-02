@@ -15,17 +15,17 @@ last_modified_at: 2023-01-02
 ### Signature
 > Signature : wallet만을 이용해서 특정 EIP712에 해당하는 서명을 도출해냄
 - 온체인(blockchain / on-chain)과 상호작용이 없이 순전히 오프체인(off-chain)을 이용하여 만듬
-- Signature 생성시 domain에 보증할 EIP smart contract 정보(domain), voucher의 실제 값(voucher), voucher의 구조체(types)를 사용 
+- Signature 생성시 domain에 보증할 smart contract 정보(domain), voucher의 실제 값(voucher), voucher의 구조체(types)를 사용 
 - 만들어진 서명(signature)은 온체인(on-chain)이 아닌 오프체인(off-chain)인 데이터베이스(database)에 저장함
 
 ---
 
 ### Domain
 > Domain : 서명이 유효한 contract 및 제반 사항을 확인함 
-- name : EIP712 smart contract의 constructor name
-- version : EIP712 smart contract의 constructor version
+- name : smart contract의 EIP712 constructor name
+- version : smart contract의 EIP712 constructor version
 - chainId : wallet이 최근 선택한 network chain의 고유 id
-- vertifyContract : EIP712 smart contract의 contract address
+- vertifyContract : smart contract의 contract address
 
 ---
 
@@ -73,7 +73,7 @@ async _signingDomain() {
   	name: SIGNING_DOMAIN_NAME,
   	version: SIGNING_DOMAIN_VERSION,
   	chainId: BigNumber.from(chainId),
-  	verifyingContract: this.eip712ContractAddress
+  	verifyingContract: this.nftContractAddress
   }
   return this.domain
 }
@@ -84,7 +84,7 @@ async _signingDomain() {
 ---
 
 ### Signature -> Wallet address(on-chain)
-> EIP smart contract를 이용하여 address 도출
+> smart contract를 이용하여 address 도출
 - **_ECDSA.sol_** openzeppelin library 사용
 - smart contract(on-chain)을 이용하여 signature로 wallet address 도출
 - signature -> Construct Keccak256 Hash -> toEthSignedMessageHash -> Recover the signer's wallet address(public key)
