@@ -1,5 +1,5 @@
 ---
-title:  "Lazy Minting(레이지 민팅)에 대하여(Part1)"
+title:  "[BlockChain & Vue]Lazy Minting에 대하여(Part1)"
 excerpt: "About Lazy Minting(Part1)..."
 
 categories:
@@ -48,8 +48,7 @@ struct NFTVoucher {
 
 ```solidity
 
-  function redeem(address redeemer, NFTVoucher calldata voucher) 
-  public payable return (uint256) {
+  function redeem(address redeemer, NFTVoucher calldata voucher) public payable returns (uint256) {
     address signer = _verify(voucher);
     require(hasRole(MINTER_ROLE, signer), "Signature invalid or unauthorized");
 
@@ -60,7 +59,8 @@ struct NFTVoucher {
 
     _transfer(signer, redeemer, voucher.tokenId);
 
-    pendingWithdrawals[signer] += msg.value;
+    address payable tokenOwner = payable(signer);
+    tokenOwner.transfer(msg.value);       
 
     return voucher.tokenId;
   }

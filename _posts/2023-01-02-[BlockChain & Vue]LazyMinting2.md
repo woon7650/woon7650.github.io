@@ -1,5 +1,5 @@
 ---
-title:  "Lazy Minting(레이지 민팅)에 대하여(Part2)"
+title:  "[BlockChain & Vue]Lazy Minting에 대하여(Part2)"
 excerpt: "About Lazy Minting(Part2)..."
 
 categories:
@@ -48,7 +48,6 @@ async createVoucher(tokenId, uri, minPrice) {
   const provider = new ethers.providers.Web3Provider(window.ethereum)
   const signer = provider.getSigner()
   console.log(signer)
-  //const voucher = { tokenId, uri, minPrice }
   const voucher = { tokenId, uri, minPrice }
   const domain = await this._signingDomain()
   const types = {
@@ -170,23 +169,10 @@ contract nftToken is ERC721URIStorage, EIP712, AccessControl {
 
     _transfer(signer, redeemer, voucher.tokenId);
 
-    pendingWithdrawals[signer] += msg.value;
+    address payable tokenOwner = payable(signer);
+    tokenOwner.transfer(msg.value);       
 
     return voucher.tokenId;
-  }
-
-  function withdraw() public {
-    require(hasRole(MINTER_ROLE, msg.sender), "Only authorized minters can withdraw");
-
-    address payable receiver = payable(msg.sender);
-
-    uint amount = pendingWithdrawals[receiver];
-    pendingWithdrawals[receiver] = 0;
-    receiver.transfer(amount);
-  }
-
-  function availableToWithdraw() public view returns (uint256) {
-    return pendingWithdrawals[msg.sender];
   }
 
   function _hash(NFTVoucher calldata voucher) internal view returns (bytes32) {
