@@ -10,7 +10,7 @@ last_modified_at: 2022-09-25
 ---
 
 
-## Qery Dsl 은?
+##  JPQL(Java Persistence Query Language) 이란?
 <br />
 
 ### 정의 
