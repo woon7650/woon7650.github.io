@@ -1,6 +1,6 @@
 ---
-title:  "[BlockChain]Opensea LazyMinting Token Id에 대하여"
-excerpt: "About Opensea LazyMinting Token Id..."
+title:  "[BlockChain]NFT Token Id(Opensea)에 대하여"
+excerpt: "About NFT Token Id(Opensea)..."
 
 categories:
   - Blog
