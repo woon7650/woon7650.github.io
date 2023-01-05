@@ -95,7 +95,7 @@ analytics:
 # Site Author
 author:
   name             : "Geun Young Kim"
-  avatar           : "/assets/profileImage.jpg"
+  avatar           : "/assets/profileImage.png"
   bio              : "Developer"
   location         : "대한민국/서울(Korea/Seoul)"
   email            : "woon7650@gmail.com"
