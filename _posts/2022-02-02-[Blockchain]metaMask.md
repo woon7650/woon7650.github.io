@@ -1,6 +1,6 @@
 ---
-title:  "[Blockchain]MetaMask api에 대하여"
-excerpt: "About MetaMask..."
+title:  "[Blockchain]MetaMask API"
+excerpt: "MetaMask API"
 
 categories:
   - Blog

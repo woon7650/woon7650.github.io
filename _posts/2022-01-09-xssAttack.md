@@ -1,6 +1,6 @@
 ---
-title:  "XSS(Cross Site Scripting) Attack에 대하여"
-excerpt: "About XSS Attack..."
+title:  "XSS(Cross Site Scripting) Attack"
+excerpt: "XSS Attack"
 
 categories:
   - Blog

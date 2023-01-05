@@ -1,6 +1,6 @@
 ---
-title:  "CSRF(Cross-site request forgery) Attack에 대하여"
-excerpt: "About CSRF Attack..."
+title:  "CSRF(Cross-site request forgery) Attack"
+excerpt: "CSRF Attack"
 
 categories:
   - Blog

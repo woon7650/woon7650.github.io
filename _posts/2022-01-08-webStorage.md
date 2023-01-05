@@ -1,6 +1,6 @@
 ---
-title:  "web storage에 대하여"
-excerpt: "About Localstorage, Sessionstorage, Cookie..."
+title:  "web storage"
+excerpt: "Localstorage, Sessionstorage, Cookie"
 
 categories:
   - Blog

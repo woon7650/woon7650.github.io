@@ -1,6 +1,6 @@
 ---
-title:  "[Backend]Interceptor에 대하여"
-excerpt: "About Interceptor..."
+title:  "[Backend]Interceptor"
+excerpt: "Interceptor"
 
 categories:
   - Blog

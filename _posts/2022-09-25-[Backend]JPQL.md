@@ -1,6 +1,6 @@
 ---
-title:  "[Backend]JPQL에 대하여"
-excerpt: "About Java Persistence Query Language...."
+title:  "[Backend]JPQL"
+excerpt: "Java Persistence Query Language"
 
 categories:
   - Blog

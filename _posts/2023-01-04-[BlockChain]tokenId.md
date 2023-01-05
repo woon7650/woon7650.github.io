@@ -1,6 +1,6 @@
 ---
-title:  "[BlockChain]NFT Token Id(Opensea)에 대하여"
-excerpt: "About NFT Token Id(Opensea)..."
+title:  "[BlockChain]NFT Token Id(Opensea)"
+excerpt: "NFT Token Id(Opensea)"
 
 categories:
   - Blog
@@ -54,6 +54,7 @@ last_modified_at: 2023-01-04
 
 
 TokenId(10진수) : 71577999342193181516787717611109606829694518788112888032663196598076478324737
+<br/>
 TokenId(16진수) : 9E3FB64223BEE3FB2DEFDEC5C1190768F448EB4B000000000000010000000001
 
 <br/>
@@ -64,9 +65,9 @@ TokenId(16진수) : 9E3FB64223BEE3FB2DEFDEC5C1190768F448EB4B00000000000001000000
 
 <br/>
 
-- 창작자(아티스트) Address : 0x9E3FB64223BEE3FB2DEFDEC5C1190768F448EB4B<br/>
-- nft id : 1<br/>
-- nft totalSupply : 1<br/>
+- **창작자(아티스트)** Address : 0x9E3FB64223BEE3FB2DEFDEC5C1190768F448EB4B<br/>
+- **nft id** : 1<br/>
+- **nft totalSupply** : 1<br/>
 
 ---
 ### Token id 생성 구현
@@ -79,8 +80,9 @@ async creatorNftId(address){
   return creatorNftAmount.padStart(14,'0');
 },
 creatorNftQuantity(amount){
+  //5 Byte nft supply
   var creatorNftQuantity = (amount).toString();
-  return creatorNftQuantity.padStart(10,'0');;
+  return creatorNftQuantity.padStart(10,'0');
 },
 async generateVoucherTokenId(amount){
   //20 Byte wallet address
