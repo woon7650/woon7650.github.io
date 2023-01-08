@@ -19,13 +19,11 @@ last_modified_at: 2023-01-08
 >-Vue.js는 component 단위로 이루어진 Framework<br />
 >-Mixins은 Vue의 component들에 공통적으로 사용되는 부분들을 모아놓은 객체<br />
 >-component들의 동일한 코드를 중복으로 작성하는 것을 방지<br />
->-재사용가능한 methods의 집합
+>-재사용가능한 methods의 집합<br />
 >-메소드를 모듈화시켜 중앙 통제형으로 분리
 
-<br />
 
 ---
-
 
 ### Vue에서의 실제 사용
 
@@ -125,4 +123,4 @@ commonFn : function(){
 }
 ```
 
->**unbind()를 이용해서 전에 중복 실행된 mixins들의 scsript는 초기화하고 마지막 mixins만 적용되는 목적으로 사용**
+>**unbind()를 이용해서 전에 중복 실행된 mixins들의 script는 초기화하고 마지막 mixins만 적용되는 목적으로 사용**
