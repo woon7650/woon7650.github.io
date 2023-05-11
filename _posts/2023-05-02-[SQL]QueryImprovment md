@@ -49,7 +49,7 @@ last_modified_at: 2023-05-02
 <br />
 
 ---
-### wheer & having
+### where & having
 
 >- where 절이 having절보다 먼저 실행되므로 where 절에서 나오는 data를 최소화 시킬수록 Query 연산 속도가 개선됨
 
