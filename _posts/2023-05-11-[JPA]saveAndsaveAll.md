@@ -1,5 +1,5 @@
 ---
-title:  "[JPA]save & saveAll"
+title:  "[JPA] save & saveAll"
 excerpt: "Difference of save and saveAll in JPA"
 
 categories:

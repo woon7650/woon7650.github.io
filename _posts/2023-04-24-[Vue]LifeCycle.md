@@ -1,6 +1,6 @@
 ---
-title:  "[Vue]라이프사이클(LifeCycle)"
-excerpt: "라이프사이클(LifeCycle)"
+title:  "[Vue] LifeCycle(생명 주기)"
+excerpt: "LifeCycle(생명 주기)"
 
 categories:
   - Blog
@@ -10,7 +10,7 @@ last_modified_at: 2023-04-24
 ---
 
 
-## LifeCycle(라이프사이클)
+## LifeCycle(생명 주기)
 
 <br/>
 
@@ -21,7 +21,7 @@ last_modified_at: 2023-04-24
 <br />
 
 ---
-## LifeCycle Hooks(라이프사이클 훅)
+## LifeCycle Hooks
 
 <br/>
 

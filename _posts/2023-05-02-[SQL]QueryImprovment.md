@@ -1,5 +1,5 @@
 ---
-title:  "[SQL]쿼리 성능 개선(Improvment Performance of Query)"
+title:  "[SQL] 쿼리 성능 개선(Improvment Performance of Query)"
 excerpt: "쿼리 성능 개선(Improvment Performance of Query)"
 
 categories:
@@ -41,10 +41,19 @@ last_modified_at: 2023-05-02
 ---
 ### index
 
->- index는 어느 부분에 무엇이 존재하는지 미리 표시하는 방법(적합한 column에 index 부여)
+>- 데이터베이스 테이블의 column 또는 column의 조합에 대한 정렬된 데이터 구조
+>- Query가 실행될 때 데이터베이스는 인덱스를 참조하여 필요한 데이터를 더 빠르게 찾을 수 있음
 >- index 사용 시 해당 컬럼이 unique이거나 식별 가능한 단일의 값을 사용하면 좋음(==pk기준 검색)
 >- index 사용시 테이블을 모두 scan하지 않고 색인화 되어있는 file을 scan하여 Query 연산 성능 개선
+>- 불필요한 index는 제거, 필요한 index를 추가
 
+```sql
+-- create index
+CREATE INDEX name ON Test (name);
+
+-- use index
+SELECT * FROM Test WHERE name = '20230502'
+```
 
 <br />
 
@@ -92,3 +101,10 @@ ON t.id = s.id
 <br />
 
 ---
+### Query Caching
+
+>- DB에서 Query의 실행 결과를 메모리에 저장해 두고 동일한 Query 실행시 캐시된 결과를 반환
+>- Data 변경 시에는 관련된 캐시를 갱신해야 정확한 결과를 유지 가능
+
+---
+
