@@ -57,11 +57,13 @@ last_modified_at: 2023-04-24
 
 <br/>
 
->beforeCreate
+> beforeCreate
+
  - DOM에 접근할 수 없음(Component가 DOM에 추가되기 전에 실행되는 라이프사이클 훅)
  - data, events가 세팅되지 않은 시점에서 접근 시도시 error 발생
 
->created
+> created
+
  - data, events가 활성화된 이후 시점으로 접근 가능
  - mount lifecycle hook 전 단계이기 때문에 DOM에는 접근 불가
 
@@ -72,10 +74,12 @@ last_modified_at: 2023-04-24
 
 <br/>
 
->beforeMount
+> beforeMount
+
  - 초기 렌더링이 일어나기 직전에 실행
 
->mounted
+> mounted
+
  - Component, template, DOM에 접근할 수 있으며 DOM에 접근해서 수정이 가능하다
  - 자식 Component -> 부모 Component 순서로 hook이 실행된다
 
@@ -87,9 +91,12 @@ last_modified_at: 2023-04-24
 <br/>
 
 > beforeUpdate
+
  - component 데이터가 변경되어 DOM이 패치되고 re-render 되기 직전에 실행
 
+
 > updated
+
  - component 데이터가 변경되어 DOM이 re-render 된 후 실행
  - property가 변경된 후 DOM에 접근 시 사용
 
@@ -99,11 +106,13 @@ last_modified_at: 2023-04-24
 
 <br/>
 
->beforeDestroy
+> beforeDestroy
+
  - component 해체, 분리 직전에 실행되고 component는 여전히 있음
  - component에 걸려있는 event listener를 정리하는데 사용
 
->destroyed
+> destroyed
+
  - component가 해체, 분리된 후 실행
 
 
