@@ -1,5 +1,5 @@
 ---
-title:  "[SQL]쿼리 성능 개선"
+title:  "[SQL]쿼리 성능 개선(Improvment Performance of Query)"
 excerpt: "쿼리 성능 개선(Improvment Performance of Query)"
 
 categories:
