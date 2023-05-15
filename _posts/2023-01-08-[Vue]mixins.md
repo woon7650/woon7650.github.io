@@ -1,5 +1,5 @@
 ---
-title:  "[Vue]믹스인(Mixins)"
+title:  "[Vue]Mixins(믹스인)"
 excerpt: "About Vue Mixins"
 
 categories:

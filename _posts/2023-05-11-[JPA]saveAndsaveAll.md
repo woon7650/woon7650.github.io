@@ -1,6 +1,6 @@
 ---
-title:  "[JPA] save & saveAll"
-excerpt: "Difference of save and saveAll in JPA"
+title:  "[JPA] Save & SaveAll"
+excerpt: "Difference of Save and SaveAll in JPA"
 
 categories:
   - Blog
