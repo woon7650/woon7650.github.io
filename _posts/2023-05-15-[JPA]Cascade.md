@@ -30,63 +30,47 @@ last_modified_at: 2023-05-15
 
 > ALL(모든 작업 전파)
 
-- cascde = CascadeType.ALL
+- cascade = CascadeType.ALL
 - 부모 Entity에 대한 저장, 업데이트, 삭제 작업이 자식 Entity에 동일하게 전파됨
-
-<br />
 
 > PERSIST(저장 작업 전파)
 
-- cascde = CascadeType.PERSIST
+- cascade = CascadeType.PERSIST
 - 부모 Entity가 저장 시  자식 Entity도 자동으로 저장됨
-
-<br />
 
 > REMOVE(삭제 작업 전파)
 
-- cascde = CascadeType.REMOVE
+- cascade = CascadeType.REMOVE
 - 부모 Entity 삭제 시 자식 Entity도 자동으로 삭제됨
-
-<br />
 
 > MERGE(병합 작업 전파)
 
-- cascde = CascadeType.MERGE
+- cascade = CascadeType.MERGE
 - 부모 Entity 병합 시  자식 Entity도 자동으로 병합됨
-
-<br />
 
 > REFRESH(새로고침 작업 전파)
 
-- cascde = CascadeType.REFRESH
+- cascade = CascadeType.REFRESH
 - 부모 Entity 새로 고침시  자식 Entity도 자동으로 새로 고침됨
-
-<br />
 
 > DETACH(분리 작업 전파)
 
-- cascde = CascadeType.DETACH
+- cascade = CascadeType.DETACH
 - 부모 Entity 분리 시  자식 Entity도 자동으로 분리됨
-
-<br />
 
 > LOCK(잠금 작업 전파)
 
-- cascde = CascadeType.LOCK
+- cascade = CascadeType.LOCK
 - 부모 Entity 잠금 시  자식 Entity도 자동으로 잠금됨
-
-<br />
 
 > REPLICATE(복제 작업 전파)
 
-- cascde = CascadeType.REPLICATE
+- cascade = CascadeType.REPLICATE
 - 부모 Entity 복제 시  자식 Entity도 자동으로 복제됨
 
 <br />
 
 > Example Code ( Cascade )
-
-<br />
 
 **부모 Entity인 Test의 저장, 삭제 작업이 이루어지면 자식 Entity인 Example도 작업을 전파 받음**
 ```java
@@ -154,7 +138,6 @@ public class Test{
 
 > Example Code ( Cascade & OrphanRemoval )
 
-<br />
 
 
 **자식 Entity가 부모와의 관계가 끊어지면 자동으로 삭제됨**
