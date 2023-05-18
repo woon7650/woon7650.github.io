@@ -9,11 +9,7 @@ tags:
 last_modified_at: 2023-05-15
 ---
 
-
-## Cascade(영속성 전이)
-
----
-### Cascade란 ?
+## Cascade란 ?
 
 <br />
 
@@ -24,7 +20,7 @@ last_modified_at: 2023-05-15
 <br />
 
 ---
-### Cascade의 종류
+## Cascade의 종류
 
 <br />
 
@@ -89,7 +85,7 @@ public class Test{
 <br />
 
 ---
-### Cascade 사용 시 주의할 점
+## Cascade 사용 시 주의할 점
 
 <br />
 
@@ -103,7 +99,7 @@ public class Test{
 <br />
 
 ---
-### One-to-Many & Many-to-One
+## One-to-Many & Many-to-One
 
 <br />
 
@@ -122,7 +118,7 @@ public class Test{
 <br />
 
 ---
-### OrphanRemoval(고아 엔티티 제거)
+## OrphanRemoval(고아 엔티티 제거)
 
 <br />
 

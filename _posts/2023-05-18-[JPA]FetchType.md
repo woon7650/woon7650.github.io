@@ -9,11 +9,7 @@ tags:
 last_modified_at: 2023-05-18
 ---
 
-
-## FetchType
-
----
-### FetchType이란 ?
+## FetchType이란 ?
 
 <br />
 
@@ -25,7 +21,7 @@ last_modified_at: 2023-05-18
 <br />
 
 ---
-### FetchType의 종류
+## FetchType의 종류
 
 <br />
 
@@ -78,7 +74,7 @@ public class Test {
 <br />
 
 ---
-### FetchType 사용 시 주의할 점
+## FetchType 사용 시 주의할 점
 
 <br />
 
@@ -95,7 +91,7 @@ public class Test {
 - 필요한 경우에만 FetchType.EAGER를 사용하는 것을 권장함
 
 ---
-### One-to-Many & Many-to-One
+## One-to-Many & Many-to-One
 
 <br />
 

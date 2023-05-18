@@ -9,11 +9,7 @@ tags:
 last_modified_at: 2023-05-11
 ---
 
-
-## save & saveAll
-
----
-### save
+## save
 
 ```java
 @Override
@@ -32,7 +28,7 @@ public Nft create(NftDto nftDto) {
 <br />
 
 ---
-### saveAll
+## saveAll
 
 ```java
 @Override
@@ -54,7 +50,7 @@ public List<Nft> createAll(List<NftDto> nftDto) {
 <br />
 
 ---
-### Processing speed & Difference
+## Processing speed & Difference
 
 <br />
 

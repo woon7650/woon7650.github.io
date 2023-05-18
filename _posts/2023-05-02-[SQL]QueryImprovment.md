@@ -9,12 +9,7 @@ tags:
 last_modified_at: 2023-05-02
 ---
 
-
-## 쿼리 성능 개선(Improvment Performance of Query)
-
----
-
-> ### select
+> ## select
 
 - select * 보다는 select A, B 필요한 row만 함
 - 필요한 row만 select시 IO가 줄어들면서 Query의 성능 개선 가능
@@ -22,7 +17,7 @@ last_modified_at: 2023-05-02
 <br />
 
 ---
-> ### like %
+> ## like %
 
 - like 사용 시 %의 사용은 가급적 뒤에만 사용하는 것이 좋음
 - %A% (x), A% (o)
@@ -31,7 +26,7 @@ last_modified_at: 2023-05-02
 <br />
 
 ---
-> ### group by
+> ## group by
 
 - group by는 조건에 맞는 data를 추출 후 다시 재 정렬하기 때문에 정렬 이전에 데이터 양이 많아지면 Query 실행 속도가 느려짐
 - group by 이전에 필요한 data만 가져올 수 있도록 조건을 걸어주면 Query 연산 성능 개선 가능
@@ -39,7 +34,7 @@ last_modified_at: 2023-05-02
 <br />
 
 ---
-> ### index
+> ## index
 
 - 데이터베이스 테이블의 column 또는 column의 조합에 대한 정렬된 데이터 구조
 - Query가 실행될 때 데이터베이스는 인덱스를 참조하여 필요한 데이터를 더 빠르게 찾을 수 있음
@@ -58,7 +53,7 @@ SELECT * FROM Test WHERE name = '20230502'
 <br />
 
 ---
-> ### where & having
+> ## where & having
 
 - where 절이 having절보다 먼저 실행되므로 where 절에서 나오는 data를 최소화 시킬수록 Query 연산 속도가 개선됨
 
@@ -66,14 +61,14 @@ SELECT * FROM Test WHERE name = '20230502'
 
 ---
 
-> ### Subquery
+> ## Subquery
 
 - 실행 순서 : main query -> sub query
 - 조회되는 data가 많아질수록 쿼리 성능이 현저히 떨어짐
 
 ---
 
-#### Scalar Subquery
+### Scalar Subquery
 
 - select 절에 포함된 sub query(스칼라 서브 쿼리로부터 나오는 결과는 반드시 하나여야 함)
 - 조건 data 결과값이 동일한 경우가 많을 경우 캐싱 효과를 통해 쿼리 성능 향상
@@ -103,7 +98,7 @@ ON t.id = s.id
 <br />
 
 ---
-> ### Query Caching
+> ## Query Caching
 
 - DB에서 Query의 실행 결과를 메모리에 저장해 두고 동일한 Query 실행시 캐시된 결과를 반환
 - Data 변경 시에는 관련된 캐시를 갱신해야 정확한 결과를 유지 가능
