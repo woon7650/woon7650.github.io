@@ -74,24 +74,7 @@ public class Test {
 <br />
 
 ---
-## FetchType 사용 시 주의할 점
-
-<br />
-
-*FetchType.LAZY*
-
-- 영속성 컨텍스트의 범위와 접근 시점에 주의해야 함
-- LazyInitializationException가 발생하지 않도록 해야 함
-
-<br />
-
-*FetchType.EAGER*
-
-- 모든 연관 Entity를 즉시 로딩하기 때문에 성능 저하의 가능성이 있을 수 있음
-- 필요한 경우에만 FetchType.EAGER를 사용하는 것을 권장함
-
----
-## One-to-Many & Many-to-One
+## One-to-Many & Many-to-One & One-to-One & Many-to-Many
 
 <br />
 
@@ -99,6 +82,12 @@ public class Test {
 
 - 주인 Entity는 FetchType.LAZY로 조회해야 함
 - FetchType.LAZY로 조회 안할 때 N+1 조회 문제가 발생할 수 있음
+- 한 쪽의 연관 관계에 "mappedBy" 속성을 사용하여 연관 관계의 주인을 명시해야 함
+
+> N+1 문제
+> - 연관된 Entity를 한 번에 하나씩 조회하는 문제
+> - 1개의 Test에 각각 5개의 Example이 존재할 때 5개의 Test를 조회하고 1개의 Test에 대하여 각각 5번씩 Query를 실행해서 Test와 Example을 모두 조회함
+
 
 *Many-to-One*
 
@@ -109,14 +98,36 @@ public class Test {
 *One-to-One*
 
 - 주인 Entity는 FetchType.LAZY, FetchType.EAGER로 조회할 수 있음
+- 대부분의 경우 FetchType.LAZY로 사용(필요한 경우에만 연관된 Entity 로딩하여 성능 향상)
+- 한 쪽의 연관 관계에 "mappedBy" 속성을 사용하여 무한 루프 관계가 발생하지 않도록 함
+
+*Many-to-Many*
+
+- 기본적으로 FetchType.LAZY로 설정됨
+- 연관된 Entity는 필요한 경우에만 로딩함
+- 중간 테이블을 사용하여 연결 테이블을 지정해야함
 
 <br />
 
-> N+1 문제
-> - 연관된 Entity를 한 번에 하나씩 조회하는 문제
-> - 1개의 Test에 각각 5개의 Example이 존재할 때 5개의 Test를 조회하고 1개의 Test에 대하여 각각 5번씩 Query를 실행해서 Test와 Example을 모두 조회함
 
-
-<br />
 
 ---
+## FetchType 사용 시 주의할 점
+
+<br />
+
+*FetchType.EAGER*
+
+- 모든 연관 Entity를 즉시 로딩하기 때문에 성능 저하의 가능성이 있을 수 있음
+- 필요한 경우에만 FetchType.EAGER를 사용하는 것을 권장함
+
+<br />
+
+*FetchType.LAZY*
+
+- 영속성 컨텍스트의 범위와 접근 시점에 주의해야 함
+- "LazyInitializationException" 예외가 발생할 수 있음
+
+
+---
+
