@@ -145,6 +145,6 @@ last_modified_at: 2023-06-12
 
 <br />
 
-<mark style="background-color:#cccccc">준영속 상태에서는 영속성 컨텍스트가 지원하는 기능을 사용할 수 없음 but 식별자 값은 가지고 있음</mark>
+<mark style="background-color:#cccccc">준영속 상태에서 영속성 컨텍스트가 지원하는 기능을 사용할 수 없지만 식별자 값은 가지고 있음</mark>
 
 ---
