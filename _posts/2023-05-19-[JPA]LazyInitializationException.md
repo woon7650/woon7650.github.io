@@ -35,15 +35,15 @@ last_modified_at: 2023-05-18
 
 #### 1. Transaction
 - Transaction 범위 내에서 연관된 Entity에 접근하도록 유지함
-- @Transactional annotation을 사용하여 트랜잭션을 설정하거나, 트랜잭션을 직접 관리하는 방식을 사용할 수 있음
+- <mark style="background-color:#cccccc">@Transactional</mark> annotation을 사용하여 트랜잭션을 설정하거나, 트랜잭션을 직접 관리하는 방식을 사용할 수 있음
 
 #### 2. Initialize
-- Lazy Loading Entity를 초기화합니다.
+- Lazy Loading Entity를 <mark style="background-color:#cccccc">초기화</mark>합니다.
 - 영속성 컨텍스트가 열려있는 상태에서 연관된 Entity에 접근하여 Database에서 로딩하는 방식
 - Transaction을 시작하고, 접근한 Entity에 대한 적절한 method를 호출하여 초기화할 수 있습니다.
 
 #### 3. Fetch Join
-- Fetch Join을 사용하여 Lazy Loading된 연관 Entity를 함께 불러옴
+- <mark style="background-color:#cccccc">Fetch Join</mark>을 사용하여 Lazy Loading된 연관 Entity를 함께 불러옴
 
 
 ---
