@@ -10,7 +10,7 @@ last_modified_at: 2023-06-19
 ---
 
 
-### 0. 들어가면서
+## 0. 들어가면서
 
 <br />
 
@@ -25,7 +25,7 @@ last_modified_at: 2023-06-19
 
 ---
 
-### 1. Opensea NFT API
+## 1. Opensea NFT API
 
 <br />
 
@@ -33,7 +33,7 @@ last_modified_at: 2023-06-19
 
 ---
 
-### 2. 환경 세팅
+## 2. 환경 세팅
 
 <br />
 
@@ -61,7 +61,7 @@ last_modified_at: 2023-06-19
 
 ---
 
-### 3. Opensea API v1
+## 3. Opensea API v1
 
 <br />
 
@@ -118,7 +118,9 @@ export default {
 - v1을 사용하여 collection 단위가 아닌 각각의 NFT를 개별적으로 조회함
 
 ---
-### 4. Opensea API v2
+## 4. Opensea API v2
+
+<br />
 
 ```javascript
 import { OpenSeaPort } from 'Opensea-js';
@@ -216,7 +218,7 @@ export default {
 - Transferring Items or Coins (Gifting)
 
 ---
-### 5. Opensea SDK, Opensea JS
+## 5. Opensea SDK, Opensea JS
 
 |구분|Opensea JS|Opensea SDK|
 |:--:|:--:|:--:|:--:|
