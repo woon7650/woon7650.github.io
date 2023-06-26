@@ -22,9 +22,7 @@ last_modified_at: 2023-06-26
 ---
 
 
-## 1. @Bean
-
-<br />
+# 1. @Bean
 
 ##### 1.1 @Bean
 
@@ -36,7 +34,6 @@ last_modified_at: 2023-06-26
 
 ##### 1.2 Target of @Bean
 
-<br />
 
 ```java
 package org.springframework.context.annotation;
@@ -78,8 +75,6 @@ public @interface Bean {
 
 ##### 1.3 Example of @Bean
 
-<br />
-
 ```java
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 
@@ -99,9 +94,7 @@ public class DatasourceConfig {
 
 ---
 
-## 2. @Component
-
-<br />
+# 2. @Component
 
 ##### 2.1 @Component
 
@@ -113,8 +106,6 @@ public class DatasourceConfig {
 <br />
 
 ##### 2.2 Target of @Component
-
-<br />
 
 ```java
 package org.springframework.context.annotation;
