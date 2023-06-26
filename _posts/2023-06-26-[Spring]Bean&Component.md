@@ -104,7 +104,7 @@ public @interface Configuration {
 
 <br />
 
-##### 2.3 Annotation
+##### 2.3 Related Annotation
 
 > 객체 성격에 따라 사용되는 Annotation이 다름(해당 Annotation들을 통해 Bean 생성)
 
