@@ -39,12 +39,37 @@ last_modified_at: 2023-06-26
 <br />
 
 ```java
+package org.springframework.context.annotation;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import org.springframework.beans.factory.annotation.Autowire;
+import org.springframework.core.annotation.AliasFor;
+
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @Interface Bean{
+public @interface Bean {
+    @AliasFor("name")
+    String[] value() default {};
 
+    @AliasFor("value")
+    String[] name() default {};
+
+    /** @deprecated */
+    @Deprecated
+    Autowire autowire() default Autowire.NO;
+
+    boolean autowireCandidate() default true;
+
+    String initMethod() default "";
+
+    String destroyMethod() default "(inferred)";
 }
+
 ```
 
 - <mark style="background-color:#cccccc">@Bean은 Class에 사용 불가(Method, Annotation type에 사용 가능)</mark>
@@ -92,12 +117,29 @@ public class DatasourceConfig {
 <br />
 
 ```java
+package org.springframework.context.annotation;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import org.springframework.core.annotation.AliasFor;
+import org.springframework.stereotype.Component;
+
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
 public @interface Configuration {
+    @AliasFor(
+        annotation = Component.class
+    )
+    String value() default "";
+
+    boolean proxyBeanMethods() default true;
 }
+
 ```
 
 - <mark style="background-color:#cccccc">@Component는 개발자가 제어할 수 있는 Class 위에 사용 가능</mark>
