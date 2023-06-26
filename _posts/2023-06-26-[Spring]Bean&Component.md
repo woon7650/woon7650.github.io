@@ -12,12 +12,13 @@ last_modified_at: 2023-06-26
 
 ## 0. 들어가면서
 
-<br />
 
 ##### @Bean & @Component
 
 - @Bean과 @Component는 Spring Container의 객체를 생성하는 기능을 함
 - 비슷한 기능을 하는 @Bena과 @Component에 대하여 차이점을 알아보고자 함
+
+<br />
 
 ---
 
@@ -92,6 +93,7 @@ public class DatasourceConfig {
 - @Configuration 안에는 Spring Container에 들어간 Bean이 필요, 객체를 생성하는 <mark style="background-color:#cccccc">method</mark>에 @Bean 부여
 
 
+<br />
 ---
 
 # 2. @Component
