@@ -1,6 +1,6 @@
 ---
-title:  "[JPA] LazyInitializationException"
-excerpt: "About LazyInitializationException"
+title:  "LazyInitializationException"
+excerpt: "[JPA] About LazyInitializationException"
 
 categories:
   - Blog
