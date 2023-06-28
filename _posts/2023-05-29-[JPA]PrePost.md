@@ -1,5 +1,5 @@
 ---
-title:  "JPA @Pre @Post"
+title:  "Pre Post Annotation"
 excerpt: "JPA About Pre & Post Annotation"
 
 categories:

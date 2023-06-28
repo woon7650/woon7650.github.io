@@ -1,5 +1,5 @@
 ---
-title:  "JPA Entity LifeCycle"
+title:  "Entity LifeCycle"
 excerpt: "[JPA] About Entity LifeCycle"
 
 categories:

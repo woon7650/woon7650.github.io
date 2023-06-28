@@ -1,5 +1,5 @@
 ---
-title:  "JPA Persistence Context & Entity"
+title:  "Persistence Context & Entity"
 excerpt: "[JPA] About Persistence Context & Entity"
 
 categories:
