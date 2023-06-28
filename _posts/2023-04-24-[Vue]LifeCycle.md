@@ -1,6 +1,6 @@
 ---
-title:  "[Vue] LifeCycle(생명 주기)"
-excerpt: "LifeCycle(생명 주기)"
+title:  "Vue LifeCycle"
+excerpt: "[Vue] LifeCycle(생명 주기)"
 
 categories:
   - Blog

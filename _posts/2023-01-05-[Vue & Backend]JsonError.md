@@ -1,6 +1,6 @@
 ---
-title:  "[Vue & Backend]'java.lang.String' 형식의 값을 역직렬화할 수 없습니다."
-excerpt: "Cannot deserialize value of type `java.lang.String` from Object value (token `JsonToken.START_OBJECT`)"
+title:  "Cannot deserialize value of type `java.lang.String` from Object value"
+excerpt: "[Vue & Backend] Cannot deserialize value of type `java.lang.String` from Object value (token `JsonToken.START_OBJECT`)"
 
 categories:
   - Blog

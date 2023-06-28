@@ -1,6 +1,6 @@
 ---
-title:  "[JPA] FetchType"
-excerpt: "About FetchType"
+title:  "JPA FetchType"
+excerpt: "[JPA] About FetchType"
 
 categories:
   - Blog

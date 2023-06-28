@@ -1,6 +1,6 @@
 ---
 title:  "CSRF(Cross-site request forgery) Attack"
-excerpt: "CSRF Attack"
+excerpt: "[Security] CSRF Attack"
 
 categories:
   - Blog

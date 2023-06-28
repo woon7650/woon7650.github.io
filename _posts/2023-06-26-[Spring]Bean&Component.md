@@ -1,6 +1,6 @@
 ---
-title:  "[Spring]@Bean & @Component"
-excerpt: "About @Bean & @Component"
+title:  "@Bean @Component"
+excerpt: "[Spring] About @Bean & @Component"
 
 categories:
   - Blog

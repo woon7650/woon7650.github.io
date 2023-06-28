@@ -1,6 +1,6 @@
 ---
-title:  "[BlockChain]ERC1155"
-excerpt: "ERC1155 & ERC721 & ERC20"
+title:  "ERC1155 ERC721 ERC20"
+excerpt: "[BlockChain] ERC1155 & ERC721 & ERC20"
 
 categories:
   - Blog

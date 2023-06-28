@@ -1,6 +1,6 @@
 ---
 title:  "XSS(Cross Site Scripting) Attack"
-excerpt: "XSS Attack"
+excerpt: "[Security] XSS Attack"
 
 categories:
   - Blog

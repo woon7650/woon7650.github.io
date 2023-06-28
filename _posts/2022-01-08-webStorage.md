@@ -1,6 +1,6 @@
 ---
-title:  "web storage"
-excerpt: "Localstorage, Sessionstorage, Cookie"
+title:  "Web Storage"
+excerpt: "[Storage] Localstorage, Sessionstorage, Cookie"
 
 categories:
   - Blog

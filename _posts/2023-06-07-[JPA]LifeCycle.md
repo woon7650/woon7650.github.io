@@ -1,6 +1,6 @@
 ---
-title:  "[JPA] Entity LifeCycle"
-excerpt: "About Entity LifeCycle"
+title:  "JPA Entity LifeCycle"
+excerpt: "[JPA] About Entity LifeCycle"
 
 categories:
   - Blog

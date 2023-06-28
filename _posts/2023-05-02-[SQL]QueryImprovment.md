@@ -1,6 +1,6 @@
 ---
-title:  "[SQL] Improvment Performance of Query(쿼리 성능 개선)"
-excerpt: "Improvment Performance of Query(쿼리 성능 개선)"
+title:  "Improvment Performance of Query"
+excerpt: "[SQL] Improvment Performance of Query(쿼리 성능 개선)"
 
 categories:
   - Blog

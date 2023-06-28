@@ -1,6 +1,6 @@
 ---
-title:  "[Database]Transaction(트렌섹션)"
-excerpt: "Transaction"
+title:  "Transaction Part1"
+excerpt: "[Database] Transaction(트렌섹션)"
 
 categories:
   - Blog

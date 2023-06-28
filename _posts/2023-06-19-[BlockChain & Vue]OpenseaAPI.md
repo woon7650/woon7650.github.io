@@ -1,6 +1,6 @@
 ---
-title:  "[BlockChain & Vue] Opensea NFT API"
-excerpt: "About Opensea NFT API"
+title:  "Opensea NFT API(v1, v2)"
+excerpt: "[BlockChain & Vue] About Opensea NFT API"
 
 categories:
   - Blog

@@ -1,6 +1,6 @@
 ---
-title:  "[JPA] Persistence Context & Entity"
-excerpt: "About Persistence Context & Entity"
+title:  "JPA Persistence Context & Entity"
+excerpt: "[JPA] About Persistence Context & Entity"
 
 categories:
   - Blog

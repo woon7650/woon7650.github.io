@@ -1,6 +1,6 @@
 ---
-title:  "[BlockChain]NFT Token Id(Opensea)"
-excerpt: "NFT Token Id(Opensea)"
+title:  "Opensea NFT Token Id"
+excerpt: "[BlockChain] Opensea NFT Token Id"
 
 categories:
   - Blog

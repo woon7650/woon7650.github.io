@@ -1,6 +1,6 @@
 ---
-title:  "[JPA] Pre & Post Annotation"
-excerpt: "About Pre & Post Annotation"
+title:  "JPA @Pre @Post"
+excerpt: "JPA About Pre & Post Annotation"
 
 categories:
   - Blog

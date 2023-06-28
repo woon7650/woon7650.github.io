@@ -1,6 +1,6 @@
 ---
-title:  "[Vue]Mixins(믹스인)"
-excerpt: "About Vue Mixins"
+title:  "Vue Mixins"
+excerpt: "[Vue] Mixins(믹스인)"
 
 categories:
   - Blog

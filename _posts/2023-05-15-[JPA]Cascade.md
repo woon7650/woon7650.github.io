@@ -1,6 +1,6 @@
 ---
-title:  "[JPA] Cascade(영속성 전이)"
-excerpt: "About Cascade(영속성 전이)"
+title:  "JPA Cascade"
+excerpt: "[JPA] About Cascade(영속성 전이)"
 
 categories:
   - Blog

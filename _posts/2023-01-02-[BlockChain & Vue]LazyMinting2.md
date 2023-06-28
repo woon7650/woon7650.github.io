@@ -1,6 +1,6 @@
 ---
-title:  "[BlockChain & Vue]Lazy Minting(Part2)"
-excerpt: "Lazy Minting(Part2)"
+title:  "Lazy Minting Part2"
+excerpt: "[BlockChain & Vue] Lazy Minting(Part2)"
 
 categories:
   - Blog

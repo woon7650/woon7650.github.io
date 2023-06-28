@@ -1,6 +1,6 @@
 ---
-title:  "[Blockchain]MetaMask API"
-excerpt: "MetaMask API"
+title:  "MetaMask API"
+excerpt: "[Blockchain]MetaMask API"
 
 categories:
   - Blog

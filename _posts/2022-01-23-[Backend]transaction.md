@@ -1,6 +1,6 @@
 ---
-title:  "[Backend]Transaction(트렌섹션)"
-excerpt: "Transaction"
+title:  "Transaction Part2"
+excerpt: "[Backend] Transaction(트렌섹션)"
 
 
 categories:
