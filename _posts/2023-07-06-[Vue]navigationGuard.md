@@ -38,7 +38,7 @@ last_modified_at: 2023-07-06
 - <mark style="background-color:#cccccc">어플리케이션 전역에서 동작</mark>
 
 
-### 1.1 Global Guard Types
+## 1.1 Global Guard Types
 
 - ##### 1.1.1 BeforeEach
   - 모든 Route 전환 이전에 실행되는 전역 Guard
@@ -71,7 +71,7 @@ last_modified_at: 2023-07-06
 
 <br />
 
-#### 1.2 Global Guard Example Code
+## 1.2 Global Guard Example Code
 
 ```javascript
 import router from '@/router'
@@ -119,7 +119,7 @@ router.afterResolve(async (to, from) => {
 
 - <mark style="background-color:#cccccc">Route 설정 객체에 직접 정의</mark>
 
-### 2.1 Router Guard Types
+## 2.1 Router Guard Types
 
 - ##### 2.1.1 beforeEnter
 
@@ -128,7 +128,7 @@ router.afterResolve(async (to, from) => {
 <br />
 
 
-### 2.2 Router Guard Example Code
+## 2.2 Router Guard Example Code
 
 ```javascript
 export const router = new VueRouter({
@@ -153,7 +153,7 @@ export const router = new VueRouter({
 
 - <mark style="background-color:#cccccc">Route Component 내부에 정의</mark>
 
-### 3.1 Component Guard Types
+## 3.1 Component Guard Types
 
 - ##### 3.1 beforeRouteEnter
 
@@ -178,7 +178,7 @@ export const router = new VueRouter({
 
 
 
-### 3.2 Component Guard Example Code
+## 3.2 Component Guard Example Code
 
 ```javascript
 const userSetting = {
@@ -201,6 +201,8 @@ const userSetting = {
 
 # 4. Navigation Guard Flow
 
+<br />
+
 1. Navigation triggered 
 2. Call beforeRouteLeave(Component Guard) -> deactivated components
 3. Call beforeEach(Global Guard)
@@ -218,7 +220,7 @@ const userSetting = {
 
 ---
 
-#### Reference
+## Reference
 
 - https://github.com/ProjectOpenSea/opensea-js
 https://router.vuejs.org/guide/advanced/navigation-guards.html#in-component-guards
