@@ -10,10 +10,10 @@ last_modified_at: 2023-07-17
 ---
 
 
-## 0. 들어가면서
+### 0. 들어가면서
 
 
-##### Bean LifeCycle
+#### Bean LifeCycle
 
 - 해당 객체가 생성되고 소멸될까지의 과정을 나타냄(when, how)
 - Spring은 3가지 방법으로 Bean LifeCycle Callback을 관리
@@ -23,9 +23,8 @@ last_modified_at: 2023-07-17
 ---
 
 
-# 1. Bean LifeCycle
 
-### 1.1 Bean LifeCycle Flow
+### 1. Bean LifeCycle Flow
 
 
 ![image info](/assets/img/beanLifeCycle.png)
@@ -93,7 +92,7 @@ public class Example implements InitializingBean, DisposableBean {
 
 <br />
 
-- @Bean에 <mark style="background-color:#cccccc">initMethod, destroyMethod</mark> 속성을 이용하여 Initialize, Destroy
+- @Bean에 <mark style="background-color:#cccccc">initMethod</mark>, <mark style="background-color:#cccccc">destroyMethod</mark> 속성을 이용하여 Initialize, Destroy
 
 - @Bean(initMethod = "initialize", destroyMethod = "close") 
 
