@@ -1,6 +1,6 @@
 ---
 title:  "Bean LifeCycle"
-excerpt: "[Spring]Spring Basics Part2"
+excerpt: "[Spring]Spring Basics Part 1"
 
 categories:
   - Blog
