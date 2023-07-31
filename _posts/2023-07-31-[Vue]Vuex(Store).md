@@ -108,7 +108,7 @@ const actions = {
 }
 
 //Component
-this.$Store.dispatch("connectedSync");
+this.$store.dispatch("connectedSync");
 ```
 
 - conenctedSync안에서 connectedChange를 호출하기 때문에 connectedSync가 diispatch로 호출 되면 sessionStorage의 상태에 따라 state의 data를 변경함
@@ -122,7 +122,7 @@ this.$Store.dispatch("connectedSync");
 
 - Getters에 정의하여 Component에서 state의 data를 불러옴
 - 모든 Component에서 Computed의 getters를 사용하면 state의 data를 동기화하여 계속 가져올 수 있음
-- this.$Store.getters['경로명/함수명'];
+- this.$store.getters['경로명/함수명'];
 
 ```javascript
 //Store
@@ -190,7 +190,7 @@ export default {
 
 //App.vue
 window.addEventListener("load", function () {
-    this.$Store.dispatch("connectedSync");
+    this.$store.dispatch("connectedSync");
 }.bind(this),1000);
 ```
 
