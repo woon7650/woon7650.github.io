@@ -28,7 +28,7 @@ last_modified_at: 2023-08-21
 
 ##### 1.1 MicroTask Queue
 
-> MicroTask Queue는 현재 작업 이후에 실행되는 작업의 대기열입니다. MicroTask Queue 콜백 대기열의 다음 작업으로 이동하기 전에 JavaScript 엔진에 의해 처리됩니다.
+> MicroTask Queue는 현재 작업 이후에 실행되는 작업의 대기열입니다.
 
 - MicroTask Queue은 Event Loop에서 처리됩니다.
 - MicroTask Queue은 현재 작업이 완료된 후 처리됩니다.
@@ -38,7 +38,7 @@ last_modified_at: 2023-08-21
 
 ##### 1.2 Callback Queue
 
-> Callback Queue는 현재 작업 이후에 실행되는 작업 대기열입니다. Callback Queue은 MicroTask Queue의 모든 작업을 실행한 후 JavaScript 엔진에 의해 처리됩니다.
+> Callback Queue는 현재 작업 이후에 실행되는 작업 대기열입니다.
 
 - Callback Queue는 해당 MicroTask Queue과 동일한 Event Loop에서 처리됩니다.
 - Callback Queue은 MicroTask Queue가 비워진 후 처리됩니다.
@@ -108,8 +108,6 @@ setTimeout
   - fulfilled + data
   - rejected + error
 
-<br />
-
 - Promise가 생성되고 비동기 작업이 시작하면 Promise 생성 이후의 코드는 동기적으로 계속 진행됨
 - Promise가 fulfill, reject되면 연결된 Callback 함수가 MicroTask Queue에 추가됨
 - Promise 생성 이후의 모든 코드는 Promise에 연결된 콜백 함수가 실행되기 전에 실행됨
@@ -134,6 +132,7 @@ setTimeout
 > Difference : ExecutionContext(실행 컨텍스트)
 
 - ExecutionContext를 CallStack에 쌓아올린 후 실행하여 환경과 순서를 보장합니다.
+- 실행 순서를 보장하는가 안하는가
 
 <br />
 
