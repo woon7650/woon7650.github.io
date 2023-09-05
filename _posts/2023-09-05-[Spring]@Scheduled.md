@@ -21,13 +21,14 @@ last_modified_at: 2023-09-05
 
 ##### 1.1  Dependency
 
+<br />
+
 build.gradle
 
 ```java
 implementation 'org.springframework.boot:spring-boot-starter-web'
 ```
 
-<br />
 
 pom.xml
 
@@ -41,6 +42,8 @@ pom.xml
 <br />
 
 ##### 1.2 Activate
+
+<br />
 
 ```java
 @SpringBootApplication
@@ -68,18 +71,17 @@ public class TestApplication {
 - cron
 - zone
 
-
-
 <br />
 
 ##### 2.1 fixedDelay / fixedDelayString
 
-해당 작업 종료 이후부터 다음 작업 실행까지의 주기(ms)
-
 <br />
 
-application.properties
+해당 작업 종료 이후부터 다음 작업 실행까지의 주기(ms)
+
+
 ```java
+//application.properties
 fixed.delay.string = 10000
 ```
 
@@ -97,12 +99,12 @@ public void printLogWithFixedDelay() {
 
 ##### 2.2 fixedRate / fixedRateString
 
-이전 작업 종료 여부와 상관없이 다음 작업 실행까지의 주기(ms)
-
 <br />
 
-application.properties
+이전 작업 종료 여부와 상관없이 다음 작업 실행까지의 주기(ms)
+
 ```java
+//application.properties
 fixed.rate.string =10000
 ```
 
@@ -121,12 +123,12 @@ public void printLogWithFixedRate() {
 
 ##### 2.3 initialDelay / initialDelayString
 
-작업을 최초 실행하기까지 초기 지연 시간 설정 주기
-
 <br />
 
-application.properties
+작업을 최초 실행하기까지 초기 지연 시간 설정 주기
+
 ```java
+//application.properties
 initial.delay.string = 10000
 ```
 
@@ -189,7 +191,7 @@ public void secondSchedule() {
 
 - 원래의 Scheduled 작업은 Spring에 의해 생성된 한 개의 Thread pool에서 실행됨
 - firstSchedule 작업이 모두 완료된 후에 secondSchedule 작업이 진행됨
-  - console : firstSchedule -> secondSchedule
+  - Log : firstSchedule -> secondSchedule
 - Thread pool을 생성해서 여러 개의 Schedule 작업을 동시에 실행 가능
 
 
