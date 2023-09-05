@@ -1,5 +1,5 @@
 ---
-title:  "Vue LifeCycle"
+title:  "LifeCycle"
 excerpt: "[Vue] LifeCycle(생명 주기)"
 
 categories:

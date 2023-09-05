@@ -1,5 +1,5 @@
 ---
-title:  "JPA FetchType"
+title:  "FetchType"
 excerpt: "[JPA] About FetchType"
 
 categories:

@@ -1,5 +1,5 @@
 ---
-title:  "JPA Cascade"
+title:  "Cascade"
 excerpt: "[JPA] About Cascade(영속성 전이)"
 
 categories:

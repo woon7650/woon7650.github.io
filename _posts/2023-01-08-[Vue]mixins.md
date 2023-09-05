@@ -1,5 +1,5 @@
 ---
-title:  "Vue Mixins"
+title:  "Mixins"
 excerpt: "[Vue] Mixins(믹스인)"
 
 categories:

@@ -1,5 +1,5 @@
 ---
-title:  "JPA save saveAll"
+title:  "save saveAll"
 excerpt: "[JPA] save & saveAll"
 
 categories:

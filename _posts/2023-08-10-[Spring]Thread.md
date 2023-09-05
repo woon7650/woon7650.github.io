@@ -80,7 +80,64 @@ last_modified_at: 2023-08-10
 
 <br />
 
-##### 2.2 Single Threaded Process & MultiThreaded Process Structure(memory)
+##### 2.2 How to create Thread
+
+- Runnable interface를 구현(implements) 하는 방법
+- Thread를 상속(extends) 하는 방법
+
+
+<br />
+
+Runnable Interface
+```java
+package java.lang;
+
+@FunctionalInterface
+public interface Runnable {
+
+    public abstract void run();
+}
+```
+
+```java
+public class MyThread implements Runnable {
+
+  @Override
+  public void run() {
+    //my Thread example logic
+  }
+
+}
+```
+
+<br />
+
+
+
+Thread Class
+```java
+package java.lang;
+
+public class Thread implements Runnable {
+    //Thread class codes
+}
+```
+
+```java
+public class MyThread extends Thread {
+
+  @Override
+  public void run() {
+    //my Thread example logic
+  }
+
+}
+```
+
+
+<br />
+
+##### 2.3 Single Threaded Process & MultiThreaded Process Structure(memory)
 
 ![image info](/assets/img/thread.jpg)
 <img src="/assets/img/thread.jpg" alt="" width="0" height="0">
@@ -90,7 +147,7 @@ last_modified_at: 2023-08-10
 
 <br />
 
-##### 2.3 MultiTherad
+##### 2.4 MultiTherad
 
 > 하나의 Program을 여러 개의 Thread로 구성하고 각 Thread로 하나의 작업을 처리하도록 하는 방식
 
