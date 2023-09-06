@@ -1,6 +1,6 @@
 ---
 title:  "@Scheduled"
-excerpt: "[Spring Boot] About @Scheduled "
+excerpt: "[Spring] About @Scheduled "
 
 categories:
   - Blog
