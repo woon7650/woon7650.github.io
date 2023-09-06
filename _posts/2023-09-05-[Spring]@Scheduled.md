@@ -76,11 +76,6 @@ public class TestApplication {
 
 ##### 2.1 fixedDelay / fixedDelayString
 
-<br />
-
-해당 작업 종료 이후부터 다음 작업 실행까지의 주기(ms)
-
-
 ```java
 //application.properties
 fixed.delay.string = 10000
@@ -94,15 +89,13 @@ public void printLogWithFixedDelay() {
     Thread.sleep(1000L);
 }
 ```
-<mark style="background-color:#cccccc">11s(10s + 1s)</mark> 간격으로 작업 실행
+
+- 해당 작업 종료 이후부터 다음 작업 실행까지의 주기(ms)
+- <mark style="background-color:#cccccc">11s(10s + 1s)</mark> 간격으로 작업 실행
 
 <br />
 
 ##### 2.2 fixedRate / fixedRateString
-
-<br />
-
-이전 작업 종료 여부와 상관없이 다음 작업 실행까지의 주기(ms)
 
 ```java
 //application.properties
@@ -117,16 +110,14 @@ public void printLogWithFixedRate() {
     Thread.sleep(1000L);
 }
 ```
-<mark style="background-color:#cccccc">10s</mark> 간격으로 작업 실행
+
+- 이전 작업 종료 여부와 상관없이 다음 작업 실행까지의 주기(ms)
+- <mark style="background-color:#cccccc">10s</mark> 간격으로 작업 실행
 
 
 <br />
 
 ##### 2.3 initialDelay / initialDelayString
-
-<br />
-
-작업을 최초 실행하기까지 초기 지연 시간 설정 주기
 
 ```java
 //application.properties
@@ -140,7 +131,9 @@ public void printLogWithFixedDelay() {
     System.out.println("print when method initially started")
 }
 ```
-<mark style="background-color:#cccccc">10s</mark> 뒤에 최초 작업 실행
+
+- 작업을 최초 실행하기까지 초기 지연 시간 설정 주기
+- <mark style="background-color:#cccccc">10s</mark> 뒤에 최초 작업 실행
 
 
 <br />
