@@ -23,17 +23,13 @@ last_modified_at: 2023-09-05
 
 ##### 1.1  Dependency
 
-<br />
-
-build.gradle
-
 ```java
+//build.gradle
 implementation 'org.springframework.boot:spring-boot-starter-web'
 ```
 
-pom.xml
-
 ```java
+//pom.xml
 <dependency> 
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
@@ -43,8 +39,6 @@ pom.xml
 <br />
 
 ##### 1.2 Activate
-
-<br />
 
 ```java
 @SpringBootApplication
