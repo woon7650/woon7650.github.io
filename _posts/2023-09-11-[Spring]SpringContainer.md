@@ -60,8 +60,8 @@ BeanExampleService beanExampleService = springContainerExample.getBean("beanExam
 
 ### 2. Spring Container Type
 
-![image info](/assets/img/springContainer.png)
-<img src="/assets/img/springContainer.png" alt="" width="0" height="0">
+![image info](/assets/img/springcontainer.png)
+<img src="/assets/img/springcontainer.png" alt="" width="0" height="0">
 
 
 - Spring Container는 2가지 Interface로 구현 되어 있습니다
@@ -73,7 +73,7 @@ BeanExampleService beanExampleService = springContainerExample.getBean("beanExam
 - Spring Container의 최상위 Interface입니다
 - Bean의 등록, 생성, 조회, 소멸 등의 생명 주기를 관리합니다
 - @Bean을 통해서 Bean을 등록합니다
-- getBean()을 통해서 Bean instance
+- getBean()을 통해서 Bean instance를 조회합니다
 
 <br />
 
@@ -81,8 +81,8 @@ BeanExampleService beanExampleService = springContainerExample.getBean("beanExam
 
 - BeanFactory를 구현하고 있는 Interface입니다(ApplicationContext >>> Bean)
   - BeanFactory의 확장 버전
-  - BeanFactory의 모든 기능을 포함하고 추가적인 기능을 제공합니다.
-    - Bean 관리 + 편리한 부가기능
+  - BeanFactory의 모든 기능을 포함하고 추가적인 기능을 제공합니다
+    - Bean 관리 + 편리한 부가 기능
 - 추가적인 기능
   - MessageSource : 국제화 기능(언어)
   - EnvironmentCapable : 환경 변수(local, dev, prod)
