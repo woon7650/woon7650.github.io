@@ -15,7 +15,7 @@ last_modified_at: 2023-12-18
 
 > Locking is a mechanism in Java that allows a thread to exclusively acquire a lock on an object or a class, preventing other threads from accessing the locked object or class until the lock is released. In this blog, we will discuss the different types of locks in Java and provide examples to demonstrate how they can be used in a multi-threaded environment.
 
-> Spring Conatiner는 Spring Framework의 핵심에 있다. Spring Container는 객체를 만들고, 연결하고, 구성하고, 만들어지는 것부터 파괴될 때까지 완전한 수명 주기를 관리할 것이다. Spring Container는 DI를 사용하여 응용 프로그램을 구성하는 구성 요소를 관리한다. 이 객체들을 Spring Beans라고 부른다.
+> 락(Locking)은 자바에서 스레드가 객체나 클래스 락(Locking)을 독점적으로 획득할 수 있도록 하는 메커니즘으로 락(Locking)이 해제될 때까지 다른 스레드가 락(Locking) 객체나 클래스에 접근하지 못하도록 합니다. 이 블로그에서는 자바에서 다양한 유형의 락(Locking)에 대해 논의하고 다중 스레드 환경에서 어떻게 사용될 수 있는지 예시를 제공할 것입니다.
 
 
 - Locking : 동시에 여러 개의 Transaction이 접근했을 때 데이터의 일관성이 손상되는 것을 막기 위한 수단

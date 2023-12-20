@@ -11,7 +11,7 @@ last_modified_at: 2023-09-10
 ---
 ### 1. Thread Pool
 
-##### 1.1 Thread Pool
+#### 1.1 Thread Pool
 
 > Thread Pool은 동시에 여러 작업을 효율적으로 실행 및 관리하기 위해 서버에서 만드는 Thread의 모음입니다. Thread Pool을 이용하여 각 작업에 대해 새로운 Thread를 생성하는 대신 Thread Pool에 이미 생성 되어 있는 Thread를 재사용합니다. 
 
@@ -33,7 +33,7 @@ last_modified_at: 2023-09-10
 
 <br />
 
-##### 1.2 Structure in Java
+#### 1.2 Structure in Java
 
 ![image info](/assets/img/ThreadPoolJava.png)
 <img src="/assets/img/ThreadPoolJava.png" alt="" width="0" height="0">
@@ -245,6 +245,8 @@ void threadExampleCode() {
 
 ##### 2.2.3 Scheduled Thread Pool
 
+###### 2.2.3.1 if CORE_FULL_SIZE > 0
+
 ```java
 public class Executors {
   public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
@@ -284,6 +286,13 @@ void threadExampleCode() {
 - 20개의 작업을 10개의 Thread가 나눠서 수행
 - 작업을 모두 전달한 시점의 Thread Pool Size는 10
 - 2s 뒤에 지정된 작업 수행
+
+<br />
+
+###### 2.2.3.1 if CORE_FULL_SIZE = 0
+
+
+
 
 <br />
 
