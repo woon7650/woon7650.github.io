@@ -1,6 +1,6 @@
 ---
-title:  "custom env"
-excerpt: "[Vue] custom env"
+title:  "Custom Env"
+excerpt: "[Vue] Custom Env"
 
 categories:
   - Blog
