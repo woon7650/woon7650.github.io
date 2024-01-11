@@ -80,7 +80,6 @@ NFT Market Project를 진행하면서 교착 상태(Deadlock) 관련된 문제 �
     - <mark style="background-color:#cccccc">Safe State & Unsafe State</mark>
 ![image info](/assets/img/safeUnsafe.png)
 <img src="/assets/img/safeUnsafe.png" alt="" width="0" height="0">
-      
       - Safe State
         - 교착 상태(Deadlock)가 일어날 가능성이 있습니다.
         - 프로세스(Process)가 요구한 양만큼 자원(Resource) 할당이 가능합니다.
