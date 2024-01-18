@@ -77,7 +77,7 @@ NFT Market Project를 진행하면서 교착 상태(Deadlock) 관련된 문제 �
   - ##### 3.1.2 회피(Avoidance)
     - 주기적으로 교착 상태(Deadlock) 발생 가능성에 대하여 검사하여 회피하는 방식입니다.
     - 교착 상태(Deadlock)에 빠질 가능성이 없을 경우에만 자원(Resource)을 할당함으로써 문제 발생을 회피하는 방법입니다.
-    - <mark style="background-color:#cccccc">Safe State & Unsafe State</mark> </br> ![image info](/assets/img/safeUnsafe.png)<img src="/assets/img/safeUnsafe.png" alt="" width="8" height="0">
+    - <mark style="background-color:#cccccc">Safe State & Unsafe State</mark> <br /> ![image info](/assets/img/safeUnsafe.png)<img src="/assets/img/safeUnsafe.png" alt="" width="8" height="0">
     
 
 
@@ -105,7 +105,7 @@ NFT Market Project를 진행하면서 교착 상태(Deadlock) 관련된 문제 �
 - #### 3.2 Deadlock Detection & Recovery
 
   - ##### 3.2.1 탐지(Detection)
-    - <mark style="background-color:#cccccc">자원 할당 그래프(Resource-Allocation Graph)</mark> </br> ![image info](/assets/img/waitforgraph.png) <img src="/assets/img/waitforgraph.png" alt="" width="0" height="0">
+    - <mark style="background-color:#cccccc">자원 할당 그래프(Resource-Allocation Graph)</mark> <br /> ![image info](/assets/img/waitforgraph.png) <img src="/assets/img/waitforgraph.png" alt="" width="0" height="0">
 
       - 자원 할당 그래프(Resource-Allocation Graph)를 통해 교착 상태(Deadlock)를 탐지함
       - 자원 할당 그래프(Resource-Allocation Graph)에서 프로세스(Process) 간의 대인 관계만 추출하면 wait-for graph를 얻을 수 있습니다.
