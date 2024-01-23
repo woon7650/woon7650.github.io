@@ -1,0 +1,162 @@
+---
+title:  "@Transactional"
+excerpt: "[Spring] Transactional"
+
+categories:
+  - Blog
+tags:
+  - [Blog, jekyll, Github]
+last_modified_at: 2024-01-01
+
+---
+
+
+#### 0. @Transactional
+
+> Locking is a mechanism in Java that allows a thread to exclusively acquire a lock on an object or a class, preventing other threads from accessing the locked object or class until the lock is released. In this blog, we will discuss the different types of locks in Java and provide examples to demonstrate how they can be used in a multi-threaded environment.
+
+> Spring Conatiner는 Spring Framework의 핵심에 있다. Spring Container는 객체를 만들고, 연결하고, 구성하고, 만들어지는 것부터 파괴될 때까지 완전한 수명 주기를 관리할 것이다. Spring Container는 DI를 사용하여 응용 프로그램을 구성하는 구성 요소를 관리한다. 이 객체들을 Spring Beans라고 부른다.
+
+
+<br />
+
+---
+### 1. Several Cases Of Transactional
+
+#### 1.1 RuntimeException Without @Transactional
+
+```java
+public void update(){
+
+  repository.update();
+
+  throw new RunException("new Exception");
+}
+```
+- update 중에 Runtime Exception이 발동했지만 트랜잭션(Transaction)은 정상적으로 커밋(commit)됨
+- update 중에 발생할 수 있는 여러 예외(Exception)들과 상관없이 커밋(Commit)됨
+
+
+#### 1.2 RuntimeException With @Transactional
+
+```java
+@Transactional
+public void update(){
+
+  repository.update();
+
+  throw new RuntimeException("new Exception");
+
+}
+```
+- update 중에 Runtime Exception이 발동했고 @Transactional이 해당 Exception에 대응
+- update 중에 트랜잭션(Transaction)이 롤백(rollback)됬음
+- <mark style="background-color:#cccccc">@Transactional은 UncheckedException에 대하여 롤백(rollback)하는 것이 기본(default)</mark>
+
+
+
+#### 1.3 CheckException with @Transactional
+
+```java
+@Transactional
+public void update() throws SQLException {
+
+  repository.update();
+
+  throw new SQLException();
+
+}
+```
+- update 중에 SQLException이 발동했지만 트랜잭션(Transaction)은 정상적으로 커밋(commit)됨
+- @Transactional은 기본(default)로 예외 처리가 되어있는 상황 외에는 개발자가 직접 설정해줘야함 
+
+
+#### 1.4 rollbackFor 속성
+
+```java
+@Transactional(rollbackFor = SQLException.class)
+public void update() throws SQLException {
+
+  repository.update();
+
+  throw new SQLException();
+
+}
+```
+- update 중에 SQLException이 발동되었고 트랜잭션(Transaction)은 롤백(rollback)됨
+- SQLException에 대하여 @Transactional 예외를 별도로 지정했음
+- rollbackFor = Exception.class 설정 시 모든 예외에 대해 롤백(rollback)이 가능함
+
+
+##### 1.5 try catch
+
+```java
+@Transactional
+public void update(){
+
+  try{
+    repository.update();
+
+    throw new RuntimeException("new Exception");
+  }catch(Exception e){
+    e.printStack();
+  }
+}
+```
+- update 중에 RuntimeException이 발동되었고 예외가 catch 처리가 되어 트랜잭션(Transaction)이 정상적으로 커밋(commit)됨
+ 
+
+##### 1.6 nested transaction
+
+```java
+@Transactional
+public void update(){
+
+  repository.update();
+
+  try{
+    repository.update();
+
+    throw new RuntimeException("new Exception");
+  }catch(Exception e){
+    e.printStack();
+  }
+}
+```
+- update 중에 RuntimeException이 발동되었고 예외가 catch 처리가 되어 트랜잭션(Transaction)이 정상적으로 커밋(commit)됨
+
+<br />
+
+### 2. Propagation
+
+  - #### 2.1 Type of @Transational
+    - Propagation.REQUIRED
+    - Propagation.REQUIRES_NEW
+    - Propagation.SUPPORTS
+    - Propagation.NOT_SUPPORTED
+    - Propagation.MANDATORY
+    - Propagation.NEVER
+    - Propagation.NESTED
+
+
+  - #### 2.2 Detail
+    - ##### 2.2.1 Propagation.REQUIRED
+      - 
+    - ##### 2.2.2 Propagation.REQUIRES_NEW
+      - 
+
+<br />
+
+---
+
+
+
+### 2. Pessimistic Lock
+
+---
+
+### Refernce 
+- https://kghworks.tistory.com/106
+- https://kapentaz.github.io/mysql/Lock-wait-timeout-exceeded-try-restarting-transaction-%EB%B0%9C%EC%83%9D-%EC%9D%B4%EC%9C%A0%EC%99%80-%ED%95%B4%EA%B2%B0/#
+- https://woodcock.tistory.com/40
+
