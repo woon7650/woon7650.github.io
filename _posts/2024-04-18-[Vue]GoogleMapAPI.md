@@ -31,17 +31,13 @@ last_modified_at: 2024-03-10
 ### 2. Application Code
 
 - Google 계정으로 발급 받은 GOOGLE MAP API KEY가 필요합니다
-  
-  
-<br/>
+
 
 index.html
 ```html
 <script src="https://maps.googleapis.com/maps/api/js?key= YOUR_GOOGLE_MAP_API_KEY "></script>
 ```
 - index.html에 script 파일 추가
-
-<br/>
 
 map.vue
 ```javascript
