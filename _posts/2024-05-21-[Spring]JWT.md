@@ -1,6 +1,6 @@
 ---
 title: "JWT(Json Web Token)"
-excerpt: "[Spring Security] JWT "
+excerpt: "[Spring] JWT "
 
 categories:
   - Blog
@@ -37,17 +37,18 @@ last_modified_at: 2024-05-21
     <img src="/assets/img/jsonFormat.png" alt="" width="0" height="0">
 
   - ##### 1.2.1 Header
+
     - alg, typ에 대한 정보를 가지고 있다.
     - alg은 서명 암호화 알고리즘을 결정한다.
       - HMAC, SHA256, RSA
     - typ은 토큰 유형을 결정한다.
 
-```json
-{
-  "alg": "HS256",
-  "typ": "JWT"
-}
-```
+    ```json
+    {
+      "alg": "HS256",
+      "typ": "JWT"
+    }
+    ```
 
 - ##### 1.2.2 Paylod
 
@@ -55,6 +56,7 @@ last_modified_at: 2024-05-21
   - 하나의 클레임(Claim)은 이름-값(name-value)를 한 쌍으로 구성된다.
 
   - ###### 1.2.2.1 Claim
+
     - Registed Claims(등록된 클레임) : 미리 정의된 클레임(Claim)
       - sub(subject) : 제목
       - iss(issuer) : 발급자
@@ -66,25 +68,26 @@ last_modified_at: 2024-05-21
     - Public Claims(공개 클레임) : 사용자가 정의할 수 있는 공개용 클레임(Claim)
     - Private Claims(비공개 클레임) : 사용자의 특정할 수 있는 정보를 담은 클레임(Claim)
 
-```json
-{
-  "exp": "1535300000000", //Registed Claim
-  "woon7650.github.io": true, //Public Claim
-  "name": "woon7650" //Prvate Claim
-}
-```
+    ```json
+    {
+      "exp": "1535300000000", //Registed Claim
+      "woon7650.github.io": true, //Public Claim
+      "name": "woon7650" //Prvate Claim
+    }
+    ```
 
 - ##### 1.2.3 Signature
+
   - Header와 Payload의 데이터 무결성 및 변조 방지를 위한 서명 정보.
   - 서버에서 Signature를 비교해서 위조된 토큰인지 아닌지 여부를 판단할 수 있다.
 
-```json
-HMACSHA256(
-    Base64Url(Header) + "." +
-    Base64Url(PayLoad),
-    server's key
-)
-```
+    ```json
+    HMACSHA256(
+        Base64Url(Header) + "." +
+        Base64Url(PayLoad),
+        server's key
+    )
+    ```
 
 <br />
 
