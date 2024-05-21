@@ -50,23 +50,23 @@ last_modified_at: 2024-05-21
     }
     ```
 
-- ##### 1.2.2 Paylod
+  - ##### 1.2.2 Paylod
 
-  - Base64URL 방식으로 인코딩 되어있다.
-  - 하나의 클레임(Claim)은 이름-값(name-value)를 한 쌍으로 구성된다.
+    - Base64URL 방식으로 인코딩 되어있다.
+    - 하나의 클레임(Claim)은 이름-값(name-value)를 한 쌍으로 구성된다.
 
-  - ###### 1.2.2.1 Claim
+    - ###### 1.2.2.1 Claim
 
-    - Registed Claims(등록된 클레임) : 미리 정의된 클레임(Claim)
-      - sub(subject) : 제목
-      - iss(issuer) : 발급자
-      - aud(audience) : 대상자
-      - exp(expiration) : 만료 시간
-      - nbf(not before) : 활성화 날짜
-      - iat(issued at) : 발급 시간
-      - jti(jwt id) : 고유 식별자
-    - Public Claims(공개 클레임) : 사용자가 정의할 수 있는 공개용 클레임(Claim)
-    - Private Claims(비공개 클레임) : 사용자의 특정할 수 있는 정보를 담은 클레임(Claim)
+      - Registed Claims(등록된 클레임) : 미리 정의된 클레임(Claim)
+        - sub(subject) : 제목
+        - iss(issuer) : 발급자
+        - aud(audience) : 대상자
+        - exp(expiration) : 만료 시간
+        - nbf(not before) : 활성화 날짜
+        - iat(issued at) : 발급 시간
+        - jti(jwt id) : 고유 식별자
+      - Public Claims(공개 클레임) : 사용자가 정의할 수 있는 공개용 클레임(Claim)
+      - Private Claims(비공개 클레임) : 사용자의 특정할 수 있는 정보를 담은 클레임(Claim)
 
     ```json
     {
@@ -76,10 +76,10 @@ last_modified_at: 2024-05-21
     }
     ```
 
-- ##### 1.2.3 Signature
+  - ##### 1.2.3 Signature
 
-  - Header와 Payload의 데이터 무결성 및 변조 방지를 위한 서명 정보.
-  - 서버에서 Signature를 비교해서 위조된 토큰인지 아닌지 여부를 판단할 수 있다.
+    - Header와 Payload의 데이터 무결성 및 변조 방지를 위한 서명 정보.
+    - 서버에서 Signature를 비교해서 위조된 토큰인지 아닌지 여부를 판단할 수 있다.
 
     ```json
     HMACSHA256(
