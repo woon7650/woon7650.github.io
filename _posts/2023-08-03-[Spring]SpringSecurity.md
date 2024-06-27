@@ -188,12 +188,11 @@ public class ProviderManager implements AuthenticationManager, MessageSourceAwar
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		  Class<? extends Authentication> toTest = authentication.getClass();
 		  AuthenticationException lastException = null;
-		  Authentication result = null;
+		  Authentication result = nul;
 	    boolean debug = logger.isDebugEnabled();
 
       //AuthenticationProvider 중에 가능한 provider에서 result를 얻어낸다
 		  for (AuthenticationProvider provider : getProviders()) {
-            //
 			try {
 				result = provider.authenticate(authentication);
 
@@ -252,7 +251,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 <br />
 
 - 인증 성공 시 인증하기 전의 Authentication 객체를 받아서 인증이 완료된 Authentication 객체로 반환
-- 인증 실패 시 AuthenticationExceptino 발생
+- 인증 실패 시 AuthenticationException 발생
 
 <br />
 
