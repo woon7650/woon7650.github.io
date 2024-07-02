@@ -194,8 +194,8 @@ last_modified_at: 2024-07-02
     - PasswordEncoder
     - SecurityFilterChain
     - CustomSecurityFilterChain
-    - CustomAuthenticationHandler()
-    - CustomAuthorizeHandler()
+    - CustomAuthenticationHandler
+    - CustomAuthorizeHandler
 
   - ##### 2.2.2 Methods
 
