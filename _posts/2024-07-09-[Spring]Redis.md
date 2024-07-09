@@ -1,5 +1,5 @@
 ---
-title: "Redis"
+title: "Redis(Remote Dictionary Server)"
 excerpt: "[Spring] Redis "
 
 categories:
