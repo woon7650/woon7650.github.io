@@ -1,12 +1,12 @@
 ---
-title: "Redis(Remote Dictionary Server)"
+title: "Redis"
 excerpt: "[Spring] Redis "
 
 categories:
   - Blog
 tags:
   - [Blog, jekyll, Github]
-last_modified_at: 2024-07-05
+last_modified_at: 2024-07-09
 ---
 
 #### 0. 들어가면서
