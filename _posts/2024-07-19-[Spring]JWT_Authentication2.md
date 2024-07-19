@@ -1,5 +1,5 @@
 ---
-title: "JWT Authentication with JPA"
+title: "JWT with Spring"
 excerpt: "[Spring] Access/Refresh Token Part 2"
 
 categories:
