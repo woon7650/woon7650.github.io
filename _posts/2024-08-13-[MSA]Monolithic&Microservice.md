@@ -1,6 +1,6 @@
 ---
-title: "MSA(Microservice Architecture)"
-excerpt: "[Architecture] MSA part1"
+title: "Monolithic & Microservice Architecture"
+excerpt: "[MSA] MSA part1"
 
 categories:
   - Blog
@@ -57,8 +57,8 @@ last_modified_at: 2024-08-14
 
   - ##### 1.2.1 FlowChart
 
-    ![image info](/assets/img/MicroService.png)
-    <img src="/assets/img/MicroService.png" alt="" width="0" height="0">
+    ![image info](/assets/img/Microservice.png)
+    <img src="/assets/img/Microservice.png" alt="" width="0" height="0">
 
   - ##### 1.2.2 Feature
 
@@ -133,7 +133,9 @@ last_modified_at: 2024-08-14
 
 ### 마치며
 
-최근 MSA가 대세이지만 시스템의 Architecture는 비즈니스 상황을 고려해서 선택해야 됩니다. 개발 과정에 항상 맞는 답은 없지만 해당 기준들을 바탕으로 결정한다면 Application에 더 적합한 Architecture를 결정할 수 있을 것입니다. 다음 글에서는 MSA에 대해서 자세히 알아보겠습니다.
+최근 MSA가 대세이지만 시스템의 Architecture는 비즈니스 상황을 고려해서 선택해야 됩니다. 
+개발 과정에 항상 맞는 답은 없지만 해당 기준들을 바탕으로 결정한다면 Application에 더 적합한 Architecture를 결정할 수 있을 것입니다. 
+다음 글에서는 MSA에 대해서 자세히 알아보겠습니다.
 
 
 ---
