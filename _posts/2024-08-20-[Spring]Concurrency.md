@@ -76,10 +76,10 @@ last_modified_at: 2024-08-20
     - DB에서 데이터에 접근할 떄 배타락을 걸어 다른 Process 에서 데이터에 접근할 수 없도록 하는 방식
     - 일반적으로 PESSIMISTIC_WRITE 사용
 
-      - 
-        ```java
-        @Lock(LockModeType.PESSIMITIC_WRITE)
-        ```
+      
+      ```java
+      @Lock(LockModeType.PESSIMITIC_WRITE)
+      ```
 
     - ##### 2.1.1 Pros & Cons
 
@@ -98,15 +98,15 @@ last_modified_at: 2024-08-20
     - update시 version값에 해당하는 데이터만 update, 동일한 update 쿼리가 반복되는 것을 방지
     - version 정보가 틀려서 update 쿼리가 실패하면 재시도
 
-      - 
-        ```java
-        @Version
-        private Long version;
-        ```
-      -
-        ```java
-        @Lock(LockModeType.OPTIMISTIC)
-        ```
+      
+      ```java
+      @Version
+      private Long version;
+      ```
+    
+      ```java
+      @Lock(LockModeType.OPTIMISTIC)
+      ```
 
     - ##### 2.2.1 Pros & Cons
 
