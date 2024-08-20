@@ -140,29 +140,28 @@ last_modified_at: 2024-08-20
 
     - ##### 2.3.2 Code
 
-      - 
-        ```java
-        public interface LockRepository extends JpaRepository<Member, Long> {
+      ```java
+      public interface LockRepository extends JpaRepository<Member, Long> {
         
-            @Query(value = "SELECT get_lock(:key, 3000)", nativeQuery = true)
-            void getLock(String key);
+        @Query(value = "SELECT get_lock(:key, 3000)", nativeQuery = true)
+        void getLock(String key);
 
-            @Query(value = "SELECT release_lock(:key)", nativeQuery = true)
-            void releaseLock(String key);
+        @Query(value = "SELECT release_lock(:key)", nativeQuery = true)
+        void releaseLock(String key);
+      }
+      ```
+
+      ```java
+      @Transactional
+      public void decrease(Long id, Long quantity) {
+        try {
+          lockRepository.getLock(id.toString());
+          memberRepository.decreaseInNamedLock(id, quantity);
+        } finally {
+          lockRepository.releaseLock(id.toString());
         }
-        ```
-      - 
-        ```java
-        @Transactional
-        public void decrease(Long id, Long quantity) {
-            try {
-                lockRepository.getLock(id.toString());
-                memberRepository.decreaseInNamedLock(id, quantity);
-            } finally {
-                lockRepository.releaseLock(id.toString());
-            }
-        }
-        ```
+      }
+      ```
 
 
 <br />
@@ -214,32 +213,32 @@ last_modified_at: 2024-08-20
 
 
     - ##### 3.1.3 Code
-      - 
-        ```java
-        @Component
-        public class RedisLockRepository {
-          private final RedisTemplate<String, String> redisTemplate;
 
-          public RedisLockRepository(RedisTemplate<String, String> redisTemplate) {
-              this.redisTemplate = redisTemplate;
-          }
+      ```java
+      @Component
+      public class RedisLockRepository {
+        private final RedisTemplate<String, String> redisTemplate;
 
-          public Boolean lock(Long key){
-            return redisTemplate
-                    .opsForValue()
-                    .setIfAbsent(generated(key), "lock", Duration.ofMillis(3000));
-          }
+        public RedisLockRepository(RedisTemplate<String, String> redisTemplate) {
+            this.redisTemplate = redisTemplate;
+        }
 
-          public Boolean unlock(Long key){
-              return redisTemplate.delete(generated(key));
-          }
+        public Boolean lock(Long key){
+          return redisTemplate
+                  .opsForValue()
+                  .setIfAbsent(generated(key), "lock", Duration.ofMillis(3000));
+        }
 
-          private String generated(Long key) {
-              return key.toString();
-          }
+        public Boolean unlock(Long key){
+            return redisTemplate.delete(generated(key));
+        }
+
+        private String generated(Long key) {
+            return key.toString();
+        }
       }
       ```
-    - 
+
       ```java
       public void decrease(Long key, Long quantity) throws InterruptedException {
         while (!redisLockRepository.lock(key)) {
@@ -273,27 +272,26 @@ last_modified_at: 2024-08-20
 
     - ##### 3.2.2 Code
 
-      - 
-        ```java
-        public void decrease(Long key, Long quantity) throws InterruptedException{
-          RLock lock = redissonClient.getLock(key.toString());
+      ```java
+      public void decrease(Long key, Long quantity) throws InterruptedException{
+        RLock lock = redissonClient.getLock(key.toString());
 
-          try {
-            boolean available = lock.tryLock(20, 1, TimeUnit.SECONDS);
+        try {
+          boolean available = lock.tryLock(20, 1, TimeUnit.SECONDS);
 
-            if (!available) {
-                System.out.println("lock 획득 실패!");
-                return;
-            }
-
-            stockService.decrease(key, quantity);
-          } catch (InterruptedException e) {
-              throw new RuntimeException(e);
-          } finally {
-              lock.unlock();
+          if (!available) {
+              System.out.println("lock 획득 실패!");
+              return;
           }
+
+          stockService.decrease(key, quantity);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            lock.unlock();
         }
-        ```
+      }
+      ```
 
 
 ### 4. RDB Lock vs NoSQL Lock(Redis)
