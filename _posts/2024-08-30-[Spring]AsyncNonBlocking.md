@@ -70,8 +70,8 @@ last_modified_at: 2024-08-30
 
     - **Compare**
 
-    ![image info](/assets/img/SyncAsync.png)
-    <img src="/assets/img/SyncAsync.png" alt="" width="0" height="0">
+      ![image info](/assets/img/SyncAsync.png)
+      <img src="/assets/img/SyncAsync.png" alt="" width="0" height="0">
 
 
 <br />
@@ -105,8 +105,8 @@ last_modified_at: 2024-08-30
 
     - **Compare**
 
-    ![image info](/assets/img/BlockingNonBlocking.png)
-    <img src="/assets/img/BlockingNonBlocking.png" alt="" width="0" height="0">
+      ![image info](/assets/img/BlockingNonBlocking.png)
+      <img src="/assets/img/BlockingNonBlocking.png" alt="" width="0" height="0">
 
 
 
@@ -125,6 +125,8 @@ last_modified_at: 2024-08-30
     - Sync-Non-Blocking
     - Async-Blocking
     - Async-Non-Blocking
+
+  - **Compare**
 
   ![image info](/assets/img/Combination.png)
   <img src="/assets/img/Combination.png" alt="" width="0" height="0">
