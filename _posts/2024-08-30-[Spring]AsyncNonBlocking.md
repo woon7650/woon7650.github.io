@@ -128,8 +128,8 @@ last_modified_at: 2024-08-30
 
   - **Compare**
 
-  ![image info](/assets/img/Combination.png)
-  <img src="/assets/img/Combination.png" alt="" width="0" height="0">
+    ![image info](/assets/img/Combination.png)
+    <img src="/assets/img/Combination.png" alt="" width="0" height="0">
 
   - ##### 3.1 Details
 
