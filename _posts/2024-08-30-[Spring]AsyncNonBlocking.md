@@ -40,7 +40,7 @@ last_modified_at: 2024-08-30
     - 동기식 방식은 작업을 순차적으로 처리함
     - 작업의 주체성을 A가 가지고 있음
       
-    - ###### 1.1.1 Process
+    - ###### Process
       - 1.Worker A가 A1 작업을 마친다.
       - 2.Worker A가 Worker B에게 A2 작업 전에 A` 작업을 요청하고 결과를 기다린다.
       - 3.Worker B는 A1` 작업을 마치고 Worker A에게 결과를 전달한다.
@@ -53,7 +53,7 @@ last_modified_at: 2024-08-30
     - 비동기식 방식은 순차적인 작업 방식을 보장하지 않음
     - 작업의 주체성을 B가 가지고 있음
       
-    - ###### 1.1.1 Process
+    - ###### Process
       - 1.Worker A가 A1 작업을 마친다.
       - 2.Worker A가 Worker B에게 A` 작업을 요청하고 A1 작업을 이어서 진행한다.
       - 3.Worker B에게는 두 종류의 작업 선택권이 존재한다.
@@ -68,7 +68,7 @@ last_modified_at: 2024-08-30
     - Asynchronous
       - 호출하는 함수가 해당 작업의 결과 값에 상관 없이 호출되는 함수가 callback으로 결과값을 넘겨 주는 방식
 
-
+    - **Compare**
 
     ![image info](/assets/img/SyncAsync.png)
     <img src="/assets/img/SyncAsync.png" alt="" width="0" height="0">
@@ -102,6 +102,8 @@ last_modified_at: 2024-08-30
       - 특정 작업에게 실행 명령과 함께 제어권을 넘겨줘서 **작업이 끝나야 제어권을 넘겨 받는다.**
     - Non-Blocking
       - 특정 작업에게 **실행 명령만 내리고 제어권은 바로 넘겨 받는다.**
+
+    - **Compare**
 
     ![image info](/assets/img/BlockingNonBlocking.png)
     <img src="/assets/img/BlockingNonBlocking.png" alt="" width="0" height="0">
@@ -138,10 +140,12 @@ last_modified_at: 2024-08-30
       - Read/Write
 
     - ###### Async-Non-Blocking
-      - 1 Worker A가 Worker B에게 작업을 요청하고 본인의 작업으로 다시 돌아온다.
-      - 2 Worker B는 Worker A에게 받은 작업을 진행하고 Worker A는 본인의 작업을 진행한다.
-      - 3 Worker B의 작업이 완료되면 Worker A에게 작업 결과를 전달한다.
+      - 1.Worker A가 Worker B에게 작업을 요청하고 본인의 작업으로 다시 돌아온다.
+      - 2.Worker B는 Worker A에게 받은 작업을 진행하고 Worker A는 본인의 작업을 진행한다.
+      - 3.Worker B의 작업이 완료되면 Worker A에게 작업 결과를 전달한다.
+
       <br />
+
       - 성능과 자원 효율적 사용 관점에서 가장 유리한 조합
       -  AIO(NIO2)
 
@@ -150,7 +154,9 @@ last_modified_at: 2024-08-30
       - 2.Worker B는 Worker A에게 받은 작업을 진행한다.
       - 3.Worker A는 중간에 Worker B에게 요청한 작업에 대한 중간 결과를 보고 받아서 처리해야 한다.(Worker A는 Worker B에게 요청을 해서 중간 결과를 기다린다.)
       - 4.요청의 결과를 받은 Worker A는 결과를 통해 자신의 작업을 처리하고 Worker B는 Worker A에게 받은 작업을 이어서 처리한다.
+
       <br />
+
       - 3, 4번 작업은 Worker A가 Worker B에게 맡긴 작업이 완전히 종료되기 전까지 반복된다.
       - I/O multiplexing(select/poll)
 
@@ -159,7 +165,9 @@ last_modified_at: 2024-08-30
       - 2.Worker B는 Worker A에게 받은 작업을 진행하고 Worker A는 작업을 하지 않고 Worker B가 하는 일을 확인만 한다.
       - 3.Worker A는 중간에 Worker B에게 요청한 작업에 대한 중간 결과를 확인만 한다.(Worker A는 Worker B에게 요청한 중간 결과를 기다리지 않는다.)
       - 4.Worker B의 작업이 모두 마무리 됬을 때 Worker A는 본인의 작업을 진행한다.
+
       <br />
+
       - 3번 작업은 Worker A가 Worker B에게 맡긴 작업이 완전히 종료되기 전까지 반복된다.
       - Read/Write(O_NONBLOCK)
 
