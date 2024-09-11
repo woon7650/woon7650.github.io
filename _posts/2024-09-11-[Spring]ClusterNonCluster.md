@@ -1,6 +1,6 @@
 ---
-title: "Clustered Index and Non-Clustered Index Tuning"
-excerpt: "[SQL] Query Optimization With Indexing"
+title: "Clustered Index and Non-Clustered Index"
+excerpt: "[SQL] Query Optimization With Indexing Part1"
 
 categories:
   - Blog
@@ -122,4 +122,6 @@ last_modified_at: 2024-09-10
 - https://developers-haven.tistory.com/54
 - https://velog.io/@juhyeon1114/MySQL-Index%EC%9D%98-%EA%B5%AC%EC%A1%B0-B-Tree-BTree
 - https://developers-haven.tistory.com/55
+- https://velog.io/@juhyeon1114/MySQL-Index%EC%9D%98-%EA%B5%AC%EC%A1%B0-B-Tree-BTree
 - https://earthteacher.tistory.com/216#gsc.tab=0
+- https://wslog.dev/mysql-index
