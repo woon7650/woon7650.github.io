@@ -9,6 +9,8 @@ tags:
 last_modified_at: 2024-09-10
 ---
 
+##### RELATED POST
+-  [QueryImprovement](/blog/SQL-QueryImprovment/)
 
 #### 0. 들어가면서
 
@@ -87,7 +89,7 @@ last_modified_at: 2024-09-10
 
 ---
 
-#### 2. Non-Clustered Index
+> #### Non-Clustered Index
 
   - ##### 1. Features
 
@@ -120,3 +122,4 @@ last_modified_at: 2024-09-10
 - https://developers-haven.tistory.com/54
 - https://velog.io/@juhyeon1114/MySQL-Index%EC%9D%98-%EA%B5%AC%EC%A1%B0-B-Tree-BTree
 - https://developers-haven.tistory.com/55
+- https://earthteacher.tistory.com/216#gsc.tab=0
