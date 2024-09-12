@@ -24,6 +24,38 @@ last_modified_at: 2024-09-10
 
 ---
 
+> #### Balanced Tree
+
+  - Root Node(상단), Branch Node(중간), Leaf Node(하단)로 구성
+
+  - ##### 1. B-Tree(Balanced Tree)
+  
+    ![image info](/assets/img/B-Tree.png)  
+    <img src="/assets/img/B-Tree.png" alt="" width="0" height="0">
+    - 데이터가 정렬된 상태로 유지된다.
+    - **어떤 값에 대해서도 같은 시간에 결과를 얻을 수 있다.**(균일성)
+    - Internal, Branch node에 key와 data를 담을 수 있다.
+    - 모든 node를 탐색한다.
+    - INSERT/UPDATE/DELETE의 반복이 잦으면 성능이 악화된다(정렬).
+    - DBMS는 B-tree의 인덱싱을 활용해 특정 데이터를 찾기 위한 Read 작업의 빈도를 낮춥니다.
+
+
+
+  - ##### 2. B+Tree
+
+    - B-Tree의 확장 개념으로 MySQL의 InnoDB는 B+Tree 구조로 되어 있다.
+    - B+Tree의 Leaf node
+      - 모든 Leaf node들은 LinkedList 형태로 이어져 있다.
+      - 실제 데이터는 Leaf Node에만 저장되고 Internal node들은 key만 가지고 올바른 Leaf node로 연결해주는 라우팅 기능을한다.
+      - Leaf node에 key, data를 담을 수 있다.
+        - 중복 키가 존재하며 한 node당 key를 많이 담을 수 있다.(트리의 높이가 낮음)
+      - Leaf node에서 선형 탐색을 한다.
+
+
+<br />
+
+---
+
 > #### Index
 
   - **데이터 검색 성능의 향상**을 위해 테이블 열에 사용하는 자료구조
@@ -125,3 +157,4 @@ last_modified_at: 2024-09-10
 - https://velog.io/@juhyeon1114/MySQL-Index%EC%9D%98-%EA%B5%AC%EC%A1%B0-B-Tree-BTree
 - https://earthteacher.tistory.com/216#gsc.tab=0
 - https://wslog.dev/mysql-index
+- https://zorba91.tistory.com/293
