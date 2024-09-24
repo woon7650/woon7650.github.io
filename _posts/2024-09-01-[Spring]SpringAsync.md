@@ -43,7 +43,7 @@ last_modified_at: 2024-09-01
       - **@Async**
       - **ThreadPoolTaskExecutor**
       - AsyncRestTemplate
-      - Async Servlet
+      - Async Servlet(Return Type)
         - Return Type
           - Non-Blocking I/O
             - **DefferredResult(Single)**
@@ -51,8 +51,8 @@ last_modified_at: 2024-09-01
           - Blocking I/O
             - ListenableFuture
             - CompletableFuture
-          - Callable
-          - WebAsyncTask
+        - Callable
+        - WebAsyncTask
 
 
 <br />

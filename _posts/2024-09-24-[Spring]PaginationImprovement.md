@@ -62,8 +62,8 @@ last_modified_at: 2024-09-24
     - 정렬이 필요없고 대용량 데이터의 추가, 삭제가 자주 일어나는 도메인(페이스북, 인스타 등 SNS)에 적합하다.
 
   - ### Compare
-    ![image info](/assets/img/paginationCompare.png)
-    <img src="/assets/img/paginationCompare.png" alt="" width="0" height="0">
+    ![image info](/assets/img/Pagination_Compare.png)
+    <img src="/assets/img/Pagination_Compare.png" alt="" width="0" height="0">
 
 
   - #### Condition
