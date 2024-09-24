@@ -201,7 +201,15 @@ last_modified_at: 2024-09-24
 
 ---
 
+### 마무리하면서
 
+Cursor Pagination는 Offset Pagination에 비해 쿼리 성능이나 데이터 중복 조회 문제면에서 더 적합한 방식이다. 하지만 서비스의 특징이나 요ꅬ사항에 따라 Offset Pagination 방식을 적용하는 것이 적합할 때도 있을 것이다. 
+만약 offset Pagination 방식으로 진행을 하게 될 때 Index을 적절히 적용할 수 있다는 전제 하에 Covering Index도 같이 적용해준다면 Cursor Pagination만큼은 아닐 수도 있지만 주어진 조건에서는 최고의 선택을 할 수 있는 게 아닐까라는 생각을 한다.
+완벽한 방법이 있다면 좋겠지만 어떤 방식이던 장점이 있으면 단점도 있듯이 성능, 서비스의 특성 등 여러 조건을 고려했을 때 최선을 선택할 수 있는 개발자가 되기 위해 달려갈 것이다. 
+
+<br />
+
+---
 
 ### Reference
 
@@ -211,4 +219,5 @@ last_modified_at: 2024-09-24
 - https://bestsu.tistory.com/98
 - https://giron.tistory.com/131
 - https://insanelysimple.tistory.com/362
+- https://gngsn.tistory.com/195
 - https://velog.io/@januaryone/No-Offset-%EC%BF%BC%EB%A6%AC%EB%A1%9C-%EB%8C%93%EA%B8%80-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
