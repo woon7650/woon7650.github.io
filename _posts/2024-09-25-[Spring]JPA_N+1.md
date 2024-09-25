@@ -1,5 +1,5 @@
 ---
-title: "JPA N+1 Problem and Solutions"
+title: "JPA N+1 Problem and Solution"
 excerpt: "[Spring] JPA N+1 문제와 해결방법"
 
 categories:
@@ -66,10 +66,10 @@ last_modified_at: 2024-09-25
     }
     ```
 
-    - userService.userList()를 실행한다.
-    - DB
-      - 현재 10명의 User가 존재한다.
-      - 각 User 별로 10개씩 Item을 보유하고 있다.
+  - userService.userList()를 실행한다.
+  - DB
+    - 현재 10명의 User가 존재한다.
+    - 각 User 별로 10개씩 Item을 보유하고 있다.
 
     ```java
     @Service("userService")
