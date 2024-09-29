@@ -51,7 +51,55 @@ last_modified_at: 2024-09-29
     - Target의 Interface를 자체적인 검증 로직은 통해 ProxyFactory에 의해 Target의 Interface를 상속한 Proxy 객체 생성
     - Proxy 객체에 InvocationHandler를 포함시켜 하나의 객채로 반환
 
+  - #### Code
 
+    ```java
+
+    public interface Worker {
+      void work(String workStatement);
+    }
+    
+    public class Engineer implements Worker {
+      @Override
+      public void speak(String workStatement) {
+          System.out.println(workStatement);
+      }
+    }
+
+    public class CustomHandler implements InvocationHandler {   
+    
+      private Worker target;
+
+      public MyInvocationHandler(Worker target) {
+        this.target = target;
+      }
+
+      @Override
+      public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+        System.out.println("BEFORE");
+        method.invoke(target, args);
+        System.out.println("AFTER");
+        return null;
+      }
+    }
+
+    public class Main {
+    
+      public static void main(String[] args) {
+
+        Engineer engineer = new Engineer();
+        CustomHandler customHandler = new CustomHandler(engineer);
+        Worker worker = (Worker) Proxy.newProxyInstance(
+          Worker.class.getClassLoader(),
+          new Class[]{Worker.class},
+          customHandler
+        );
+        worker.work("JDK Dynamic Proxy");// Proxy 객체
+        engineer.work("Backend Engineer");// 일반 객체
+      }
+    }
+    ```
 
 
 <br />
@@ -73,7 +121,52 @@ last_modified_at: 2024-09-29
     - **net.sf.cglib.proxy.Enhancer** 클래스를 사용하여 원하는 Proxy 객체 생성
     - **net.sf.cglib.proxy.Callback**을 사용하여 Proxy 객체 조작
 
+  - #### Code
 
+    ```java
+
+    public interface Worker {
+      void work(String workStatement);
+    }
+    
+    public class Engineer implements Worker {
+      @Override
+      public void speak(String workStatement) {
+          System.out.println(workStatement);
+      }
+    }
+
+    class CustomInterceptor implements MethodInterceptor {
+
+      private final Worker target;
+
+      public CustomInterceptor(Worker target) {
+          this.target = target;
+      }
+
+      @Override
+      public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+
+          System.out.println("BEFORE");
+          method.invoke(target, args);
+          System.out.println("AFTER");
+          return null;
+      }
+    }
+
+    public class Main {
+    
+      public static void main(String[] args) throws IOException {
+
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(Engineer.class);
+        enhancer.setCallback(new CustomInterceptor(new Engineer()));
+        
+        Engineer engineer = (Engineer) enhancer.create();
+        worker.work("CGLIB Proxy");
+      }
+    }
+    ```
 
 <br />
 
