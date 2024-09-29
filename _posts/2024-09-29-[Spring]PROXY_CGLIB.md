@@ -1,6 +1,6 @@
 ---
-title: "Dynamic Proxy & CGLIB of Spring AOP"
-excerpt: "[Spring] Spring AOP Dynamic Proxy 와 CGLIB"
+title: "JDK Dynamic Proxy & CGLIB Proxy of Spring AOP"
+excerpt: "[Spring] Spring AOP JDK Dynamic Proxy와 CGLIB Proxy"
 
 categories:
   - Blog
@@ -13,8 +13,7 @@ last_modified_at: 2024-09-29
 #### 0. 들어가면서
 
   - 이직 준비를 하면서 면접에서 자주 등장하는 Backend CS 관련 지식을 정리하고 자세히 알아보고자 합니다.
-  - Spring AOP와 Proxy 구현에 대해서 알아보고자 합니다.
-
+  - Spring AOP와 Proxy에 대해서 알아보고자 합니다.
 
 
 > ### AOP & Proxy
