@@ -17,7 +17,7 @@ last_modified_at: 2024-10-16
 
 > ### AOP
 
-  > 관점 지향 프로그래밍으로 **핵심기능과 부가 기능**으로 나누고 그 Aspect(관점)을 기준으로 각각 모듈화하는 방식을 뜻한다. Spring AOP는 기본적으로 Proxy 방식으로 동작한다. 
+  > 관점 지향 프로그래밍으로 **핵심기능과 부가 기능**으로 나누고 그 Aspect(관점)을 기준으로 각각 모듈화하는 방식을 뜻한다. Spring AOP는 기본적으로 Proxy 방식으로 동작한다. P
 
   - Proxy Pattern : 객체를 직접적으로 참조하는 것이 아니라 해당 객체를 대행(proxy)하는 객체를 통해 대상 객체에 접근하는 방식이다.
   - SRP(Single Responsibility Principle)에 따라 하나의 책임만을 갖게 설계된다.
@@ -38,13 +38,6 @@ last_modified_at: 2024-10-16
     - 코드가 변경될 경우 여러 곳에서 수정
     - 주요 비즈니스와 부가 기능이 한 곳에 섞여 가독성이 떨어진다.
 
-
-> ### Runtime Weaving
-
-  - Runtime시 JDK Dynamic Proxy or CGLIB Proxy를 활용하여 Proxy를 생성(Target 객체를 새로운 Proxy 객체로 적용하는 과정을 뜻함)
-  - Spring AOP는 Proxy를 기반으로 한 Runtime Weaving 방식이다.
-  - JDK Dynamic Proxy(Reflection)와 CGLIB(Extends)을 통해 Proxy화 한다.
-
   - #### Proxy Pattern
     - JDK Dynamic Proxy
       - Spring AOP 기본 동작 방식
@@ -54,7 +47,20 @@ last_modified_at: 2024-10-16
       - Spring boot AOP 기본 동작 방식
       - 클래스 기반으로 Proxy를 생성해주는 방식
 
-  - #### Example Code(AspectJ)
+> ### Runtime Weaving
+
+  - Runtime시 JDK Dynamic Proxy or CGLIB Proxy를 활용하여 Proxy를 생성(Target 객체를 새로운 Proxy 객체로 적용하는 과정을 뜻함)
+  - Spring AOP는 Proxy를 기반으로 한 Runtime Weaving 방식이다.
+  - JDK Dynamic Proxy(Reflection)와 CGLIB(Extends)을 통해 Proxy화 한다.
+
+> ### AspectJ
+
+  - #### Proccess
+    - PointCut 표현식을 보고 일치하는 클래스들은 프록시를 만들어서 Bean으로 등록
+    - Runtime시 PointCut에 일치하는 메서드들은 Aspect에 정의해 놓은 Advice 로직을 실행 
+    - Target의 메서드를 호출
+
+  - #### Example Code
 
     ```java
     @Aspect
