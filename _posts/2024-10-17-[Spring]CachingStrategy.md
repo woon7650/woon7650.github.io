@@ -20,6 +20,16 @@ last_modified_at: 2024-10-17
   - DB에 접근을 최소화, 네트워크 지연 시간 감소, 서버의 부하를 분산 시키는 효과가 있다.
 
 
+  - #### Local Caching
+
+    - 서버 내부 저장소에 Cache 데이터를 저장한다.
+    - 서버 간의 데이터가 공유되지 않는다.
+
+  - #### Global Caching
+
+    - 별도의 Cache 서버를 두어 각 서버에서 Cache 서버에 접근한다.
+    - Cache 서버로 네트워크 트래픽이 발생하기 때문에 Local Caching보다 느리다.
+
 <br />
 
 ---
