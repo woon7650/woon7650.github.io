@@ -39,7 +39,7 @@ last_modified_at: 2024-10-21
     - 다양한 Cache Provider와 상호작용하는 코드를 작성하는 프로세스를 단순화하고 표준화하기 위한 개념이다.
     - 개발자는 Cache Provider의 구체적인 구현에 신경쓰지 않고 필요에 따라 다양한 Cache Provider를 사용할 수 있다.
     - Cache 기술을 지원하는 Cache Manager를 Bean으로 등록해야 한다.
-  - Spring에서는 **CacheManager**를 활용하여 지정한 저장소의 Cache를 관리한다.
+  - Spring에서는 **CacheManager**를 Bean으로 등록하여 지정한 저장소의 Cache를 관리한다.
   - Cache Manager(캐시 매니저)
     - Cache Instance를 관리하고 Cache에 접근할 수 있는 방법을 제공한다.
     - Spring은 **CacheManager** Interface를 제공하며 이를 구현한 다양한 Cache Manager가 존재한다.
@@ -140,7 +140,7 @@ last_modified_at: 2024-10-21
   - #### Key/Value
     - Cache의 Value 값은 필수로 지정, Key값은 선택적으로 적용 가능하다.
     - Key값을 비어있을 때 메서드의 파라미터 변수명이 Key값으로 등록된다.
-    - 파라미터가 존재하지 않을 경우 Key값은 0으로 처리된다.
+    - 파라미터가 존재하지 않을 경우 Key값은 0으로 처리된다.(파라미터가 없는 메서드)
 
 <br />
 
@@ -155,7 +155,11 @@ last_modified_at: 2024-10-21
     - 데이터 불일치가 발생한다.(일관성 불일치)
   - 적용하지 않고 데이터 수정할 경우 DB는 수정되고 Cache 데이터는 수정 전의 상태로 남는다.
 
-  - **allEntries = true** : value에 해당하는 모든 Cache를 뜻함
+  - **allEntries = true** : Cache에 지정된 값을 모두 제거할 필요가 있을 경우
+
+  - #### Process
+    - 일정한 주기로 Cache를 제거
+    - 값이 변할 때 Cache를 제거
 
 <br />
 
