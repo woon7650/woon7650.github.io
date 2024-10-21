@@ -155,7 +155,7 @@ last_modified_at: 2024-10-21
     - 데이터 불일치가 발생한다.(일관성 불일치)
   - 적용하지 않고 데이터 수정할 경우 DB는 수정되고 Cache 데이터는 수정 전의 상태로 남는다.
 
-  - **allEntries = true** : Cache에 지정된 값을 모두 제거할 필요가 있을 경우
+  - **allEntries = true** : Cache에 저장된 값을 모두 제거할 필요가 있을 경우
 
   - #### Process
     - 일정한 주기로 Cache를 제거
