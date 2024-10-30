@@ -14,7 +14,7 @@ last_modified_at: 2024-10-30
 - [Spring AsyncNonBlocking](blog/Spring-AsyncNonBlocking/)
 
 
-> ### 들어가면서
+### 들어가면서
 
   > CompletableFuture is part of Java's java. util. concurrent package and provides a way to write asynchronous code by representing a future result that will eventually appear. It lets us perform operations like calculation, transformation, and action on the result without blocking the main thread.
 
@@ -217,6 +217,12 @@ last_modified_at: 2024-10-30
     ```
 
 <br />
+
+---
+
+### 마무리하면서
+
+- 다음 포스트에서는 CompletableFuture의 테스트 코드 작성과 실행 결과를 통해 자세히 알아보겠습니다.
 
 ---
 
