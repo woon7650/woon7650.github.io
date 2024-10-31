@@ -1,6 +1,6 @@
 ---
-title: "Asynchronous Programming With CompletableFuture"
-excerpt: "[Java] About CompletableFuture & Limit of Future"
+title: "Asynchronous Programming With CompletableFuture Part1"
+excerpt: "[Java] About CompletableFuture & Limit of Future Part1"
 
 categories:
   - Blog
@@ -29,19 +29,40 @@ last_modified_at: 2024-10-30
   - Java5에 추가된 Future는 비동기 작업의 결과를 나타내는 Interface
   - 작업이 아직 완료되지 않았더라도 결과에 접근할 수 있는 방법을 제공
 
-  - #### Example
+  - #### Code
 
     ```java
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-      ExecutorService executorService = Executors.newFixedThreadPool(4);
-      Future<String> future = executorService.submit(() -> "Complete");
+    import lombok.extern.slf4j.Slf4j;
+    import java.util.concurrent.ExecutionException;
+    import java.util.concurrent.ExecutorService;
+    import java.util.concurrent.Executors;
+    import java.util.concurrent.Future;
 
-      future.get(); 
-      //get을 할 때까지 block
+    @Slf4j
+    public class FutureExample {
+    
+      public static void main(String[] args) throws InterruptedException, ExecutionException {
+        
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<String> future = executor.submit(()-> 
+          {
+            Thread.sleep(5000);
+            return "task complete";
+          }
+        );
+        log.info("wait until Future gets complete result");
+
+        log.info(future.get());
+        executor.shutdown();
+      }
     }
+
     ```
 
-    - get()은 Blocking Call이라서 future.get() 이후의 작업은 비동기 처리 결과를 얻고 나서 진행된다.
+    ![image info](/assets/img/futureResult.png)
+    <img src="/assets/img/futureResult.png" alt="" width="0" height="0">
+
+    - future.get()은 **blocking call**이라서 future.get() 이후의 작업은 비동기 처리 결과를 얻고 나서 진행된다.
 
   - #### Limitation
 
@@ -51,14 +72,18 @@ last_modified_at: 2024-10-30
     - 예외 처리
 
   - #### Solution
-    - **Future**을 이용해서 처리 하기 힘든 비동기 프로그래밍을 **CompletableFuture**로 해결해보자 합니다.
+    - Java8에서 지원하는 **CompletableFuture**의 특징들을 통해 **Future**을 이용해서 처리 하기 힘든 비동기 프로그래밍을 처리해보고자 합니다.
+      - 비동기 메서드 체이닝 : 비동기 메서드 체이닝을 통해 여러 작업을 연결하여 실행할 수 있다.
+      - 콜백 지원 : 콜백 메서드를 등록하여 작업이 완료되었을 때 특정 동작을 수행할 수 있다.
+      - 조합성 개선 : CompletableFuture를 조합하고 결합하여 더 복잡한 비동기 흐름을 만들 수 있다.
+      - 에러 처리 개선
 
 <br />
 
 ---
 
 
-> ### Asynchronous Job Execution in CompletableFuture
+> ### With/Without Return Type
 
   - CompleteableFuture가 제공하는 비동기 작업 실행
   - runAsync
@@ -68,6 +93,7 @@ last_modified_at: 2024-10-30
     - 반환 값이 있는 경우
     - 비동기로 작업 실행 call
 
+  - #### CompletableFuture.java(java.util.concurrent)
     ```java
     public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
@@ -90,12 +116,49 @@ last_modified_at: 2024-10-30
     }
     ```
 
+  - #### Example
+    ```java
+    import lombok.extern.slf4j.Slf4j;
+    import java.util.concurrent.*;
+
+    @Slf4j
+    public class CompletableFutureReturnExample {
+
+      public static void main(String[] args) throws InterruptedException, ExecutionException {
+    
+        CompletableFuture<Void> runAsyncFuture = CompletableFuture.runAsync(() -> {
+          log.info("runAsync with Thread : " + Thread.currentThread().getName());
+        });
+        log.info("After runAsyncFuture");
+
+        CompletableFuture<String> supplyAsyncFuture = CompletableFuture.supplyAsync(() -> {
+          return "Task Complete";
+        });
+
+        log.info("Before SupplyAsyncFuture Result");
+        log.info(supplyAsyncFuture.get());
+        log.info("After SupplyAsyncFuture Result");
+
+      }
+    }
+
+    ```
+
+    ![image info](/assets/img/CompletableFuture1.png)
+    <img src="/assets/img/CompletableFuture1.png" alt="" width="0" height="0">
+
+
+  - ### Result
+    - runAsync/supplyAsync는 Java7에 추가된 ForkJoinPool의 commonPool()을 사용해 작업을 실행할 Thread를 ThreadPool로부터 얻어 실행
+      - 만약 원하는 ThreadPool을 사용하려면 ExecutorService를 Parameter로 넘겨 주면 된다.
+    - get()을 하더라도 결과가 나올 때까지 blocking을 하고 있지 않음(비동기 작업 실행)
+
 
 <br />
 
 ---
 
-> ### Callback in CompletableFuture
+> ### Asynchronous Method Chaining
 
   - thenApply
     - 반환 값을 받아서 다른 값을 반환함
@@ -108,6 +171,7 @@ last_modified_at: 2024-10-30
     - parameter : 함수형 인터페이스 Runnable
 
 
+  - #### CompletableFuture.java(java.util.concurrent)(java.util.concurrent)
     ```java
     public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
@@ -124,6 +188,48 @@ last_modified_at: 2024-10-30
       }
     }
     ```
+
+  - #### Example
+    ```java
+    import lombok.extern.slf4j.Slf4j;
+
+    import java.util.concurrent.CompletableFuture;
+    import java.util.concurrent.ExecutionException;
+
+    @Slf4j
+    public class CompletableFutureChainingExample {
+
+      public static void main(String[] args) throws InterruptedException, ExecutionException {
+
+        CompletableFuture<Void> future = CompletableFuture
+          .supplyAsync(() -> {
+              log.info("supplyAsync with Thread : "+ Thread.currentThread().getName());
+              return "first return data";
+          })
+          .thenApply(s -> {
+              log.info("thenApply with Thread : "+ Thread.currentThread().getName());
+              return s.toUpperCase();
+          })
+          .thenAccept(a -> {
+              log.info("thenAccept with Thread : "+ Thread.currentThread().getName());
+              log.info(a);
+          });
+          log.info("Main Thread : "+Thread.currentThread().getName());
+      }
+    }
+    ```
+
+    ![image info](/assets/img/CompletableFuture2.png)
+    <img src="/assets/img/CompletableFuture2.png" alt="" width="0" height="0">
+
+
+  - ### Result
+    - runAsync/supplyAsync를 사용했기 때문에 Thread를 ThreadPool로부터 얻어 실행
+      - ForkJoinPool의 commonPool()
+    - thenApply/thenAccept/thenRun은 callback값 및 return의 여부에 따라 적절하게 조합해서 이용하면 된다.
+    - CompletableFuture의 완벽한 결과가 나오기 전에 마지막 log문이 실행된 것을 볼 수 있다.(Asynchronous Programming)
+
+
 
 <br />
 
@@ -142,7 +248,7 @@ last_modified_at: 2024-10-30
   - anyOf
     - 여러 작업들 중에서 가장 빨리 끝난 하나의 결과에 Callback 실행
 
-
+  - #### CompletableFuture.java(java.util.concurrent)
     ```java
     public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
@@ -180,6 +286,49 @@ last_modified_at: 2024-10-30
     }
     ```
 
+  - #### Example
+    ```java
+    import lombok.extern.slf4j.Slf4j;
+
+    import java.util.concurrent.CompletableFuture;
+    import java.util.concurrent.ExecutionException;
+
+    @Slf4j
+    public class CompletableFutureCombinationExample {
+
+      public static void main(String[] args) throws InterruptedException, ExecutionException {
+
+        CompletableFuture<String> future = CompletableFuture
+          .supplyAsync(() -> {
+            return "CompletableFutureExample with ";
+          });
+        CompletableFuture<String> customFuture = CompletableFuture
+          .supplyAsync(() -> {
+            return "thenCombine";
+        });
+
+        CompletableFuture<String> finalFuture1 = future.thenCompose(s -> CompletableFuture.completedFuture(s + customMethod()));
+        CompletableFuture<String> finalFuture2 = future.thenCombine(customFuture, (f1, f2) -> f1 + f2);
+
+        log.info(finalFuture1.get());
+        log.info(finalFuture2.get());
+      }
+    }
+    ```
+
+    ![image info](/assets/img/CompletableFuture3.png)
+    <img src="/assets/img/CompletableFuture3.png" alt="" width="0" height="0">
+
+
+  - ### Result
+    - thenCombine은 두 작업을 독립적으로 실행하고 모두 완료되었을 경우 콜백을 실행한다.
+    - thenCompose는 두 작업을 이어서 실행하고 앞선 작업의 결과를 받아서 사용한다.
+      - CompletableFuture.java의 thenCompose 메소드 Parameter
+      -  **Function에 T타입 -> U타입으로 변환할 떄 CompletionStage 타입으로만 변환을 해야한다.**(CompletableFuture 타입으로 그대로 사용 시 IDE에서 컴파일 에러 발생)
+      - CompletedFuture 메서드로 새로운 CompletableFuture 객체를 생성해야한다.
+      ![image info](/assets/img/thenCompose.png)
+      <img src="/assets/img/thenCompose.png" alt="" width="0" height="0">
+
 <br />
 
 ---
@@ -196,6 +345,8 @@ last_modified_at: 2024-10-30
     - 결과값, error를 받아서 에러가 발생한 경우 아닌 경우 모두 처리 가능
     - parameter : 함수형 인터페이스 BiFunction
 
+
+  - #### CompletableFuture.java(java.util.concurrent)
     ```java
     public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
@@ -216,13 +367,48 @@ last_modified_at: 2024-10-30
     }
     ```
 
+  - #### Example
+    ```java
+    import lombok.extern.slf4j.Slf4j;
+
+    import java.util.concurrent.CompletableFuture;
+    import java.util.concurrent.ExecutionException;
+
+    @Slf4j
+    public class CompletableFutureCombinationExample {
+
+      public static void main(String[] args) throws InterruptedException, ExecutionException {
+
+        CompletableFuture<String> future = CompletableFuture
+          .supplyAsync(() -> {
+            throw new RuntimeException("RuntimeException Error");
+          });
+
+        CompletableFuture<String> exceptionallyFuture = future
+          .exceptionally(e -> {
+            e.getMessage()
+          });
+
+        CompletableFuture<String> handleFuture = future
+          .handle((result, e) -> {
+            return e == null ? result : e.getMessage();
+          });
+
+        log.info(exceptionallyFuture.get());
+        log.info(handleFuture.get());
+      }
+    }
+    ```
+
+    ![image info](/assets/img/CompletableFuture5.png)
+    <img src="/assets/img/CompletableFuture5.png" alt="" width="0" height="0">
+
+
+  - #### Result
+    - exceptionally와 handle의 사용은 **에러가 발생한 경우만 처리할 것인지 / 에러가 발생한 경우와 아닌 경우 모두를 처리할 것인지**에 따라 나뉜다.
+
+
 <br />
-
----
-
-### 마무리하면서
-
-- 다음 포스트에서는 CompletableFuture의 테스트 코드 작성과 실행 결과를 통해 자세히 알아보겠습니다.
 
 ---
 
