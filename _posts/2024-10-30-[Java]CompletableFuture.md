@@ -1,6 +1,6 @@
 ---
-title: "Asynchronous Programming With CompletableFuture Part1"
-excerpt: "[Java] About CompletableFuture & Limit of Future Part1"
+title: "Asynchronous Programming With CompletableFuture"
+excerpt: "[Java] About CompletableFuture & Limit of Future"
 
 categories:
   - Blog
@@ -171,7 +171,7 @@ last_modified_at: 2024-10-30
     - parameter : 함수형 인터페이스 Runnable
 
 
-  - #### CompletableFuture.java(java.util.concurrent)(java.util.concurrent)
+  - #### CompletableFuture.java(java.util.concurrent)
     ```java
     public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
