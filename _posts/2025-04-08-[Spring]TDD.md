@@ -14,15 +14,19 @@ last_modified_at: 2025-04-08
   - 팀의 개발 스타일이나 프로젝트 요구 사항, 개발 기간에 따라 개발 방법과 테스트 기법들(Behavior-Driven Development, Acceptance Test-Driven Development, Feature-Driven Development..)이 달라지지만 JUnit과 Mocking을 통한 Test-Driven Developemnt를 지향하면서 익숙해지기 위해 사용해야 되는 적합한 상황과 방법에 대해 자세히 알아보고자 합니다
 
   - Common Development
+
     ![image info](/assets/img/CommonDevelopment.png)
     <img src="/assets/img/CommonDevelopment.png" alt="" width="0" height="0">
-    - 소비자의 요구사항이 처음부터 명확하지 않을 수 있다(처음부터 완벽한 설계는 어렵.)
+
+    - 소비자의 요구사항이 처음부터 명확하지 않을 수 있다(처음부터 완벽한 설계는 어렵다)
     - 자체 버그 검출 능력 저하 또는 소스코드의 품질이 저하될 수 있다
     - 자체 테스트 비용이 증가할 수 있다
 
   - Test-Driven Development
+
     ![image info](/assets/img/TestDrivenDevelopment.png)
     <img src="/assets/img/TestDrivenDevelopment.png" alt="" width="0" height="0">
+
     - 설계 단계에서 프로그래밍 목적을 반드시 미리 정의해야만 하고 무엇을 테스트해야 할지 정도는 미리 정의(테스트 케이스 작성)해야 한다
     - 테스트 코드를 작성하는 도중에 버그나 수정사항이 발생하면 테스트 케이스에 추가하고 설계를 개선한다 
     - 이후 테스트가 통과한 코드만을 코드 개발 단계에서 실제 코드로 작성한다
@@ -45,6 +49,7 @@ last_modified_at: 2025-04-08
       - TDD의 첫번쨰 단계는 아직 Class, Method가 구현되지 않은 상태에서 테스트를 먼저 작성 -> 테스트는 반드시 실패한다
       - 지 않았기 때문에 
       - **어떤 기능이 필요하며 어떻게 동작해야 하는지 정의**
+
       ```java
       import org.junit.jupiter.api.Test;
       import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -75,6 +80,7 @@ last_modified_at: 2025-04-08
     - Refactor : 코드 리팩토링
       - 테스트가 통과한 코드에 대해 구조를 개선, 중복 제거, 가독성을 높이는 작업
       - **기존의 기능은 유지하면서 코드 품질을 개선**
+
       ```java
       public class Calculator {
 
