@@ -1,5 +1,5 @@
 ---
-title: Java 8 Stream and Lambda"
+title: Java 8 Stream and Lambda
 excerpt: "[Java] About Usage of Stream and Lambda"
 
 categories:
