@@ -53,49 +53,53 @@ last_modified_at: 2025-04-21
   - #### Round Robin(라운드 로빈)
     - 다수의 서버에 **순서대로** 요청을 할당
     - 서버에 균등하게 요청을 분배할 수 있지만 각 서버의 처리량, 서버의 상태, 작업 부하 등을 고려하지 못한다
-    ```java
-    //default : round-robin
-    upstream myserver {
-        server localhost:8080;
-        server localhost:8081;
-        server localhost:8082;
-    }
-    ```
+
+      ```java
+      //default : round-robin
+      upstream myserver {
+          server localhost:8080;
+          server localhost:8081;
+          server localhost:8082;
+      }
+      ```
+
   - #### Least Connection(최소 연결결)
     - **Connection이 가정 적은 서버**에 요청을 전달
     - 각 서버의 Connection 수를 계속해서 추적해야 하는 복잡성이 존재하고 서버 응답 시간, 상태태를 고려하지 못한다
 
-    ```java
-    upstream myserver {
-    	least_conn;
-        server localhost:8080;
-        server localhost:8081;
-        server localhost:8082;
-    }
-    ```
+      ```java
+      upstream myserver {
+      	least_conn;
+          server localhost:8080;
+          server localhost:8081;
+          server localhost:8082;
+      }
+      ```
   - #### Weight Ratio(가중치 비율)
     - 각 서버의 처리 능력을 고려하여 서버가 가질 수 있는 **처리량, Connection 비율 가중치**를 토대로 부하를 분산
     - 각 서버의 성능에 따라 효율적인 처리가 가능하지만 최적 서버 가중치를 유지하는데 어려움이 있다
 
-    ```java
-    upstream myserver {
-        server localhost:8080 weight=3;
-        server localhost:8081 weight=2;
-        server localhost:8082 weight=1;
-    }
-    ```
+      ```java
+      upstream myserver {
+          server localhost:8080 weight=3;
+          server localhost:8081 weight=2;
+          server localhost:8082 weight=1;
+      }
+      ```
   - #### IP Hash(IP 해시)
     - Round Robin, Least Connection, Weight Ratio는 각 서버마다 세션 불일치 문제가 발생할 수 있다(세션 정보가 저장되있는 서버가 아닌 다른 서버에도 같은 세션 정보가 저장될 때 중복 데이터 문제가 발생)
     - **패킷의 IP주소를 해싱하여 결과 해시 값**에 해당하는 서버가 처리하는 것을 보장할 수 있다
     - 적은 수의 Client와 많은 요청을 처리하는 경우 특정 서버에 부하가 몰릴 가능성이 있다
-    ```java
-    upstream myserver {
-	    ip_hash;
-        server localhost:8080;
-        server localhost:8081;
-        server localhost:8082;
-    }
-    ```
+
+      ```java
+      upstream myserver {
+	      ip_hash;
+          server localhost:8080;
+          server localhost:8081;
+          server localhost:8082;
+      }
+      ```
+
   - #### Least Response Time
     - **응답 시간이 가장 빠른 서버**에 우선적으로 요청을 할당
     - 서버 응답 시간 파악을 위한 모니터링 시스템이 필요하며 서버 상태, 처리량을 고려하지 못한다
@@ -113,16 +117,16 @@ last_modified_at: 2025-04-21
   - Server Prviate Key(Web Server)
     - Client의의 End Entity Certificate 발행을 위한 Key
     - ssl_certificate_key server-private.key;
+    
+      ```java
+      server {
+        listen 443 ssl;
+        server_name localhost;
 
-    ```java
-    server {
-      listen 443 ssl;
-      server_name localhost;
-      
-      ssl_certificate      /Users/leeseonga/server-public.crt;
-      ssl_certificate_key  /Users/leeseonga/server-private.key;
-    }
-    ```
+        ssl_certificate      /Users/leeseonga/server-public.crt;
+        ssl_certificate_key  /Users/leeseonga/server-private.key;
+      }
+      ```
 
 <br />
 
@@ -130,26 +134,24 @@ last_modified_at: 2025-04-21
 
 > ### Nginx Cache
 
-
   - 동일한 Request가 들어오면 저장된 Cache를 사용하여 응답을 제공하여 서버의 성능을 향상시키고 Client에게 더 빠른 응답을 제공할 수 있습니다
 
+    ```java
+    proxy_cache_path /local/nginx/cache 
+    levels=1:2 
+    keys_zone=my_cache:10m
+    max_size=20g 
+    inactive=60m
+    use_temp_path=off;
 
-  ```java
-  proxy_cache_path /local/nginx/cache 
-  levels=1:2 
-  keys_zone=my_cache:10m
-  max_size=20g 
-  inactive=60m
-  use_temp_path=off;
-
-  server {
-      # ...
-      location / {
-          proxy_cache my_cache;
-          ...
-      }
-  }
-  ```
+    server {
+        # ...
+        location / {
+            proxy_cache my_cache;
+            ...
+        }
+    }
+    ```
 
   - Cache directory
     - Cache directory 지정 : /local/nginx/cache
