@@ -12,22 +12,46 @@ last_modified_at: 2025-05-20
 
 - ### 💡Lambda Expression
 
-  - 익명 함수(Anonymous Function)를 작성하는 간결한 방법
-  - 코드의 가독성을 높이고 불필요한 코드 작성을 줄일 수 있음
+  - 익명 함수(Anonymous Function)를 지칭하는 용어
+    - Function을 하나의 Expression으로 표현한 것으로 람다식으로 표현하면 Method의 이름이 없다
+  - 익명 함수들은 모두 1급 개체(변수처럼 사용이 가능하며 매개 변수로 전달이 가능)
+    - Stream API의 매개 변수로 전달이 가능
 
+  - 1급 객체
+    - 변수나 데이터에 할당할 수 있어야 한다
+    - 객체의 인자로 넘길 수 있어야 한다
+    - 객체의 리턴값으로 리턴할 수 있어야 한다
 
-
+  - #### Feature
+    - 코드 간결성
+    - 병렬 처리(Multi-Thread를 사용하여 병렬 처리 가능)
 
 - ### 💡Functional Interface
 
-  - `Runnable` : 매개변수 없음, 반환 없음 `() -> {}`          
-  - `Supplier<T>` : 매개변수 없음, T 반환 `() -> T`         
-  - `Consumer<T>` : T 입력, 반환 없음 `T -> {}`         
-  - `Function<T, R>` : T 입력, R 반환 `T -> R`           
-  - `Predicate<T>` : T 입력, boolean 반환 `T -> true/false`  
-  - `BiFunction<T, U, R>` : 두 입력, R 반환 `(T, U) -> R`         
-  - `UnaryOperator<T>` : T 입력, T 반환 (Function 확장) `T -> T`             
-  - `BinaryOperator<T>` : 두 T 입력, T 반환 (BiFunction 확장) `(T, T) -> T`      
+  - Java의 Lambda Expression이 Functional Interface를 반환
+  - `@FunctionalInterface`
+    - 구현해야 하는 추상 메소드가 하나만 정의된 인터페이스
+  
+  - Java에서 제공하는 Functional Interface
+    - Supplier<T> 
+      - Parameter x, Return Type T **(() -> T)**         
+    - Consumer<T> 
+      - Parameter T, Return x **(T -> {})**        
+    - Function<T, R>
+      - Parameter T, Return R **(T -> R)**    
+      - T : Type of the input
+      - R : Type of the result      
+    - Predicate<T> : filter()는 매개변수로 predicate를 받는다
+      - Parameter T, Return true/false **(T -> boolean)** 
+    - BiFunction<T, U, R>
+      - Parameter T/U, Return R **((T,U) -> R)** 
+      - T : Type of the first argument
+      - U : Type of the second arguement
+      - R : Type of the result
+
+    - Runnable : Parameter x, Return x **(() -> {})**       
+    - UnaryOperator<T> : Parameter T, Return T **(T -> T)** 
+    - BinaryOperator<T> : Parameter T/T, Return T **((T,T) -> T)**
 
 - ### 💡Stream API
 
@@ -45,40 +69,41 @@ last_modified_at: 2025-05-20
       - Return Type : **void**, **Optional<T>**, **List<T>**...
 
   - #### Intermediate Operations(중간 연산)
-    - `filter(Predicate)`
-    - `map(Function)`       
-    - `flatMap(Function)` 
-    - `distinct()`           
-    - `sorted()`            
-    - `sorted(Comparator)`
-    - `limit(n)`          
-    - `skip(n)`           
-    - `peek(Consumer)`    
+    - filter(Predicate)
+    - map(Function)      
+    - flatMap(Function) 
+    - distinct()          
+    - sorted()         
+    - sorted(Comparator)
+    - limit(n)      
+    - skip(n)     
+    - peek(Consumer)  
 
   - #### Terminal Operations(최종)
-    - `forEach(Consumer)`      
-    - `collect(Collectors)`      
-    - `count()`               
-    - `reduce()`               
-    - `toArray()`             
-    - `anyMatch() / allMatch()`
-    - `findFirst() / findAny()`
+    - forEach(Consumer)
+    - collect(Collectors)  
+    - count()   
+    - reduce()             
+    - toArray()           
+    - anyMatch() / allMatch()
+    - findFirst() / findAny()
 
 - ### 💡Functional Interface <-> Stream API
-  - 함수형 인터페이스는 Stream 연산의 핵심 입력 규칙이다.
+  - 함수형 인터페이스는 Stream 연산의 핵심 입력 규칙이다
   - Stream의 중간 연산은 대부분 Function, Predicate 기반
   - Stream의 최종 연산은 Consumer, BinaryOperator 등과 밀접
 
-- ### Java 8(Lambda + Stream) vs before Java 8
-  - 코드 길이 : 간결하고 선언적
-  - 가독성 : 높음
-  - 병렬 처리 : `parallelStream()`로 가능
-  - 디버깅 : 다소 어려움
-
+  
 <br />
 
 ---
 
+- ### Java 8 method References, Double Colon(::), operator
+
+  - ClassName::staticMethodName(Reference -> static method)
+  - object::instanceMethodName(Reference -> instance method of a particular object)
+  - ContainingType::methodName(Reference -> instance method of an arbitrary object of a particular type)
+  - ClassName::new(Reference -> constructor)
 
 - ### Collectors Utility
   - Collectors.toList()
@@ -110,6 +135,13 @@ last_modified_at: 2025-05-20
 
 ---
 
-
 - ### ✅Conclusion
   - 개발도 중요하겠지만 어플리케이션이 돌아가는 과정과 관련된 기본적인 개념에 대해서 한 번씩 정리하는 과정을 통해서 다음에 비슷한 jar와 dll 관련된 이슈가 생기더라도 빠르게 대처할 수 있을 것 같습니다.  
+
+
+---
+
+- ### Reference
+
+  - https://dwaejinho.tistory.com/entry/Java-Lambda-Stream-%EB%8F%84%EC%9E%85-%EB%B0%B0%EA%B2%BD%EA%B3%BC-%EC%9B%90%EB%A6%AC-%ED%8C%8C%ED%95%B4%EC%B9%98%EA%B8%B0
+  - https://sunrise-min.tistory.com/entry/Java-8-%EB%9E%8C%EB%8B%A4Lambda-%EC%8A%A4%ED%8A%B8%EB%A6%BCStream-double-colon
