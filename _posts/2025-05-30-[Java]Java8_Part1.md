@@ -1,6 +1,6 @@
 ---
 title: "Refactoring Using Java 8 Functional Interface and Lambda"
-excerpt: "[Java] Features supported by Java 8 Part1
+excerpt: "[Java] Features supported by Java 8 Part1"
 
 categories:
   - Blog
