@@ -122,7 +122,7 @@ last_modified_at: 2025-05-30
     - Lambda Expression : (T, T) -> int(비교)
     - 같은 Type의 인자를 받아서 int로 반환
   
-    - #### `Runnable`
+  - #### `Runnable`
     ```java
     @FunctionalInterface
     public interface Comparator<T> {
@@ -132,7 +132,7 @@ last_modified_at: 2025-05-30
     - Parameter X / Return X
     - Lambda Expression : () -> void(실행)
   
-    - #### `Callable<V>`
+  - #### `Callable<V>`
     ```java
     @FunctionalInterface
     public interface Callable<V> {
@@ -167,81 +167,73 @@ last_modified_at: 2025-05-30
     
   - #### `BiFunction<T, U>`
 
+    ```java
+    @FunctionalInterface
+    public interface BiFunction<T, U, R> {
+
+      R apply(T t, U u);
+
+      default <V> BiFunction<T, U, V> andThen(Function<? super R, ? extends V> after) {
+        Objects.requireNonNull(after);
+        return (T t, U u) -> after.apply(apply(t, u));
+      }
+    }
+    ```
+
     - Parameter (T,U) / Return R
     - Lambda Expression : (T, U) -> R(함수)
 
-      <details>
 
-        <summary>BiFunction.java</summary>
-
-        ```java
-        @FunctionalInterface
-        public interface BiFunction<T, U, R> {
-          R apply(T t, U u);
-          default <V> BiFunction<T, U, V> andThen(Function<? super R, ? extends V> after) {
-            Objects.requireNonNull(after);
-            return (T t, U u) -> after.apply(apply(t, u));
-          }
-        }
-        ```
-
-      </details>
 
   - #### `BiPredicate<T, U>`
+
+    ```java
+    @FunctionalInterface
+    public interface BiPredicate<T, U> {
+    
+      boolean test(T t, U u);
+
+      default BiPredicate<T, U> and(BiPredicate<? super T, ? super U> other) {
+        Objects.requireNonNull(other);
+        return (T t, U u) -> test(t, u) && other.test(t, u);
+      }
+
+      default BiPredicate<T, U> negate() {
+        return (T t, U u) -> !test(t, u);
+      }
+
+      default BiPredicate<T, U> or(BiPredicate<? super T, ? super U> other) {
+        Objects.requireNonNull(other);
+        return (T t, U u) -> test(t, u) || other.test(t, u);
+      }
+    }
+    ```
 
     - Parameter (T,U) / Return boolean
     - Lambda Expression : (T, U) -> boolean(사실 여부)
 
-      <details>
-
-        <summary>BiPredicate.java</summary>
-
-        ```java
-        @FunctionalInterface
-        public interface BiPredicate<T, U> {
-        
-          boolean test(T t, U u);
-          default BiPredicate<T, U> and(BiPredicate<? super T, ? super U> other) {
-            Objects.requireNonNull(other);
-            return (T t, U u) -> test(t, u) && other.test(t, u);
-          }
-          default BiPredicate<T, U> negate() {
-            return (T t, U u) -> !test(t, u);
-          }
-          default BiPredicate<T, U> or(BiPredicate<? super T, ? super U> other) {
-            Objects.requireNonNull(other);
-            return (T t, U u) -> test(t, u) || other.test(t, u);
-          }
-        }
-        ```
-
-      </details>
 
   - #### `BiConsumer<T, U>`
+
+    ```java
+    @FunctionalInterface
+    public interface BiConsumer<T, U> {
+    
+      void accept(T t, U u);
+
+      default BiConsumer<T, U> andThen(BiConsumer<? super T, ? super U> after) {
+        Objects.requireNonNull(after);
+          return (l, r) -> {
+            accept(l, r);
+            after.accept(l, r);
+        };
+      }
+    }
+    ```
 
     - Parameter (T,U) / Return void
     - Lambda Expression : (T, U) -> void(소비)
 
-      <details>
-
-        <summary> BiConsumer.java </summary>
-
-        ```java
-        @FunctionalInterface
-        public interface BiConsumer<T, U> {
-        
-          void accept(T t, U u);
-          default BiConsumer<T, U> andThen(BiConsumer<? super T, ? super U> after) {
-            Objects.requireNonNull(after);
-              return (l, r) -> {
-                accept(l, r);
-                after.accept(l, r);
-              };
-          }
-        }
-        ```
-
-      </details>
 
 
 
