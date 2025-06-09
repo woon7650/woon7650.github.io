@@ -109,20 +109,12 @@ last_modified_at: 2025-06-09
 
 - ### 💡 Stream API
 
+  - Stream API는 Collection을 Functional Interface를 통해 직관적으로 처리할 수 있도록 제공하는 API
   - Java 8에 추가되어 대용량 데이터를 다룰 경우 사용하는 Array나 Collection의 비효율적인 부분을 개선하기 위해 탄생한 방법
-  - 구조
-    - Source : Collection(`List`, `Set`..), Array, File I/O..
-    - `Source -> [중간 연산] -> [중간 연산] -> ... -> [최종 연산]`
-    - `Intermediate Operations(중간 연산)`
-      - Data를 변환하거나 Filtering하는 작업을 수행(이어서 Stream 연산이 가능)
-      - `항상 지연 처리(Lazy Evaluation)로 실행, 최종 연산 실행까지 실제로 수행되지 않음`
-      - 여러 중간 연산을 연결하여 사용, 각 연산의 결과가 다음 연산에 입력
-      - Return Type : Stream<T>
-    - `Terminal Operations(최종 연산)`
-      - Stream을 소비, 데이터를 실제로 처리하여 결과를 return(더 이상 연산이 불가능)
-      - 해당 연산이 호출되면 Stream pipeline 전체가 실행
-      - Stream은 소모되며 한 번 최종 연산이 호출된 Stream은 다시 사용할 수 없다
-      - Return Type : **void**, **Optional<T>**, **List<T>**...
+  - 기존의 반복문 방식과 다르게 Stream API는 데이터 처리 과정을 메서드 체이닝 방식으로 표현할 수 있어 가독성이 크게 향상된다
+  
+  - **반복문(for, while..)과 Stream의 성능 차이**
+    > 일반적으로 Stream은 반복문에 비해 성능이 느리다. 기존 반복문은 Compiler나 JVM, Optimizer 등에 의해 오랜 시간 최적화가 되어 왔기 때문에 Primitive Type 연산은 성능차이가 크게 난다. 하지만 Wrapper Type의 Collection을 사용하도록 강제한다면 성능 차이는 20% 정도로 확연하게 줄어든다.
 
   - #### Features
     - 불변성
@@ -139,26 +131,45 @@ last_modified_at: 2025-06-09
     - 병렬 처리
       - `parallelStream()`를 사용하여 생성 / 기존 Stream에서 `parallel()`를 사용하여 병렬 Stream으로 변환
       - 내부적으로 `ForkJoinPool`을 통해 MultiThread 환경에서 data를 처리
+      - `forEachOrdered()`를 사용하여 순서를 보장하는 병렬 처리를 할 수 있다
       - 병렬 Stream을 사용한 후에 `sequential()`를 사용하여 다시 순차 Stream으로 변환할 수 있다
+
     - 내부 반복
       - Collection은 `외부 반복(반복문, forEach)`을 통해 작업 / Stream은 `내부 반복(Stream의 연산)`으로 작업
 
+  - #### Process
+    - Source : Collection(`List`, `Set`..), Array, File I/O..
+      - `Source -> [중간 연산] -> [중간 연산] -> ... -> [최종 연산]`
+    - `Intermediate Operations(중간 연산)`
+      - Data를 변환하거나 Filtering하는 작업을 수행(이어서 Stream 연산이 가능)
+      - `항상 지연 처리(Lazy Evaluation)로 실행, 최종 연산 실행까지 실제로 수행되지 않음`
+      - 여러 중간 연산을 연결하여 사용, 각 연산의 결과가 다음 연산에 입력
+      - Return Type : Stream<T>
+    - `Terminal Operations(최종 연산)`
+      - Stream을 소비, 데이터를 실제로 처리하여 결과를 return(더 이상 연산이 불가능)
+      - 해당 연산이 호출되면 Stream pipeline 전체가 실행
+      - Stream은 소모되며 한 번 최종 연산이 호출된 Stream은 다시 사용할 수 없다
+      - Return Type : **void**, **Optional<T>**, **List<T>**...
+
+  - #### Source(Stream generate)
+    - Collection : .stream()
+    - Array : Arrays.stream(array명)
+    - File I/O : Files.lines(filePath)
+      - `java.nio.file`를 사용하여 각 줄을 읽고 처리할 수 있다
+    - Number : range(), rangeClose()
+      - Java에서 `IntStream, LongStream, DoubleStream`를 숫자형 Stream을 제공, Primitive Type의 숫자를 효율적으로 처리 가능
+
   - #### Intermediate Operation
-    - Stream 필터링: filter(), distinct()
-    - Stream 변환: map(), flatMap()
-    - Stream 제한: limit(), skip()
-    - Stream 정렬: sorted()
-    - Stream 연산결과 확인: peek()
+
+
+    ![image info](/assets/img/Stream1.png)
+    <img src="/assets/img/Stream1.png" alt="" width="0" height="0"> 
+
 
   - #### Terminal Operation
-    - Element 출력 : forEach()
-    - Element 소모 : reduce()
-    - Element 검색 : findFirst(), findAny()
-    - Element 검사 : anyMatch(), allMatch(), noneMatch()
-    - Element 통계 : count(), min(), max()
-    - Element 연산 : sum(), average()
-    - Element 수집 : collect()
 
+    ![image info](/assets/img/Stream2.png)
+    <img src="/assets/img/Stream2.png" alt="" width="0" height="0"> 
 
   - #### Stream Performance
     - Stream 성능은 Data 구조에 따라 다르게 나타난다
@@ -167,12 +178,18 @@ last_modified_at: 2025-06-09
 
 
   - ### Collectors Utility
-    - Collectors.toList()
-    - Collectors.toSet()
-    - Collectors.joining(", ")
-    - Collectors.groupingBy(...)
-    - Collectors.partitioningBy(...)
-    - Collectors.averagingInt(...)
+
+    - Collector : Stream 요소를 어떤 식으로 도출할지 지정한다
+    - Stream에서 .collect()를 호출하면 `Collector가 Stream Element에 Reducing 연산을 수행`하여 필요한 데이터 구조로 간단하게 도출한다
+    - Collectors에서 제공하는 Method 기능
+      - Stream Element를 하나의 값으로 Reducing하고 요약
+      - Stream Element 그룹화
+      - Stream Element 분할
+
+    - Collectors 클래스에서 제공하는 Static Factory Method
+      ![image info](/assets/img/Stream3.png)
+      <img src="/assets/img/Stream3.png" alt="" width="0" height="0"> 
+
 
 
 - ### 💡 Optional
@@ -182,7 +199,6 @@ last_modified_at: 2025-06-09
   - isPresent()로 null의 여부를 파악 -> get()으로 Optional 객체에서 원래의 객체값을 가져옴
 
   - #### Primitive Type Optional Class
-
     - OptionalInt(int getAsInt())
     - OptionalLong(long getAsLong())
     - OptionalDouble(double getAsDouble())
@@ -206,6 +222,8 @@ last_modified_at: 2025-06-09
 
 ---
 
+
+
 - ### Reference
 
   - https://countryxide.tistory.com/127
@@ -217,3 +235,4 @@ last_modified_at: 2025-06-09
   - https://pamyferret.tistory.com/43
   - https://velog.io/@dankj1991/Java-Stream-API
   - https://velog.io/@songsunkook/Java-Stream-API-feat.-%EC%B5%9C%EC%A0%81%ED%99%94
+  - https://devbksheen.tistory.com/entry/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%BB%AC%EB%A0%89%ED%84%B0Collector%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80

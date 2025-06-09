@@ -45,7 +45,7 @@ last_modified_at: 2025-05-30
 
     - 위의 MyFunctionalInterface이기 때문에 Lambda Expression 사용 가능
       ```java
-      MyFunctionalInterface<String> myFunctionalInterface = () -> "Override Abstract Method"
+      MyFunctionalInterface<String> myFunctionalInterface = () -> "Override Abstract Method";
       String message = myFunctionalInterface.printMessage();
       //message = "Override Abstract Method"
       myFunctionalInterface.defaultCustomMethod();
