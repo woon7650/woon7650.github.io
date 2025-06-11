@@ -112,9 +112,18 @@ last_modified_at: 2025-06-09
   - Stream API는 Collection을 Functional Interface를 통해 직관적으로 처리할 수 있도록 제공하는 API
   - Java 8에 추가되어 대용량 데이터를 다룰 경우 사용하는 Array나 Collection의 비효율적인 부분을 개선하기 위해 탄생한 방법
   - 기존의 반복문 방식과 다르게 Stream API는 데이터 처리 과정을 메서드 체이닝 방식으로 표현할 수 있어 가독성이 크게 향상된다
-  
-  - **반복문(for, while..)과 Stream의 성능 차이**
-    > 일반적으로 Stream은 반복문에 비해 성능이 느리다. 기존 반복문은 Compiler나 JVM, Optimizer 등에 의해 오랜 시간 최적화가 되어 왔기 때문에 Primitive Type 연산은 성능차이가 크게 난다. 하지만 Wrapper Type의 Collection을 사용하도록 강제한다면 성능 차이는 20% 정도로 확연하게 줄어든다.
+
+
+  - #### **for-loop VS Stream**
+
+    - Primitive Type일 경우 : for-loop가 ~15배 정도 빠름
+      - Compiler나 JVM, Optimizer가 for-loop에 대한 internal opimization이 최적화 되어 있고 Stream에 대한 Compiler의 최적화는 아직 제대로 이루어지지 않았다
+    - Wrapped Type일 경우 : for-loop가 ~1.27배 정도 빠름
+      - ArrayList를 순회하는 비용 자체가 워낙 크기 때문에 for-loop와 Stream간의 성능 차이를 압도한다 
+      - 간접 참조하는 것이 직접 참조하는 것보다 iteration cost가 높기 때문에 for-loop의 Compiler 최적화 이점이 사라지게 된다
+    - 또한 함수 계산 비용 > 순회 비용 인 경우 stream을 사용하여도 for-loop에 대비해 속도 손실이 없다
+    - `Functionality Cost + Iteration Cost의 합이 충분히 클 때 순차 Stream의 속도는 for-loop와 가까워진다`
+
 
   - #### Features
     - 불변성
@@ -195,26 +204,63 @@ last_modified_at: 2025-06-09
 - ### 💡 Optional
     
   - Java 8 이후로 추가된 Wrapper class
-  - NullPointException을 간단하게 방지할 수 있다
+  - `NullPointException`을 간단하게 방지할 수 있다
   - isPresent()로 null의 여부를 파악 -> get()으로 Optional 객체에서 원래의 객체값을 가져옴
-
+ 
   - #### Primitive Type Optional Class
+    - Primitive Type을 Optional에 넣게 되면 boxing/unboxing이 일어나는데 불필요한 수행은 성능을 저하시킴 -> Primitive Type용 Optional 사용 지향
     - OptionalInt(int getAsInt())
     - OptionalLong(long getAsLong())
     - OptionalDouble(double getAsDouble())
 
-  - #### Method
-    - T get()
-    - boolean isPresent()
-    - Optional of(T value)
-    - Optional ofNullable(T value)
+  - #### Optional Creation
+    - Optional `of`(T value)
+      - return : value를 가지는 Optional 객체
+      - value가 null일 경우 `NullPointException` 발생
+    - Optional `ofNullable`(T value)
+      - return : value를 가지는 Optional 객체
+      - value가 null일 경우 비어있는 Optional 객체 반환
+    - Optional `empty`()
+      - return : 아무런 값도 가지지 않는 비어있는 Optional 객체 반환
 
-    - T orElse(T other)
-     - 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 값을 반환
-    - T orElseGet(Supplier<? extends T> other)
-      - 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 람다 표현식의 결괏값을 반환함
-    - T orElseThrow(Supplier<? extends X> exceptionSupplier)
-      - 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 예외를 발생시킴
+  - #### Optional Method
+
+    - T `get()`
+      - return : Optional 객체에 저장된 값
+    - boolean `isPresent()`
+      - return : 값이 존재하면 true, 값이 존재하지 않으면 false
+    - boolean `isEmpty()`
+      - return : 값이 존재하면 false, 값이 존재하지 않으면 true
+    - void `ifPresent`(Consumer<? super T> consumer)
+      - return : x
+      - 값이 존재하면 해당 값으로 Consumer interface에 의한 지정된 작업 수행
+    - void `ifPresentOrElse`(Consumer<? super T> action, Runnable emptyAction)
+      - return : x
+      - 값이 존재하면 해당 값으로 Consumer interface에 의한 지정된 작업 수행
+      - 값이 존재하지 않으면 Runnable interface에 의한 지정된 작업 수행
+
+    - Optional<T> `or`(Supplier<? extend Optional<? extends T>> supplier)
+      - 값이 존재하면 해당 값에 대한 Optional 객체 반환, 값이 존재하지 않으면 Supplier interface에 의한 지정된 Optional<T> 객체 반환
+
+
+    - T `orElse`(T other)
+     - 저장된 값이 존재하면 그 값을 반환, 값이 존재하지 않으면 parameter로 전달된 값을 반환
+    - T `orElseGet`(Supplier<? extends T> supplier)
+     - 저장된 값이 존재하면 그 값을 반환, 값이 존재하지 않으면 parameter로 전달된 Supplier interface에 의한 객체를 반환
+    - T `orElseThrow`(Supplier<? extends X> exceptionSupplier)
+      - 저장된 값이 존재하면 그 값을 반환, 값이 존재하지 않으면 `NoSuchElementException` Exception 발생
+
+    - Optional<T> `filter`(Predicate<? supper T> predicate)
+      - Predicate interface에 의한 조건이 true일 경우에만 Optional<T> 반환
+    - Optional<U> `map`​(Function<? super T,​? extends U> mapper)
+      - 저장된 값을 parameter의 function interface에 따라 변환하고 Optional에 감싸서 Optional<T>로 반환
+
+  - #### Consideration
+    - 반환값이 없을 경우 null보다는 `Optional.empty()`로 return하는 것이 좋다
+    - return Type으로만 쓰기를 지향
+      - Optional Type을 Method Parameter type, Map의 Key type, instance field type으로 사용하면 안된다
+    - Primitive Type Optional이 존재
+    - Collection, Map, Stream Array, Optional은 Optional로 감싸지 않음
 
 
 
@@ -236,3 +282,4 @@ last_modified_at: 2025-06-09
   - https://velog.io/@dankj1991/Java-Stream-API
   - https://velog.io/@songsunkook/Java-Stream-API-feat.-%EC%B5%9C%EC%A0%81%ED%99%94
   - https://devbksheen.tistory.com/entry/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%BB%AC%EB%A0%89%ED%84%B0Collector%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80
+  - https://sigridjin.medium.com/java-stream-api%EB%8A%94-%EC%99%9C-for-loop%EB%B3%B4%EB%8B%A4-%EB%8A%90%EB%A6%B4%EA%B9%8C-50dec4b9974b
