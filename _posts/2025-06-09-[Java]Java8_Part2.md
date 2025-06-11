@@ -153,12 +153,12 @@ last_modified_at: 2025-06-09
       - Data를 변환하거나 Filtering하는 작업을 수행(이어서 Stream 연산이 가능)
       - `항상 지연 처리(Lazy Evaluation)로 실행, 최종 연산 실행까지 실제로 수행되지 않음`
       - 여러 중간 연산을 연결하여 사용, 각 연산의 결과가 다음 연산에 입력
-      - Return Type : Stream<T>
+      - Return Type : Stream&lt;T&gt;
     - `Terminal Operations(최종 연산)`
       - Stream을 소비, 데이터를 실제로 처리하여 결과를 return(더 이상 연산이 불가능)
       - 해당 연산이 호출되면 Stream pipeline 전체가 실행
       - Stream은 소모되며 한 번 최종 연산이 호출된 Stream은 다시 사용할 수 없다
-      - Return Type : **void**, **Optional<T>**, **List<T>**...
+      - Return Type : **void, Optional&lt;T&gt;, List&lt;T&gt;**...
 
   - #### Source(Stream generate)
     - Collection : .stream()
@@ -239,8 +239,8 @@ last_modified_at: 2025-06-09
       - 값이 존재하면 해당 값으로 Consumer interface에 의한 지정된 작업 수행
       - 값이 존재하지 않으면 Runnable interface에 의한 지정된 작업 수행
 
-    - Optional<T> `or`(Supplier<? extend Optional<? extends T>> supplier)
-      - 값이 존재하면 해당 값에 대한 Optional 객체 반환, 값이 존재하지 않으면 Supplier interface에 의한 지정된 Optional<T> 객체 반환
+    - Optional&lt;T&gt; `or`(Supplier<? extend Optional<? extends T>> supplier)
+      - 값이 존재하면 해당 값에 대한 Optional 객체 반환, 값이 존재하지 않으면 Supplier interface에 의한 지정된 Optional&lt;T&gt; 객체 반환
 
 
     - T `orElse`(T other)
@@ -250,10 +250,10 @@ last_modified_at: 2025-06-09
     - T `orElseThrow`(Supplier<? extends X> exceptionSupplier)
       - 저장된 값이 존재하면 그 값을 반환, 값이 존재하지 않으면 `NoSuchElementException` Exception 발생
 
-    - Optional<T> `filter`(Predicate<? supper T> predicate)
-      - Predicate interface에 의한 조건이 true일 경우에만 Optional<T> 반환
-    - Optional<U> `map`​(Function<? super T,​? extends U> mapper)
-      - 저장된 값을 parameter의 function interface에 따라 변환하고 Optional에 감싸서 Optional<T>로 반환
+    - Optional&lt;T&gt; `filter`(Predicate<? supper T> predicate)
+      - Predicate interface에 의한 조건이 true일 경우에만 Optional&lt;T&gt; 반환
+    - Optional&lt;U&gt; `map`(Function<? super T,​? extends U> mapper)
+      - 저장된 값을 parameter의 function interface에 따라 변환하고 Optional에 감싸서 Optional&lt;T&gt;로 반환
 
   - #### Consideration
     - 반환값이 없을 경우 null보다는 `Optional.empty()`로 return하는 것이 좋다
