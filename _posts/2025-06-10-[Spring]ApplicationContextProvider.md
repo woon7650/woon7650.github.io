@@ -48,6 +48,7 @@ last_modified_at: 2025-06-11
 - ### ✅ Solution
 
   - #### ApplicationContextProvider.java
+
     ```java
     @Component
     public class ApplicationContextProvider implements ApplicationContextAware {
@@ -71,25 +72,22 @@ last_modified_at: 2025-06-11
     ```
 
   - #### CustomUtil.java
+
     ```java
-    public static boolean checkUser(HashMap map) throws CustomException{
+      public static boolean checkUser(HashMap map) throws CustomException {
+        
+        boolean isValidUser = false;
+	    	try {
+	    		// ApplicationContext에서 빈 주입
+	    		CommonService commonService = ApplicationContextProvider
+                                .getApplicationContext()
+                                .getBean("commonService", CommonService.class);
 
-      boolean isValidUser = false;
+	    	}catch(Exception e) {
+	    		e.printStackTrace();
 
-	  	try {
-
-	  		// ApplicationContext에서 빈 주입
-	  		CommonService commonService = ApplicationContextProvider.getApplicationContext().getBean("commonService", CommonService.class);
-
-        /*
-        메인 로직 생략
-        */
-
-	  	}catch(Exception e) {
-	  		e.printStackTrace();
-        throws new CustomException(ErrorCode.INVALID_USER);
-	  	}
-	  	return isValidUser;
-    }
+	    	}
+	    	return isValidUser;
+      }
 
     ```
