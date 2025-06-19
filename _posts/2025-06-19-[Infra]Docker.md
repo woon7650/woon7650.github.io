@@ -1,6 +1,6 @@
 ---
-title: "Docker installation and setting process through wsl"
-excerpt: "[DevOps] About Docker installation and setting process through wsl"
+title: "Docker Installation and Setting Process Through WSL"
+excerpt: "[DevOps] About Docker Installation and Setting Process Through WSL"
 
 categories:
   - Blog
@@ -190,10 +190,11 @@ last_modified_at: 2025-06-18
       docker compose up -d
       docker compose down
       ```
-    - docker 상태 확인(각 Container의 상태 (Up, Exited, Restarting) 확인)
+    - docker 상태 확인(각 Container의 상태 Up, Exited, Restarting 확인)
       ```
       docker compose ps
       docker ps
+      ```
   - #### Process of `docker compose up -d` 
 
     1. docker-compose.yml 파싱
