@@ -1,5 +1,5 @@
 ---
-title: "MyBatis Interceptor 기반 Timezone 자동 변환"
+title: "Implementing Automatic Timezone Conversion Using MyBatis Interceptor"
 excerpt: "[Spring] About Timezone Implementation"
 date: 2025-08-26
 categories: [Java, MyBatis, Timezone, Interceptor]
