@@ -12,8 +12,6 @@ tags: [Java, MyBatis, Interceptor, Timezone, ThreadLocal, JUnit]
   - 서버(예: Asia/Seoul)와 사용자(클라이언트)의 타임존이 다를 경우 DB에 저장되는 시간과 화면에 보여지는 날짜/시간이 어긋나는 문제를 일관되게 해결하기 위해 Request → Controller → MyBatis Interceptor → DB 흐름에서 Timezone을 처리하는 전략을 정리하고자합니다
   - 핵심은 TimezoneInterceptor에서 SELECT/INSERT/UPDATE 시점에 Server ↔ User 타임존 변환을 수행하는 것입니다
 
-<br />
-
 ---
 
 - ### ⚠️ Situation
@@ -23,8 +21,6 @@ tags: [Java, MyBatis, Interceptor, Timezone, ThreadLocal, JUnit]
   - 이미 다수의 SQL 쿼리와 프론트엔드 코드에서 시간 데이터를 직접 사용하고 있어 전면적인 수정은 현실적으로 어려운 상황
   - 따라서 **기존 조회/수정 로직에 영향을 최소화**하면서 Timezone을 적용할 방법이 필요했음
   - map의 모든 value를 순회하면서 datetime인 부분을 변환하는 것은 **성능적으로 문제가 될 수 있으며 String으로 받아지는 경우도 있기 때문에 보류**
-
-<br />
 
 ---
 
@@ -43,8 +39,6 @@ tags: [Java, MyBatis, Interceptor, Timezone, ThreadLocal, JUnit]
       - 내부의 값은 서로 결과에 영향을 주지 않기 때문에 독립적 연산 가능
       - 순서 보장 필요 없음
 
-<br />
-
 ---
 
 - ### ✅ Solution
@@ -60,8 +54,6 @@ tags: [Java, MyBatis, Interceptor, Timezone, ThreadLocal, JUnit]
   - 지정한 Format의 Datetime이 아닐 경우(Input type 불일치)
     - Exception 발생하는 것이 아닌 받은 데이터를 그대로 흘림
     - Timezone을 타지 않더라도 잘못 들어온 데이터이기 때문에 다른 부분에서 Exception 발생하도록 흘려보냄
-
-<br />
 
 ---
 
@@ -92,34 +84,6 @@ tags: [Java, MyBatis, Interceptor, Timezone, ThreadLocal, JUnit]
 
 ---
 
-- ### Exception 처리
-
-  - Utility 레벨 (TimezoneUtil)
-    - 예외 발생 → Optional.empty() 반환
-    - 잘못된 값 = 무시하고 패스
-  - Interceptor 레벨 (TimezoneInterceptor)
-
-    - Interceptor 전체 실패 → logger.error 후 그대로 throw (쿼리 실패 처리)
-    - 변환 실패 → logger.warn 찍고 무시 (쿼리 실행은 계속 진행)
-
-  - 참고
-
-    ```java
-    public static Optional<LocalDateTime> stringDatetimeMillisToDatetimeFormat(String strDatetime) {
-
-        try{
-            return Optional.of(LocalDateTime.parse(strDatetime, DATETIME_MILLIS_FORMATTER));
-        }catch(Exception e){
-            return Optional.empty();
-        }
-
-    }
-    ```
-
-<br />
-
----
-
 - ### Process
 
   - View ↔ Filter(ThreadLocal) ↔ TimezoneInterceptor(ThreadLocal) ↔ MyBatis
@@ -139,7 +103,7 @@ tags: [Java, MyBatis, Interceptor, Timezone, ThreadLocal, JUnit]
       - 2025-07-30 18:00:00 → 2025-07-31 03:00:00 → View: 2025-07-31
       - ✅ 정확한 연산을 위해 쿼리에서 yyyy-mm-dd 대신 yyyy-mm-dd hh:mm:ss 또는 yyyy-mm-dd hh:mm:ss.SSS로 반환하는 것을 권장
 
-    - 참고
+    - 일부 참고
       ```java
       try {
         Optional.ofNullable((String) value)
@@ -170,8 +134,7 @@ tags: [Java, MyBatis, Interceptor, Timezone, ThreadLocal, JUnit]
       - map.put("creationTime", null) → Interceptor → 2025-07-31 13:20:00.231
       - ✅ 정확한 연산을 위해 쿼리에서 yyyy-mm-dd 대신 yyyy-mm-dd hh:mm:ss 또는 yyyy-mm-dd hh:mm:ss.SSS로 반환하는 것을 권장
 
-    - 참고
-
+    - 일부 참고
       ```java
       try {
           //User로부터 날짜 정보를 안받는 경우(현재시간)
@@ -194,6 +157,34 @@ tags: [Java, MyBatis, Interceptor, Timezone, ThreadLocal, JUnit]
           logger.warn("Timezone 변환 실패 : key = {}, value = {}", key, value, e);
       }
       ```
+
+<br />
+
+---
+
+
+- ### Exception 처리
+
+  - Utility 레벨 (TimezoneUtil)
+    - 예외 발생 → Optional.empty() 반환
+    - 잘못된 값 = 무시하고 패스
+  - Interceptor 레벨 (TimezoneInterceptor)
+
+    - Interceptor 전체 실패 → logger.error 후 그대로 throw (쿼리 실패 처리)
+    - 변환 실패 → logger.warn 찍고 무시 (쿼리 실행은 계속 진행)
+
+  - 일부 참고
+    ```java
+    public static Optional<LocalDateTime> stringDatetimeMillisToDatetimeFormat(String strDatetime) {
+
+        try{
+            return Optional.of(LocalDateTime.parse(strDatetime, DATETIME_MILLIS_FORMATTER));
+        }catch(Exception e){
+            return Optional.empty();
+        }
+
+    }
+    ```
 
 <br />
 
