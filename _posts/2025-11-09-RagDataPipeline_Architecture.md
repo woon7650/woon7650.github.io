@@ -8,16 +8,16 @@ tags: [Java, Spring Boot, Spring Batch, Spring MVC, MyBatis, MSSQL, OnPremise, E
 
 ## Index
 
-1. [들어가면서](#들어가면서)
-2. [❌ Issue(Problem Definition)](#issueproblem-definition)
+1. [들어가면서](#introduction)
+2. [❌ Issue(Problem Definition)](#issue)
 3. [⚠️ Potential Problem](#potential-problem)
-4. [🔁 Consideration(Approach)](#considerationapproach)
+4. [🔁 Consideration(Approach)](#approach)
 5. [💡 TroubleShooting](#troubleshooting)
 6. [✅ Conclusion](#conclusion)
 
----
 
-### 들어가면서
+---
+### 들어가면서 {#introduction}
 
 이번 프로젝트의 핵심 목표는 **ADOT Chatbot(RAG)을 통해 GSDM 문서 및 관련 정보를 조회하고 활용할 수 있도록 문서 단위 DataSet 생성과 Object Storage 업로드 처리 로직을 설계**하는 것이었습니다.  
 GSDM 시스템은 이미 운영 중인 On-Premise 서버 환경에서 서비스되고 있어 기존 구조 변경이나 서버 증설이 어려웠습니다. 따라서 프로젝트 초기부터 **안정성 최우선, 성능과 확장성 고려, 향후 확장 가능성 확보**라는 세 가지 목표를 바탕으로 아키텍처 설계를 진행했습니다.
@@ -30,7 +30,7 @@ GSDM 시스템은 이미 운영 중인 On-Premise 서버 환경에서 서비스�
 
 ---
 
-### ❌ Issue(Problem Definition)
+### ❌ Issue(Problem Definition) {#issue}
 
 **1. DataSet 생성 요구 사항**  
 - GSDM 문서 중 특정 조건을 만족하는 데이터에 대해 DB를 조회하고 Markdown(.md), JSON(.json) 파일과 최소 0개 이상의 첨부파일을 포함한 DataSet 단위로 Object Storage에 업로드해야 했습니다.  
@@ -55,7 +55,7 @@ GSDM 시스템은 이미 운영 중인 On-Premise 서버 환경에서 서비스�
 
 ---
 
-### ⚠️ Potential Problem
+### ⚠️ Potential Problem {#potential-problem}
 
 1. **서버 영향 최소화**  
    - Batch, REST API, MQ 모두 동일 서버에서 실행될 수 있으므로 CPU와 메모리 점유율을 최소화하는 것이 중요했습니다.  
@@ -74,7 +74,7 @@ GSDM 시스템은 이미 운영 중인 On-Premise 서버 환경에서 서비스�
 
 ---
 
-### 🔁 Consideration(Approach)
+### 🔁 Consideration(Approach) {#approach}
 
 **1. 아키텍처 설계**  
 - GSDM 코드 변경 없이 AOP를 별도 파일로 구성하여 이벤트를 감지하고 EventLog 기반 문서 단위 처리를 수행하도록 설계했습니다.  
@@ -94,14 +94,14 @@ GSDM 시스템은 이미 운영 중인 On-Premise 서버 환경에서 서비스�
 
 ---
 
-### 💡 TroubleShooting
+### 💡 TroubleShooting {#troubleshooting}
 
 - 이번 포스트에서는 **아키텍처 설계와 판단 과정 중심**으로 서술했습니다.  
 - 비동기/병렬 처리, I/O 병목 최적화 등 세부 구현 사항은 **별도 포스팅에서 상세 기술 예정**입니다.
 
 ---
 
-### ✅ Conclusion
+### ✅ Conclusion {#conclusion}
 
 이번 프로젝트를 통해 저는 **문서 단위 DataSet 생성 로직을 기반으로 REST API, Batch 구조 설계를 진행하고 적용**할 수 있었습니다.  
 
