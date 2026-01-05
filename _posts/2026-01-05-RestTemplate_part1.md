@@ -1,6 +1,6 @@
 ---
-title: "안정적인 대용량 전송을 위한 RestTemplate 활용 전략 및 구현(part1) "
-excerpt: "메모리 효율을 극대화하는 스트리밍 로직의 이해와 적용"
+title: "Scalable Data Transmission with RestTemplate(Part 1)"
+excerpt: "메모리 효율과 데이터 안정성을 위한 아키텍처 이해"
 date: 2026-01-05
 categories: [Java, Spring, Network]
 tags: [RestTemplate, HttpClient, Streaming, Java, SpringBoot, MessageConverter, JDK1.8]
