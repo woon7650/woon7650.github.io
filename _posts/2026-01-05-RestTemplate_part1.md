@@ -1,6 +1,6 @@
 ---
 title: "Scalable Data Transmission with RestTemplate(Part 1)"
-excerpt: "메모리 효율과 데이터 안정성을 위한 아키텍처 이해"
+excerpt: "[Project Experience] 메모리 효율과 데이터 안정성을 위한 아키텍처 이해"
 date: 2026-01-05
 categories: [Java, Spring, Network]
 tags: [RestTemplate, HttpClient, Streaming, Java, SpringBoot, MessageConverter, JDK1.8]
@@ -88,7 +88,7 @@ private RequestCallback createJsonRequestCallback(Object body) {
     };
 }
 ```
-### 5.2 파일 업로드: exchange와 FileSystemResource의 조화
+#### 2. 파일 업로드: exchange와 FileSystemResource의 조화
 
 복잡한 멀티파트 규격(Boundary 생성)은 Spring에 맡기고 데이터는 
 FileSystemResource로 전달하여 Streaming을 보장합니다.
@@ -101,7 +101,7 @@ public <T> T uploadMultiPart(String apiUrl, MultiValueMap<String, Object> parts,
     return restTemplate.exchange(apiUrl, HttpMethod.POST, entity, typeRef).getBody();
 }
 ```
-### 5.3 대용량 다운로드: 응답 Stream의 직접 연결
+#### 3. 대용량 다운로드: 응답 Stream의 직접 연결
 서버로부터 오는 응답을 byte[]에 담지 않고 곧바로 파일 출력 Stream에 꽂아 넣습니다.
 
 ```java
