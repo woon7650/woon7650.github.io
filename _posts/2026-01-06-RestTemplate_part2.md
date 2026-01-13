@@ -54,25 +54,22 @@ public class RestTemplateConfig {
 
     @Bean
     public RestTemplate restTemplate() {
-        // 1. Connection 레벨의 Buffer Pool 확보 
+
         ConnectionConfig connectionConfig = ConnectionConfig.custom()
                 .setBufferSize(8192)      
                 .setFragmentSizeHint(8192) 
                 .build();
 
-        // 2. PoolingHttpClientConnectionManager로 Connection 자원 확보
         PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
         connectionManager.setMaxTotal(200);         
         connectionManager.setDefaultMaxPerRoute(100);
         connectionManager.setDefaultConnectionConfig(connectionConfig);
 
-        // 3. HttpClient 엔진 설정
         CloseableHttpClient httpClient = HttpClients.custom()
                 .setConnectionManager(connectionManager)
                 .setKeepAliveStrategy(DefaultConnectionKeepAliveStrategy.INSTANCE) 
                 .build();
 
-        // 4. Request Factory 설정 
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
         factory.setBufferRequestBody(false); 
         factory.setConnectTimeout(5000); 
