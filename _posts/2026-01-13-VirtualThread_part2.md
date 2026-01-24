@@ -1,5 +1,5 @@
 ---
-title: "Java’s New Concurrency Paradigm: Virtual Thread Deep Dive(Part 2)"
+title: "Java Virtual Thread Deep Dive(Part 2)"
 excerpt: "[Java] Virtual Thread 이해 및 활용을 위한 이론 정리"
 date: 2026-01-13"
 categories: [Java, Backend, Infrastructure]
