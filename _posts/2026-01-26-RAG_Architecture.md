@@ -32,6 +32,7 @@ tags: [ElasticSearch, Neo4j, GraphRAG, HybridSearch, VirtualThreads, SpringAI, W
 
 #### ElasticSearch 
 * Milvus와 같은 전용 Vector DB는 '의미 유사도'에는 강하지만 특정 품번이나 정확한 고유명사 검색에는 취약합니다. ElasticSearch를 선택하여 **역인덱스의 정밀함과 Vector의 유연함**을 동시에 확보해서 오타가 있거나 추상적인 질문에는 Vector 검색이 답하고 명확한 키워드에는 역인덱스가 답하게 하여 Milvus 단독 사용 시보다 훨씬 높은 검색 정확도를 목표합니다.
+
 ---
 
 ### 2. Storage Architecture: Why ElasticSearch instead Milvus?
