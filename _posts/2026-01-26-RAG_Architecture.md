@@ -40,6 +40,7 @@ tags: [ElasticSearch, Neo4j, GraphRAG, HybridSearch, VirtualThreads, SpringAI, W
 #### 필터링 성능의 한계 극복
 * Milvus와 같은 Vector DB는 대규모 Vector 연산에는 강점이 있으나 비Vector 속성(부서, 생성일, 권한 등)에 대한 복합 필터링 시 성능이 저하되거나 쿼리가 복잡해지는 단점이 있습니다. 
 * ElasticSearch는 이미 검증된 역인덱스 기술을 통해 Metadata 필터링과 Vector 검색을 단일 요청 내에서 최적으로 결합합니다.
+
 #### HNSW (Hierarchical Navigable Small World)
 * ElasticSearch는 고성능 ANN 검색을 위해 HNSW Algorithm을 사용합니다. 이는 Vector를 계층적 그래프로 연결하여 상위 층의 지름길을 통해 유사한 그룹으로 빠르게 접근하게 함으로써 수억 건의 데이터에서도 밀리초 단위의 검색 속도를 유지하게 합니다.
 
@@ -49,8 +50,10 @@ tags: [ElasticSearch, Neo4j, GraphRAG, HybridSearch, VirtualThreads, SpringAI, W
 
 #### Markdown-Aware Splitting 
 * 단순히 글자 수로 자르지 않고 마크다운의 헤더 구조(`#`, `##`)를 구분자로 사용합니다. 소주제 단위로 잘려야 Chunk 자체가 독립적인 의미를 가집니다.
+
 #### Context Injection 
 * 잘린 조각만으로는 원본 문서의 전체 내용을 알 수 없습니다. 우리는 각 조각에 **[부모 문서 제목 + 상위 헤더 제목 + 파일 경로]** 를 Metadata로 강제 주입하여 Embedding합니다. 이를 통해 검색된 조각이 LLM에게 전달될 때 정보의 파편화를 방지합니다.
+
 #### Overlap Strategy 
 * 조각 간의 정보 단절을 방지하기 위해 이전 조각의 마지막 약 10~15%를 다음 조각에 포함시키는 Overlap을 설정하여 문장의 연속성을 유지합니다.
 
@@ -61,9 +64,11 @@ tags: [ElasticSearch, Neo4j, GraphRAG, HybridSearch, VirtualThreads, SpringAI, W
 #### Lexical Search
 * **BM25 Algorithm**을 사용하여 특정 고유명사나 전문 용어를 역인덱스(Inverted Index)에서 즉시 찾아냅니다.
 * 의미적 유사성보다 **정확한 단어의 존재 여부**가 중요할 때 압도적인 신뢰도를 제공합니다.
+
 #### Vector Search
 * **HNSW(Hierarchical Navigable Small World) Algorithm**을 사용하여 수억 개의 Vector를 전체 탐색하는 대신 계층적 그래프를 타고 내려가며 질문과 가장 가까운 좌표의 문서를 **ANN(Approximate Nearest Neighbor)** 방식으로 탐색합니다.
 * `휴가 규정이 궁금해`와 같이 단어가 직접 노출되지 않아도 맥락이 유사한 문서를 찾아내는 **의미 기반 검색**이 가능합니다.
+
 #### Reciprocal Rank Fusion
 * 어휘 기반 검색(BM25)과 의미 기반 검색(kNN)의 결과 리스트는 점수 산정 방식이 완전히 다릅니다. 이를 단순 합산하는 대신 RRF Algorithm을 통해 각 결과의 순위에 역수를 취해 병합합니다. 
 * 해당 과정은 두 검색 방식의 '상호 보완'을 수학적으로 완성하는 단계입니다.
@@ -74,6 +79,7 @@ tags: [ElasticSearch, Neo4j, GraphRAG, HybridSearch, VirtualThreads, SpringAI, W
 
 #### Value Of Relation
 * Markdown 문서 내의 참조 링크나 문서 간의 계층 구조를 Node와 Edge로 구성합니다.
+
 #### Graph Augmented Retrieval 
 * 사용자가 `신입 사원 혜택`을 질문하면 시스템은 ElasticSearch로 `휴가 규정`을 찾고 **Neo4j**를 통해 그와 연결된 `사내 복지 포인트`, `업무 장비 지원` 등 **인접한 연관 지식**을 함께 추출합니다. 이는 검색의 범위를 단순 유사성에서 관계 중심의 확장성으로 넓혀줍니다.
 
