@@ -122,21 +122,44 @@ RAG 답변의 품질과 신뢰도를 결정짓는 4대 핵심 Metadata 설계 �
 
 사용자의 자연어 질문이 최종 답변으로 변환되는 로우레벨 프로세스는 다음과 같습니다.
 
-1. **Request & Intent Analysis (Spring AI) :** 사용자의 자연어 질문을 LLM이 분석하여 검색 키워드와 **Metadata 필터(부서, 날짜 등)** 를 구조화된 JSON으로 추출합니다.
+#### 5.1 Request & Intent Analysis (Spring AI) 
+* 사용자의 자연어 질문을 LLM이 분석하여 검색 키워드와 **Metadata 필터(부서, 날짜 등)** 를 구조화된 JSON으로 추출합니다.
 
-2. **Query Orchestration :** Spring AI가 분석된 결과를 바탕으로 ES 전용 **Hybrid Query DSL(bool query + knn)** 을 동적으로 빌드합니다.
+#### 5.2 Query Orchestration
+* Spring AI가 분석된 결과를 바탕으로 ES 전용 **Hybrid Query DSL(bool query + knn)** 을 동적으로 빌드합니다.
 
-3. **Engine Execution (ElasticSearch)**
-
+#### 5.3 Engine Execution (ElasticSearch)
 * Pre-filtering: Metadata(역인덱스/Doc Values)로 Bitset 생성
 * Concurrent Search: 생성된 Bitset 범위 내에서 BM25 스캔과 HNSW 탐색을 병렬 수행
 * Re-ranking: 두 결과 세트를 RRF로 병합하여 최적의 Top-K Document 선별
 
-4. **Context Construction :** 추출된 조각들을 프롬프트 템플릿에 주입하여 LLM을 위한 최종 컨텍스트를 구성
+#### 5.4 Context Construction
+* 추출된 조각들을 프롬프트 템플릿에 주입하여 LLM을 위한 최종 컨텍스트를 구성
 
-5. **Response Generation :** LLM은 주입된 지식 범위 내에서 사실에 근거한 답변을 생성하여 사용자에게 전달합니다
+#### 5.5 Response Generation
+* LLM은 주입된 지식 범위 내에서 사실에 근거한 답변을 생성하여 사용자에게 전달합니다
 
 ---
+
+### 6. Expansion : Common Module(General vs RAG)
+ 
+공용 모듈 설계를 통해 하나의 엔진 내에서 데이터 성격에 따라 두 가지 성격으로 사용이 가능하며  **"필요한 물리 구조만 선택적으로 활성화하여 리소스를 최적화"** 합니다.
+
+#### 6.1 일반 현업 검색 (General Search)
+
+* 정밀한 키워드 매칭과 비즈니스 정렬(최신순, 인기순)이 중요한 도메인 용도
+* **메커니즘 :** Inverted Index(BM25) 매칭 + Doc Values 필터링/정렬
+* **특징 :** 인덱싱 시 **HNSW 기능을 비활성화**하여 인덱스 크기를 줄이고 검색 시 벡터 연산 없이 키워드 스캔만 수행
+
+#### 6.2 RAG 기반 검색 (Semantic RAG)
+
+* 문맥적 의미 파악과 LLM 전달을 위한 지식 추출이 중요한 도메인 용도
+* **메커니즘 :** Dense Vector(HNSW) 탐색 + Hybrid Search(RRF) 통합
+* **특징 :** 인덱싱 시 `dense_vector` 필드 및 **HNSW 인덱스를 활성화** + 검색 시 질문 임베딩을 통한 유사도 탐색 수행
+
+
+---
+
 
 ### ✅ Conclusion
 * 다음 포스팅에서는 본 Architecture를 바탕으로 **Docker 기반 ElasticSearch 8.x, Spring AI**등 실제 Infra 구축 과정을 상세히 기록하고자 합니다.
