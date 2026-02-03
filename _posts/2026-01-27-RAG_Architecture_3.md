@@ -28,6 +28,12 @@ Gradle은 GAV(Group, Artifact, Version)를 기반으로 URL을 조합하여 필�
 * **`-sources.jar` (Source)** : 사람이 읽을 수 있는 **자바 소스 코드(`.java`)** 입니다. IDE에서 내부 로직을 클릭했을 때 설계도를 보여주는 역할을 합니다.
 * **`.pom` (Metadata)** : 이 부품을 조립하기 위해 필요한 `Transitive Dependencies` 리스트가 담긴 명세서입니다.
 
+#### 1.3 Repository Image
+
+![image info](/assets/img/mileStone.png)
+<img src="/assets/img/mileStone.png" alt="" width="0" height="0">
+
+
 ---
 
 ### 2. Dependency Management
