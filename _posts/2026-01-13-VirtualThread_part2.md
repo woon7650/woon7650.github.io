@@ -1,5 +1,5 @@
 ---
-title: "Java Virtual Thread Deep Dive(Part 2)"
+title: "Understanding & Summarizing : Java Virtual Thread - part 2"
 excerpt: "[Java] Virtual Thread 이해 및 활용을 위한 이론 정리"
 date: 2026-01-13"
 categories: [Java, Backend, Infrastructure]
@@ -28,6 +28,7 @@ Virtual Thread가 Carrier Thread에서 내려오고 다시 올라오는 과정�
 1. **Unmount (Yield):** Virtual Thread가 Blocking I/O를 만나면 현재 실행 중인 CPU의 레지스터 상태와 스택 프레임(Local Variables, Return Address 등)을 `Continuation`이라는 객체에 담아 Heap Memory로 복사**합니다.
 2. **Mount (Resume):** I/O가 완료되어 다시 차례가 오면 Heap에 저장되어 있던 `Continuation` 데이터를 다시 Carrier Thread의 물리 스택으로 복사해 옵니다.
 3. **트레이드오프:** 이 과정은 Kunnel Context Switch보다는 훨씬 저렴하지만 빈번한 발생 시 **Memory I/O 비용과 GC 부하**를 발생시킵니다. 즉 CPU를 아끼기 위해 Memory 성능을 전략적으로 지불하는 것입니다.
+
 ---
 
 #### 3. 전용 ForkJoinPool과 이중 큐(Queue) 구조
