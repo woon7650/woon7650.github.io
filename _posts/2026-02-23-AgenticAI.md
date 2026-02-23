@@ -42,8 +42,8 @@ Claude Code를 포함한 모든 Agentic AI 도구는 LLM 위에서 동작하고 
 
 * 텍스트를 생성할 때는 내부적으로 두 단계가 존재합니다. 이 구분이 KV Cache와 Prompt Caching을 이해하는 핵심입니다.
 
-    ![image info](/assets/img/AgenticAi.png)
-    <img src="/assets/img/AgenticAi.png" alt="" width="0" height="0"> 
+    ![image info](/assets/img/AgenticAI.png)
+    <img src="/assets/img/AgenticAI.png" alt="" width="0" height="0"> 
 
     * Prefill : 입력 프롬프트 전체를 한 번에 처리하는 단계입니다. 모든 입력 토큰 간의 관계를 동시에 계산하며 연산 복잡도는 O(N²)입니다. 이 단계는 KV Cache로 줄일 수 없는 영역입니다. 
     * Decode : 답변 토큰을 하나씩 생성하는 단계입니다. 새 토큰을 만들 때마다 이전 모든 토큰과의 관계를 다시 계산해야 하는데 여기서 최적화의 여지가 생깁니다.
