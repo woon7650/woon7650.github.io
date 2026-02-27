@@ -6,3 +6,112 @@
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+/* ============================================================
+   Custom Overrides - GeunYoung's Devlog
+   ============================================================ */
+
+/* 폰트 */
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Masthead */
+.masthead {
+  border-bottom: 1px solid #30363d;
+  background-color: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+
+  .site-title {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    font-size: 1.1em;
+  }
+
+  .site-subtitle {
+    color: #58a6ff;
+    font-size: 0.65em;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* 포스트 목록 카드 */
+.list__item {
+  padding: 1em 1.2em;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  margin-bottom: 1em;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    border-color: #58a6ff;
+    background-color: #161b22;
+  }
+
+  .archive__item-title {
+    font-size: 1em;
+    font-weight: 600;
+
+    a {
+      color: #c9d1d9;
+      &:hover { color: #58a6ff; }
+    }
+  }
+
+  .archive__item-excerpt {
+    color: #8b949e;
+    font-size: 0.8em;
+  }
+
+  .page__meta {
+    color: #8b949e;
+    font-size: 0.7em;
+  }
+}
+
+/* 사이드바 프로필 */
+.author__avatar img {
+  border: 2px solid #30363d;
+  border-radius: 50%;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: #58a6ff;
+  }
+}
+
+.author__name {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.author__bio {
+  color: #8b949e;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+.author__urls a {
+  transition: color 0.15s ease;
+  &:hover { color: #58a6ff !important; }
+}
+
+/* 코드블록 */
+div.highlighter-rouge,
+figure.highlight {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+}
+
+/* 구분선 */
+hr {
+  border-color: #30363d;
+}
+
+/* 페이지 타이틀 */
+.page__title {
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
