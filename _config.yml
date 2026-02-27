@@ -96,7 +96,9 @@ analytics:
 author:
   name             : "Geun Young Kim"
   avatar           : "/assets/profileImage.png"
-  bio              : "Java Backend Engineer\nTowards a stable and infinitely scalable system"
+  bio              : |
+    Backend Engineer
+    Towards a stable and infinitely scalable system with AI
   location         : "대한민국/서울(Korea/Seoul)"
   email            : "woon7650@gmail.com"
   links:
