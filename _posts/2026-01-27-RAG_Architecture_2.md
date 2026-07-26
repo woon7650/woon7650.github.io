@@ -1,5 +1,5 @@
 ---
-title: "Designing Hybrid RAG Architecture : ElasticSearch(instead Vector DB) + Neo4j - part 2"
+title: "Designing Hybrid RAG Architecture : ElasticSearch instead Vector DB(Milvus) - part 2"
 excerpt: "[AI, Java] ERP RAG 구축기(설계 편)"
 date: "2026-01-27"
 categories: [Backend, Infrastructure, AI]

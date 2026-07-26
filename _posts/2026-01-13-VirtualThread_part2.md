@@ -1,5 +1,5 @@
 ---
-title: "Understanding & Summarizing : Java Virtual Thread - part 2"
+title: "Java Virtual Thread: Continuations, Scheduling, and Memory Trade-offs"
 excerpt: "[Java] Virtual Thread 이해 및 활용을 위한 이론 정리"
 date: 2026-01-13"
 categories: [Java, Backend, Infrastructure]
