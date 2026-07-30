@@ -1,0 +1,27 @@
+{% assign nav = site.data.navigation.massive_traffic %}
+{% assign flat = "" | split: "," %}
+{% for group in nav %}
+  {% if group.children %}
+    {% assign flat = flat | concat: group.children %}
+  {% endif %}
+{% endfor %}
+
+{% assign idx = -1 %}
+{% for item in flat %}
+  {% if item.url == page.url %}{% assign idx = forloop.index0 %}{% endif %}
+{% endfor %}
+
+{% if idx >= 0 %}
+<nav class="series-nav" style="display:flex;justify-content:space-between;gap:1rem;margin:2rem 0;padding-top:1rem;border-top:1px solid #ddd;">
+  {% if idx > 0 %}
+    {% assign prev = flat[idx | minus: 1] %}
+    <a href="{{ prev.url | relative_url }}">← {{ prev.title }}</a>
+  {% else %}<span></span>{% endif %}
+
+  {% assign last = flat.size | minus: 1 %}
+  {% if idx < last %}
+    {% assign next = flat[idx | plus: 1] %}
+    <a href="{{ next.url | relative_url }}" style="text-align:right;">{{ next.title }} →</a>
+  {% else %}<span></span>{% endif %}
+</nav>
+{% endif %}

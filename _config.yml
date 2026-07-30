@@ -271,9 +271,7 @@ compress_html:
     envs: development
 
 
-# Defaults
 defaults:
-  # _posts
   - scope:
       path: ""
       type: posts
@@ -284,3 +282,14 @@ defaults:
       comments: # true
       share: true
       related: true
+
+  # 대용량 트래픽 시리즈 전용
+  - scope:
+      path: "_posts/series"
+      type: posts
+    values:
+      categories: [Backend, Series]
+      toc: true
+      toc_sticky: true
+      toc_label: "목차"
+      related: false

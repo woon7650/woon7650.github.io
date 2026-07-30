@@ -6,9 +6,100 @@ main:
     url: https://github.com/woon7650/woon7650.github.io/
   - title: "Profile"
     url: https://woon7650.github.io/backend/engineer/profile
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+
+# 대용량 트래픽 시리즈 사이드바 (34개)
+massive_traffic:
+  - title: "Intro"
+    url: /backend/series/Massive_Traffic_Intro/
+
+  - title: "PART 1. 단일 서버 — 데이터 정합성"
+    children:
+      - title: "1-1. Index & 실행 계획"
+        url: /backend/series/index-execution-plan/
+      - title: "1-2. Transaction & MVCC"
+        url: /backend/series/transaction-mvcc/
+      - title: "1-3. Lock 메커니즘"
+        url: /backend/series/innodb-lock-mechanism/
+      - title: "1-4. 동시성 제어 전략"
+        url: /backend/series/concurrency-control-strategy/
+      - title: "1-5. JPA N+1 & 영속성 컨텍스트"
+        url: /backend/series/jpa-n-plus-one/
+
+  - title: "PART 2. 단일 서버 — 실행 자원"
+    children:
+      - title: "2-1. 동시성 모델"
+        url: /backend/series/concurrency-model/
+      - title: "2-2. 스레드 풀 · 커넥션 풀 · 타임아웃 계층"
+        url: /backend/series/pool-and-timeout-layers/
+      - title: "2-3. JVM GC 튜닝"
+        url: /backend/series/jvm-gc-tuning/
+
+  - title: "PART 3. 여러 서버 — 분산 이론과 정합성"
+    children:
+      - title: "3-1. CAP & PACELC"
+        url: /backend/series/cap-pacelc/
+      - title: "3-2. 분산 트랜잭션"
+        url: /backend/series/distributed-transaction/
+      - title: "3-3. 멱등성 설계"
+        url: /backend/series/idempotency-design/
+      - title: "3-4. 분산 락의 한계"
+        url: /backend/series/distributed-lock-limits/
+
+  - title: "PART 4. 캐싱 · 메시징 인프라"
+    children:
+      - title: "4-1. Redis 자료구조 · 운영"
+        url: /backend/series/redis-internals-operations/
+      - title: "4-2. 캐싱 전략"
+        url: /backend/series/caching-strategy/
+      - title: "4-3. Kafka 아키텍처"
+        url: /backend/series/kafka-architecture/
+      - title: "4-4. Kafka 신뢰성 · 실무 패턴"
+        url: /backend/series/kafka-reliability-patterns/
+
+  - title: "PART 5. MSA — 요청 경로"
+    children:
+      - title: "5-1. Load Balancing & API Gateway"
+        url: /backend/series/load-balancing-api-gateway/
+      - title: "5-2. Service Discovery & HTTP 클라이언트"
+        url: /backend/series/service-discovery-http-client/
+      - title: "5-3. Circuit Breaker & Rate Limiting"
+        url: /backend/series/circuit-breaker-rate-limiting/
+      - title: "5-4. 분산 트레이싱"
+        url: /backend/series/distributed-tracing/
+
+  - title: "PART 6. MSA — 인터페이스 설계"
+    children:
+      - title: "6-1. API 설계 스타일"
+        url: /backend/series/api-design-style/
+      - title: "6-2. 인증 · 인가"
+        url: /backend/series/authentication-authorization/
+      - title: "6-3. 실시간 통신"
+        url: /backend/series/realtime-communication/
+
+  - title: "PART 7. 데이터 계층 확장"
+    children:
+      - title: "7-1. Replication & 읽기 · 쓰기 분리"
+        url: /backend/series/replication-read-write-split/
+      - title: "7-2. Sharding & 분산 ID"
+        url: /backend/series/sharding-distributed-id/
+      - title: "7-3. Consistent Hashing"
+        url: /backend/series/consistent-hashing/
+      - title: "7-4. NoSQL 데이터 모델링"
+        url: /backend/series/nosql-data-modeling/
+      - title: "7-5. 검색 인프라"
+        url: /backend/series/search-infrastructure/
+
+  - title: "PART 8. 운영 · SLO"
+    children:
+      - title: "8-1. CDN & 정적 자원"
+        url: /backend/series/cdn-static-assets/
+      - title: "8-2. 부하테스트"
+        url: /backend/series/load-testing/
+      - title: "8-3. 관측성"
+        url: /backend/series/observability/
+      - title: "8-4. SLO · 에러 예산"
+        url: /backend/series/slo-error-budget/
+      - title: "8-5. 배포 전략"
+        url: /backend/series/deployment-strategy/
+      - title: "8-6. Auto Scaling"
+        url: /backend/series/auto-scaling/
